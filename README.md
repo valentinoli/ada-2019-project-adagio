@@ -3,14 +3,14 @@
 
 
 # Abstract
-The goal of our project is to analyze if and how the agricultural landscape has changed or will change as a result of changing dietary preferences of populations. For our analysis we will be using a subset UN's Global Food & Agriculture Statistics dataset. In the past decade or so, an increasing number of people have decided to restrict their diet to vegetarian and vegan foods, partially due to increasing awareness of climate change. Global markets have simultaneously had to adapt to this change.
-
+The goal of our project is to analyze if and how the agricultural landscape has changed as a result of changing dietary preferences of populations. For our analysis we will be using a subset of the UN's Global Food & Agriculture Statistics dataset. This dataset contains a variety of categories for many countries, including partitioning of land among different uses, raising of livestock, and specific crop production levels. In the past few years, an increasing number of people have decided to restrict their diet to vegetarian and vegan foods, in part due to increasing awareness of climate change. Global markets have simultaneously had to adapt to this change. We wish to examine this adaptation and its potential consequences in more detail, as well as potentially try to theorize what changes may take place in the future.
 **A 150 word description of the project idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?**
 
 # Research questions
 * How is land currently partitioned among resources devoted to meat, non-meat animal products, other food products, and non-food vegetation? What are the variations among countries/regions?
 * Is there a better way (to help with data analysis) to separate types of agricultural land use into distinct categories?
 * Using these categories, how has land use evolved over time? Are there any trends in land use which might reflect changes in human consumption preferences, or technological developments?
+* Deciding to adjust one's diet is somewhat of a privilege for citizens of more modernized countries; can we see dietary trends reflected in agricultural differences between more modern versus third world nations?
 * How might the changing trends in land use impact carbon emissions? Is it feasible to think that changing dietary preferences might have an impact on the climate crisis?
 
 # Dataset
@@ -27,6 +27,7 @@ The dataset is available in csv format, therefore can be easily imported into py
 
 # A list of internal milestones up until project milestone 2
 | No. | Milestone | Deadline |
+|---|---|---|
 | 1 | Collect the data: decide on what subsets of data we want to work with, analyze the sources | Oct 31 |
 | 2 | Look at the collected data to narrow down the questions (more specific statistics, regions, population, etc.) that we want to answer with this project | Nov 5 |
 | 3 | Clean the data (as much as we can at this level) | Nov 10 |
@@ -35,6 +36,7 @@ The dataset is available in csv format, therefore can be easily imported into py
 
 # Questions for TAa
 Add here some questions you have for us, in general or project-specific.
+* We don't want to over-complicate our project, but it might be interesting to pull in another dataset. Do you think using data about trends in the number of vegetarians and vegans over time would be a helpful addition to our project? The downside is that relating this to agricultural data would merely be correlational and not prove any causal connections.
 
 
 
