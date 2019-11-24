@@ -9,16 +9,16 @@ MEAT_IMPORTS_PATH = '../data/selected-meat-imports.xlsx'
 FRUITS_VEGGIES_IMPORTS_PATH = '../data/fruits_and_veggies_imported.xlsx'
 CONSUMPTION_PATH = '../data/food_consumption_by_type_of_food.xlsx'
 
-PKL = ".pkl"
+# PKL = ".pkl"
 
-def read_pickle(path, postfix=""):
-    pickle_path = path + postfix + PKL
-    return pd.read_pickle(pickle_path)
+# def read_pickle(path, postfix=""):
+#     pickle_path = path + postfix + PKL
+#     return pd.read_pickle(pickle_path)
 
 
-def to_pickle(df, path, postfix=""):
-    pickle_path = path + postfix + PKL
-    df.to_pickle(pickle_path)
+# def to_pickle(df, path, postfix=""):
+#     pickle_path = path + postfix + PKL
+#     df.to_pickle(pickle_path)
 
 
 def load_imports(filepath, sheet=0):
@@ -38,7 +38,7 @@ def load_imports(filepath, sheet=0):
     )
     
     if isinstance(res, pd.DataFrame):
-        return res.set_index("commercial_partner").dropna(how="all")
+        return res.dropna(how="all")
     
     # return dictionary of dataframes
     for df in res.values():
@@ -50,31 +50,17 @@ def load_imports(filepath, sheet=0):
 
 def load_imported_food():
     """Load imports: food, beverages, and tobacco"""
-    try:
-        return read_pickle(FOOD_IMPORTS_PATH)
-    except:
-        df = load_imports(FOOD_IMPORTS_PATH)
-        to_pickle(FOOD_IMPORTS_PATH, df)
-        return df
+    return load_imports(FOOD_IMPORTS_PATH)
 
 
 def load_imported_feed():
     """Load imports: feeding stuffs for animals"""
-    pickle_postfix = "feed"
-    try:
-        return read_pickle(FOOD_IMPORTS_PATH, postfix=pickle_postfix)
-    except:
-        df = load_imports(FOOD_IMPORTS_PATH, sheet=1)
-        to_pickle(FOOD_IMPORTS_PATH, postfix=pickle_postfix)
+    return load_imports(FOOD_IMPORTS_PATH, sheet=1)
 
 
 def load_imported_meat():
     """Load imports: meat and edible meat offal"""
-    try:
-        return read_pickle(MEAT_IMPORTS_PATH)
-    except:
-        df = load_imports(MEAT_IMPORTS_PATH, sheet="02")
-        to_pickle(MEAT_IMPORTS_PATH)
+    return load_imports(MEAT_IMPORTS_PATH, sheet="02")
 
 
 def load_imported_fruits():
