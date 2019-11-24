@@ -18,7 +18,6 @@ nearby_countries = [
     "Croatia",
 ]
 
-
 def compute_nearby_imports_ratio(imports):
     """Compute the ratio of imported products which come from nearby countries"""
     imported_nearby = imports[imports.commercial_partner.isin(nearby_countries)]

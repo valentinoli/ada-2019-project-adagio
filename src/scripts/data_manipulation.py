@@ -7,10 +7,11 @@ import pandas as pd
 FOOD_IMPORTS_PATH = '../data/nature-of-goods-imports.xlsx'
 MEAT_IMPORTS_PATH = '../data/selected-meat-imports.xlsx'
 FRUITS_VEGGIES_IMPORTS_PATH = '../data/fruits_and_veggies_imported.xlsx'
+FRUITS_VEGGIES_EXPORTS_PATH = '../data/fruits_veggies_exported.xlsx'
 CONSUMPTION_PATH = '../data/food_consumption_by_type_of_food.xlsx'
 
 
-def load_imports(filepath, sheet=0):
+def load_imports_exports(filepath, sheet=0):
     """Loads specific imports/exports data from Swiss Impex"""
     colnames = ["commercial_partner", "quantity_kg", "value_chf", "value_change_%"]
     
@@ -37,31 +38,48 @@ def load_imports(filepath, sheet=0):
     return res
 
 
+# obsolete function
 def load_imported_food():
     """Load imports: food, beverages, and tobacco"""
-    return load_imports(FOOD_IMPORTS_PATH)
+    return load_imports_exports(FOOD_IMPORTS_PATH)
 
 
 def load_imported_feed():
     """Load imports: feeding stuffs for animals"""
-    return load_imports(FOOD_IMPORTS_PATH, sheet=1)
+    return load_imports_exports(FOOD_IMPORTS_PATH, sheet=1)
 
 
 def load_imported_meat():
     """Load imports: meat and edible meat offal"""
-    return load_imports(MEAT_IMPORTS_PATH, sheet="02")
+    return load_imports_exports(MEAT_IMPORTS_PATH, sheet="02")
 
 
-def load_imported_fruits():
-    """Load imports: fruits"""
-    # bananas, exotic fruit, citrus fruit, grapes,
+def load_traded_fruits_veggies(trade_direction, food_type):
+    """Load imports: fruits or vegetables"""
+    # fruits: bananas, exotic fruit, citrus fruit, grapes,
     # melons, apples, stone fruit, berries
-    sheets = list(range(19, 27))
-    names = [
-        "bananas", "exotic_fruit", "citrus fruit", "grapes",
-        "melons", "apples", "stone_fruit", "berries"
-    ]
-    dfs = load_imports(FRUITS_VEGGIES_IMPORTS_PATH, sheet=sheets)
+    # vegetables: 
+    if food_type == 'fruits':
+        sheets = list(range(19, 27))
+        names = [
+            "bananas", "exotic_fruit", "citrus fruit", "grapes",
+            "melons", "apples", "stone_fruit", "berries"
+        ]
+    elif food_type == 'vegetables':
+        sheets = list(range(2, 10))
+        names = [
+            "potatoes", "tomatoes", "onions_garlic_shallots_leeks", "cabbage_cauliflower_kohlrabi_kale",
+            "lettuce_chicory", "edible_roots", "cucumbers_gherkins", "leguminous"
+        ]
+    # else:
+        # throw an error, should be either "fruits" or "vegetables"
+        
+    if trade_direction == 'imports':
+        dfs = load_imports_exports(FRUITS_VEGGIES_IMPORTS_PATH, sheet=sheets)
+    elif trade_direction == 'exports':
+        dfs = load_imports_exports(FRUITS_VEGGIES_EXPORTS_PATH, sheet=sheets)
+    #else:
+        # throw an error, should be either "imports" or "exports"
     
     # create a two-level multi-index
     level_1 = dict(zip(sheets, names))
@@ -78,6 +96,7 @@ def load_imported_fruits():
     return frames[0].join(frames[1:], how="outer")
 
 
+# this function is obsolete (no longer using this dataset)
 def load_food_consumption():
     colnames = [
         "food_type",
