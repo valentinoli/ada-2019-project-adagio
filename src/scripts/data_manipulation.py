@@ -9,17 +9,6 @@ MEAT_IMPORTS_PATH = '../data/selected-meat-imports.xlsx'
 FRUITS_VEGGIES_IMPORTS_PATH = '../data/fruits_and_veggies_imported.xlsx'
 CONSUMPTION_PATH = '../data/food_consumption_by_type_of_food.xlsx'
 
-# PKL = ".pkl"
-
-# def read_pickle(path, postfix=""):
-#     pickle_path = path + postfix + PKL
-#     return pd.read_pickle(pickle_path)
-
-
-# def to_pickle(df, path, postfix=""):
-#     pickle_path = path + postfix + PKL
-#     df.to_pickle(pickle_path)
-
 
 def load_imports(filepath, sheet=0):
     """Loads specific imports/exports data from Swiss Impex"""
@@ -73,7 +62,20 @@ def load_imported_fruits():
         "melons", "apples", "stone_fruit", "berries"
     ]
     dfs = load_imports(FRUITS_VEGGIES_IMPORTS_PATH, sheet=sheets)
-    print(dfs)
+    
+    # create a two-level multi-index
+    level_1 = dict(zip(sheets, names))
+    level_2 = dfs[sheets[0]].columns
+    
+    for k, v in dfs.items():
+        # for each dataframe, change the columns into a multi-index
+        # where the first level is the fruit type
+        columns = [(level_1[k], j) for j in level_2]
+        v.columns = pd.MultiIndex.from_tuples(columns)
+    
+    # outer join the dataframes
+    frames = list(dfs.values())
+    return frames[0].join(frames[1:], how="outer")
 
 
 def load_food_consumption():
