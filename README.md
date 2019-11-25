@@ -1,38 +1,62 @@
 
-# Changing Agricultural Landscape as a Result of Changing Dietary Preferences
+# Reducing the Swiss "Foodprint": How An Individual Can Adjust Their Carbon Output
 
 
-# Abstract
-The goal of our project is to analyze if and how the agricultural landscape has changed as a result of changing dietary preferences. For our analysis, we will be using a subset of the UN's Global Food & Agriculture Statistics dataset. This dataset contains a variety of categories for many countries, including partitioning of land among different uses, raising of livestock, and specific crop production levels. In the past few years, an increasing number of people have decided to restrict their diet to vegetarian and vegan foods, in part due to increasing awareness of climate change. Global markets have simultaneously had to adapt to this change. We wish to examine this adaptation and its potential consequences in more detail, as well as potentially try to theorize what changes may take place in the future.
+# Introduction
+As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes. (Center for Sustainable Systems, 2018) One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
 
-# Research questions
-* How is land currently partitioned among resources devoted to meat, non-meat animal products, other food products, and non-food vegetation? What are the variations among countries/regions?
-* Is there a better way (to help with data analysis) to separate types of agricultural land use into distinct categories?
-* Using these categories, how has land use evolved over time? Are there any trends in land use which might reflect changes in human consumption preferences or technological developments?
-* Deciding to adjust one's diet is somewhat of a privilege for citizens of more modernized countries; can we see dietary trends reflected in agricultural differences between more modern versus third world nations?
-* How might the changing trends in land use impact carbon emissions? Is it feasible to think that changing dietary preferences might have an impact on the climate crisis?
+What is intriguing is that this may not be the answer in all cases. Based on where food is sourced, what time of year it is grown, and how it is produced, the carbon emissions can change drastically. A hot house tomato grown out of season can produce less carbon than pasture-fed goat meat, for example.
 
-# Dataset
+An important question that data can answer, then, is how an eco-friendly citizen can best adapt their diet, based on their specific living circumstances, to reduce their carbon foodprint. Here, we will perform an in-depth analysis on Switzerland, providing a consumer with the knowledge necessary to produce less carbon emissions due to their diet. This will include an analysis of carbon intensities by food type and the various types and sources of food that are imported into Switzerland. After all, since Switzerland has a fairly dense population for its small size, it imports a significant amount of its food:
 
-We will primarily use the FAO (Food and Agriculture Organisation of the United Nations) statistics dataset to look at aspects such as land use (agricultural land, permanent crops, pasture, etc.), crop productions and primary livestock (e.g. meat, milk, eggs, etc.). 
+"According to the Federal Agriculture Office, Switzerland’s gross self-sufficiency rate in 2015 was 59%. The degree of self-sufficiency is defined as the ratio of domestic production to total domestic consumption. With imported animal feed taken into account, the net level of self-sufficiency was 51% that year. But a closer look at the data reveals major differences across products. The country has been able to produce almost 100% of its animal foodstuffs for years, yet has managed only about 40% self-sufficiency for plant-based foods, a rate that fluctuates year on year as harvests are highly weather-dependent." (From swissinfo.ch)
 
-In addition, the ‘Food Supply - Livestock and Fish Primary Equivalent’ subset of the FAO statistics contains global data about the food supply quantity (e.g. kg/capita/yr) which could be used to observe the evolution of meat and animal product consumption vs. consumption of plant-based products.
+Depending on where and what types of food Switzerland is importing its non-meat food products from, this raises the possibility that a Swiss citizen might have a smaller carbon foodprint by eating more meat, contradicting the typical recommendation. Would living with a vegan diet require an excessive amount of imported foods, outweighting the carbon offset of not eating meat? Or is there a large enough amount of carbon produced by the meat industry that eating a plant-based diet is still more sustainable?
 
-Within the FAO stat dataset, there are also annual population statistics that will permit the normalization of some of the data in terms of population. 
+This project will attempt to answer the following question:
 
-Eventually, we would also like to find statistics on self-declared vegetarian/vegan numbers, to be able to investigate how these figures correspond to the observed agricultural data.
+> ### How can a Swiss consumer best adapt their diet to reduce their carbon "foodprint", based on all the factors that go into the carbon emissions of food production?
 
-The dataset is available in CSV format, therefore it can easily be imported into Python using the `read_csv` function. One issue is that the entire dataset is immense, and provides a lot of unnecessary and irrelevant data, so we need to select which subsets we would like to work with and download these specifically. The data is relatively uniform, and a list of definitions and standards, as well as metadata for each subset, is available on the FAO website. This will help to understand the data and formats provided. 
+Note that we are assuming this analysis will be utilized by a Swiss consumer, and not by the government or any authoritative figure. Therefore, the utility of this analysis comes while assuming that nothing about the given situation will change (for example, Switzerland will not make a policy to start domestically producing more bananas); rather, we are looking to give an individual consumer insight into their carbon levels.
 
-# A list of internal milestones up until project milestone 2
-| No. | Milestone | Deadline |
-|---|---|---|
-| 1 | Collect the data: decide on what subsets of data we want to work with, analyze the sources | Oct 31 |
-| 2 | Look at the collected data to narrow down the questions (more specific statistics, regions, population, etc.) that we want to answer with this project | Nov 5 |
-| 3 | Clean the data, make decisions about how to handle NaN values | Nov 10 |
-| 4 | If desired, find an additional dataset about vegetarian/vegan rates and trends in the population | Nov 10 |
-| 5 | Descriptive analysis of the data, including additional cleaning of the data, to understand what other or more specific questions we could be answering | Nov 20 |
-| 6 | Prepare the notebook for submission | Nov 25 |
+# Sub-questions
+* Among Swiss consumption, how much of the various food types (e.g. bananas, beef, oats) are domestically produced versus imported?
+* How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon "cost" of transporting the food to Switzerland.)
+* Among the various meats and animal products, which ones are more carbon-efficient? This must include both the carbon cost of the animals themselves as well as whether feed is imported or grown domestically.
+* Ultimately, using data specific to Switzerland that we gather, what is the carbon foodprint of (1) A typical Swiss diet, (2) The Swiss government-recommended diet, and (3) A diet optimized for the lowest carbon foodprint possible?
 
-# Questions for TAs
-* We don't want to over-complicate our project, but it might be interesting to pull in another dataset. Do you think using data about trends in the number of vegetarians and vegans over time would be a helpful addition to our project? The downside is that relating this to agricultural data would merely be correlational and not prove any causal connections.
+# Datasets
+
+There are two primary sets of data which we are using to drive our analysis. 
+
+The first is the [FAO](http://www.fao.org/faostat/en/#data) (Food and Agriculture Organisation of the United Nations) statistics dataset, which provides us with data specific to Switzerland regarding its crop and other food production. Since the latest available year for Swiss crop production is 2017, we will use 2017 data for all of our sources.
+
+The second is [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml), a site hosted by the Swiss Federal Customs Administration which gives detailed datasets of imports and exports for many food items, among other traded goods.
+
+Note that size is not an issue with our datasets, so we will be processing all data locally (not using Spark).
+
+There are certain mismatches between data available from FAO and Impex. In these cases, we performed an outer join of dataframes, such that any food type which is listed in one but not the other is kept, filling in 0 values for the part of the joined dataframe in which it was empty/no value was provided.
+
+We will use very small amounts of additional data, such as [this federal report](https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF) on the recommended and current actual consumption levels by food groups in Switzerland.
+
+# Assumptions
+Several assumptions had to be made to distill this massive question into a feasible project.
+
+As mentioned above, this analysis is a consumer insight tool. We assume that no changes are made on the large scale of this data.
+
+The most notable of all assumptions is the source of carbon intensities data. Many sources explain the impossibility of estimating the carbon intensities by crop type per country, since the amount of carbon that a crop's production causes depends on a _massive_ number of factors, and these factors vary widely even within a single country, from farm to farm. Thus, there is no data available for carbon intensities of all crops by country. To circumvent this, we will use the global average carbon intensities sourced from [this article](https://www.sciencedirect.com/science/article/pii/S0959652616303584).
+
+Certain difficulties with the datasets were navigated by excluding or combining certain categories. For example, Impex provides data on imported (and exported) live animals for slaughter, but it is unknown whether these imported animals are already accounted for in the FAO's meat production data. It is also unknown how much of the weight of a live animal equates to meat. We therefore excluded the category of live animals, along with other similar categories such as animal offal.
+
+Also, we have included food waste as food consumption. That is, we calculated `Swiss food consumption` as `domestic production` - `exports` + `imports`.
+
+We are only looking at _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing.
+
+Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
+
+# Tasks to finish
+* While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
+* We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport?
+* Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season).
+* Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
+
