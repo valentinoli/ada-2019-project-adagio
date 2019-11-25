@@ -29,15 +29,15 @@ Note that we are assuming this analysis will be utilized by a Swiss consumer, an
 
 There are two primary sets of data which we are using to drive our analysis. 
 
-The first is the (FAO)[http://www.fao.org/faostat/en/#data] (Food and Agriculture Organisation of the United Nations) statistics dataset, which provides us with data specific to Switzerland regarding its crop and other food production. Since the latest available year for Swiss crop production is 2017, we will use 2017 data for all of our sources.
+The first is the [FAO](http://www.fao.org/faostat/en/#data) (Food and Agriculture Organisation of the United Nations) statistics dataset, which provides us with data specific to Switzerland regarding its crop and other food production. Since the latest available year for Swiss crop production is 2017, we will use 2017 data for all of our sources.
 
-The second is (Swiss Impex)[https://www.gate.ezv.admin.ch/swissimpex/index.xhtml], a site hosted by the Swiss Federal Customs Administration which gives detailed datasets of imports and exports for many food items, among other traded goods.
+The second is [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml), a site hosted by the Swiss Federal Customs Administration which gives detailed datasets of imports and exports for many food items, among other traded goods.
 
 Note that size is not an issue with our datasets, so we will be processing all data locally (not using Spark).
 
 There are certain mismatches between data available from FAO and Impex. In these cases, we performed an outer join of dataframes, such that any food type which is listed in one but not the other is kept, filling in 0 values for the part of the joined dataframe in which it was empty/no value was provided.
 
-We will use very small amounts of additional data, such as (this federal report)[https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF] on the recommended and current actual consumption levels by food groups in Switzerland.
+We will use very small amounts of additional data, such as [this federal report](https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF) on the recommended and current actual consumption levels by food groups in Switzerland.
 
 # Assumptions
 Several assumptions had to be made to distill this massive question into a feasible project.
