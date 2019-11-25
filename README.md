@@ -52,11 +52,15 @@ Also, we have included food waste as food consumption. That is, we calculated `S
 
 We are only looking at _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing.
 
+Certain minor food groups, such as oils and sweets, were excluded from the analysis, since they are not necessarily "recommended" foods to consume.
+
 Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
 
 # Tasks to finish
+* Finish loading in all datasets from FAO and Impex (e.g. nuts, fish, etc. which have been downloaded but were not yet incorporated into the mega dataframe)
 * While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
 * We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport?
 * Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season).
+* Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.
 * Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
 
