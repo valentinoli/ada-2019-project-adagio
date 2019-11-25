@@ -2,29 +2,7 @@
 """Scripts for data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
-
-types = {
-    "fruits": {
-        "separate_files": False,  # if True load each subtype from separate file and sum the sheets
-        "subtypes": [
-            "bananas", "exotic_fruit", "citrus_fruit", "grapes",
-            "melons", "apples_pears", "stone_fruit", "berries",
-        ],
-    },
-    "vegetables": {
-        "separate_files": False,
-        "subtypes": [
-            "potatoes", "tomatoes", "onions_garlic_shallots_leeks", "cabbage_cauliflower_kohlrabi_kale",
-            "lettuce_chicory", "edible_roots", "cucumbers_gherkins", "leguminous", "other",
-        ],
-    },
-    "meat": {
-        "separate_files": True,
-        "subtypes": [
-            "chicken"
-        ],
-    }
-}
+from scripts.impex_types import TYPES
 
 def read_excel(path, names):
     """Read Impex Excel file
@@ -77,7 +55,6 @@ def load_impex_type(key, val):
     impex = ["imports", "exports"] # second-lowest level
     
     colnames = [index] + cols + cols  # lowest column header on each sheet
-    
     separate_files = val["separate_files"]  # True/False
     subtypes = val["subtypes"]              # list of subtypes
     
@@ -112,11 +89,12 @@ def load_impex_type(key, val):
     level_2 = subtypes # sub-type
     level_3 = impex    # imports/exports
     level_4 = cols     # quantity/value
-    
+
     for i, df in enumerate(res):
         # for each dataframe, convert the header into a multi-index
+        l2 = level_2[i]
         columns = [
-            (level_1, level_2[i], l3, l4)
+            (level_1, l2, l3, l4)
             for l3 in level_3 for l4 in level_4
         ]
         df.columns = pd.MultiIndex.from_tuples(columns)
@@ -126,7 +104,7 @@ def load_impex_type(key, val):
 
 def load_impex():
     dfs = []
-    for k, v in types.items():
+    for k, v in TYPES.items():
         dfs_type = load_impex_type(k, v)
         
         if len(dfs_type):
