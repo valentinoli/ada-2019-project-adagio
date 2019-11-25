@@ -42,6 +42,7 @@ def impex_dfs_manipulate(dfs, index):
     """
     for df in dfs:
         df.set_index(index, inplace=True)  
+        df.rename(index={"Total trade": "total"}, inplace=True)
         
         # drop nan-rows and impute missing values
         df.dropna(how="all", inplace=True)
