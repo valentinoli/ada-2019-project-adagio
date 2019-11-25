@@ -1,12 +1,14 @@
 import pandas as pd
 
 def load_fao():
+    """Load the FAO data on Swiss Crop Production"""
     production = pd.read_csv(
         "../data/swiss_crop_production.csv",
         header=0,
         names=["subtype", "total"],
         usecols=[7, 11],
         converters={
+            # convert subtype name to match the impex dataset
             7: lambda x: x.lower().replace(",", "").replace(" ", "_"),
         },
     )
@@ -15,6 +17,7 @@ def load_fao():
     production["total"] = production.total.apply(lambda x: float(x) * 1000)  # tonnes --> kg
     production["metric"] = "production"
     
+    # combine gooseberries and currants to match impex dataset
     gooseberries_currants = production[production["subtype"].isin(["gooseberries", "currants"])]
     production = production.append(
         {
