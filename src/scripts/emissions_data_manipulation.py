@@ -1,3 +1,5 @@
+import pandas as pd
+
 def load_emissions():
     # load dictionary to match categories with impex categories
     fruit_veg = {}
