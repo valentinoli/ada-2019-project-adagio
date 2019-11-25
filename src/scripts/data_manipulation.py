@@ -3,127 +3,139 @@
 
 import pandas as pd
 
-# paths
-FOOD_IMPORTS_PATH = '../data/nature-of-goods-imports.xlsx'
-MEAT_IMPORTS_PATH = '../data/selected-meat-imports.xlsx'
-FRUITS_VEGGIES_IMPORTS_PATH = '../data/fruits_and_veggies_imported.xlsx'
-FRUITS_VEGGIES_EXPORTS_PATH = '../data/fruits_veggies_exported.xlsx'
-CONSUMPTION_PATH = '../data/food_consumption_by_type_of_food.xlsx'
+types = {
+    "fruits": {
+        "separate_files": False,  # if True load each subtype from separate file and sum the sheets
+        "subtypes": [
+            "bananas", "exotic_fruit", "citrus_fruit", "grapes",
+            "melons", "apples_pears", "stone_fruit", "berries",
+        ],
+    },
+    "vegetables": {
+        "separate_files": False,
+        "subtypes": [
+            "potatoes", "tomatoes", "onions_garlic_shallots_leeks", "cabbage_cauliflower_kohlrabi_kale",
+            "lettuce_chicory", "edible_roots", "cucumbers_gherkins", "leguminous", "other",
+        ],
+    },
+    "meat": {
+        "separate_files": True,
+        "subtypes": [
+            "chicken"
+        ],
+    }
+}
 
-
-def load_imports_exports(filepath, sheet=0):
-    """Loads specific imports/exports data from Swiss Impex"""
-    colnames = ["commercial_partner", "quantity_kg", "value_chf", "value_change_%"]
+def read_excel(path, names):
+    """Read Impex Excel file
     
-    res = pd.read_excel(
-        filepath,
-        sheet_name=sheet,
-        names=colnames,
-        usecols=[1, 2, 3, 4],
+    :param path:  filepath
+    :param names: column names
+    :returns:     single sheet - dataframe
+                  many sheets  - dictionary of dataframes
+    """
+    return pd.read_excel(
+        path,
+        sheet_name=None,  # load all sheets
+        names=names,
+        usecols=[1, 2, 3, 5, 6],
         skiprows=5,
         converters={
             # strip whitespace from country name
             0: lambda x: x.strip()
         }
     )
+
+
+def dfs_dict_to_list(dfs):
+    """Convert a dataframe (dictionary) to a list"""
+    if isinstance(dfs, pd.DataFrame):
+        # dfs is a single dataframe
+        return [dfs]
     
-    if isinstance(res, pd.DataFrame):
-        return res.dropna(how="all")
+    return list(dfs.values())
     
-    # return dictionary of dataframes
-    for df in res.values():
-        df.set_index("commercial_partner", inplace=True)
-        df.dropna(how="all", inplace=True)
+
+def impex_dfs_manipulate(dfs, index):
+    """Set the index of each dataframe and impute missing values
+    
+    :param dfs:   list of dataframes
+    :param index: name of the index
+    """
+    for df in dfs:
+        df.set_index(index, inplace=True)  
         
+        # drop nan-rows and impute missing values
+        df.dropna(how="all", inplace=True)
+        df.fillna(0, inplace=True)
+
+
+def load_impex_type(key, val):
+    """Load imports/exports excel-file from Impex"""
+    index = "commercial_partner"   # dataframe's index
+    cols = ["quantity", "value"]   # lowest column header level
+    impex = ["imports", "exports"] # second-lowest level
+    
+    colnames = [index] + cols + cols  # lowest column header on each sheet
+    
+    separate_files = val["separate_files"]  # True/False
+    subtypes = val["subtypes"]              # list of subtypes
+    
+    if separate_files:
+        res = []
+        for s in subtypes:
+            # for each subtype, we load data
+            # from the file and sum up the numbers
+            # in each sheet
+            path = f"../data/impex/{s}.xlsx"            
+            dfs = read_excel(path, colnames)
+            
+            dfs = dfs_dict_to_list(dfs)
+            impex_dfs_manipulate(dfs, index)
+            
+            # sum up the dataframes (sheets)
+            dfs_stacked = pd.concat(dfs)
+            df_subtype = dfs_stacked.groupby(dfs_stacked.index).sum()
+            
+            # append the summed up frame to the result list
+            res.append(df_subtype)
+        
+    else:
+        path = f"../data/impex/{key}.xlsx"
+        res = read_excel(path, colnames)
+        
+        res = dfs_dict_to_list(res)
+        impex_dfs_manipulate(res, index)
+    
+    
+    level_1 = key      # meta-type
+    level_2 = subtypes # sub-type
+    level_3 = impex    # imports/exports
+    level_4 = cols     # quantity/value
+    
+    for i, df in enumerate(res):
+        # for each dataframe, convert the header into a multi-index
+        columns = [
+            (level_1, level_2[i], l3, l4)
+            for l3 in level_3 for l4 in level_4
+        ]
+        df.columns = pd.MultiIndex.from_tuples(columns)
+    
     return res
 
 
-# obsolete function
-def load_imported_food():
-    """Load imports: food, beverages, and tobacco"""
-    return load_imports_exports(FOOD_IMPORTS_PATH)
-
-
-def load_imported_feed():
-    """Load imports: feeding stuffs for animals"""
-    return load_imports_exports(FOOD_IMPORTS_PATH, sheet=1)
-
-
-def load_imported_meat():
-    """Load imports: meat and edible meat offal"""
-    return load_imports_exports(MEAT_IMPORTS_PATH, sheet="02")
-
-
-def load_traded_fruits_veggies(trade_direction, food_type):
-    """Load imports: fruits or vegetables"""
-    # fruits: bananas, exotic fruit, citrus fruit, grapes,
-    # melons, apples, stone fruit, berries
-    # vegetables: 
-    if food_type == 'fruits':
-        sheets = list(range(19, 27))
-        names = [
-            "bananas", "exotic_fruit", "citrus fruit", "grapes",
-            "melons", "apples", "stone_fruit", "berries"
-        ]
-    elif food_type == 'vegetables':
-        sheets = list(range(2, 10))
-        names = [
-            "potatoes", "tomatoes", "onions_garlic_shallots_leeks", "cabbage_cauliflower_kohlrabi_kale",
-            "lettuce_chicory", "edible_roots", "cucumbers_gherkins", "leguminous"
-        ]
-    # else:
-        # throw an error, should be either "fruits" or "vegetables"
+def load_impex():
+    dfs = []
+    for k, v in types.items():
+        dfs_type = load_impex_type(k, v)
         
-    if trade_direction == 'imports':
-        dfs = load_imports_exports(FRUITS_VEGGIES_IMPORTS_PATH, sheet=sheets)
-    elif trade_direction == 'exports':
-        dfs = load_imports_exports(FRUITS_VEGGIES_EXPORTS_PATH, sheet=sheets)
-    #else:
-        # throw an error, should be either "imports" or "exports"
+        if len(dfs_type):
+            # join dataframes if there are more than one
+            # and add to the list of sub-frames 
+            # (each corresponds to a meta-type)
+            joined = dfs_type[0].join(dfs_type[1:], how="outer")
+            dfs.append(joined)
     
-    # create a two-level multi-index
-    level_1 = dict(zip(sheets, names))
-    level_2 = dfs[sheets[0]].columns
-    
-    for k, v in dfs.items():
-        # for each dataframe, change the columns into a multi-index
-        # where the first level is the fruit type
-        columns = [(level_1[k], j) for j in level_2]
-        v.columns = pd.MultiIndex.from_tuples(columns)
-    
-    # outer join the dataframes
-    frames = list(dfs.values())
-    return frames[0].join(frames[1:], how="outer")
-
-
-# this function is obsolete (no longer using this dataset)
-def load_food_consumption():
-    colnames = [
-        "food_type",
-        "quantity_total_1k_tonnes",
-        "quantity_kg_person_year",
-        "protein_total_tonnes",
-        "protein_g_person_day",
-        "protein_%_local_production",
-        "energy_intake_total_tj",
-        "energy_intake_kj_person_day",
-        "energy_intake_%_local_production"
-    ]
-    
-    df = pd.read_excel(
-        CONSUMPTION_PATH,
-        sheets=0,  # first sheet, year 2017
-        names=colnames,
-        skiprows=9,
-        converters={
-            # strip whitespace from first column
-            0: lambda x: x.strip()
-        }
-    ).dropna()  # remove all rows with NaN values
-    
-    df.set_index("food_type", inplace=True)
-    
-    return df
-
-
+    # join the list of sub-frames
+    return dfs[0].join(dfs[1:], how="outer")
 
