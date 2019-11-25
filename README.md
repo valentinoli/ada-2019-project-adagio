@@ -44,19 +44,23 @@ Several assumptions had to be made to distill this massive question into a feasi
 
 As mentioned above, this analysis is a consumer insight tool. We assume that no changes are made on the large scale of this data.
 
-The most notable of all assumptions is the source of carbon intensities data. Many sources explain the impossibility of estimating the carbon intensities by crop type per country, since the amount of carbon that a crop's production causes depends on a _massive_ number of factors, and these factors vary widely even within a single country, from farm to farm. Thus, there is no data available for carbon intensities of all crops by country. To circumvent this, we will use the global average carbon intensities sourced from [this article](https://www.sciencedirect.com/science/article/pii/S0959652616303584).
+The most notable of all assumptions is the source of carbon intensities data. Many sources explain the impossibility of estimating the carbon intensities by crop type per country, since the amount of carbon that a crop's production causes depends on a _massive_ number of factors, and these factors vary widely even within a single country, from farm to farm. Thus, there is no data available for carbon intensities of all crops by country. To circumvent this, we will use the global average carbon intensities sourced from a large number of different studies and gathered in [this article](https://www.sciencedirect.com/science/article/pii/S0959652616303584).
 
 Certain difficulties with the datasets were navigated by excluding or combining certain categories. For example, Impex provides data on imported (and exported) live animals for slaughter, but it is unknown whether these imported animals are already accounted for in the FAO's meat production data. It is also unknown how much of the weight of a live animal equates to meat. We therefore excluded the category of live animals, along with other similar categories such as animal offal.
 
 Also, we have included food waste as food consumption. That is, we calculated `Swiss food consumption` as `domestic production` - `exports` + `imports`.
 
-We are only looking at _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing.
+We are only looking at _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing. Where possible however, values are provided as CO2 equivalents. That is, other greenhouse gases such as methane are given as an equivalent amount of CO2 in terms of their global warming potential.
+
+Certain minor food groups, such as oils and sweets, were excluded from the analysis, since they are not necessarily "recommended" foods to consume.
 
 Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
 
 # Tasks to finish
-* While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
-* We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport?
-* Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season).
+* Finish loading in all datasets from FAO and Impex (e.g. nuts, fish, etc. which have been downloaded but were not yet incorporated into the mega dataframe)
+* While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products and cereals). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
+* We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. Then, we need to find a way to determine what transport methods are used for each kind of produce. We already have some US data, but could we find more diverse data such as transatlantic figures. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport? 
+* Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season, fruit such as apples can be stored refrigerated for up to 10 months of the year which greatly increases their carbon footprint over time).
+* Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.
 * Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
 
