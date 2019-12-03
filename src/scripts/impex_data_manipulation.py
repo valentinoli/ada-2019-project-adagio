@@ -100,7 +100,6 @@ def load_impex_type(key, val):
             for l3 in level_3 for l4 in level_4
         ]
         df.columns = pd.MultiIndex.from_tuples(columns)
-        df.columns.set_names(["type", "subtype", "variable", "metric"], inplace=True)
     
     return res
 
@@ -119,5 +118,8 @@ def load_impex():
             dfs.append(joined)
     
     # join the list of sub-frames
-    return dfs[0].join(dfs[1:], how="outer")
+    impex = dfs[0].join(dfs[1:], how="outer")
+    
+    impex.columns.set_names(["type", "subtype", "variable", "metric"], inplace=True)
+    return impex
 
