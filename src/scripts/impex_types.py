@@ -74,10 +74,9 @@ TYPES = {
         "separate_files": True,
         "subtypes": [
             "chicken",
-            "pork",
-            "beef",
+            "pig",
+            "cattle",
             "turkey",
-            "duck_goose",
             "equine",
             "sheep_goat",
         ],
