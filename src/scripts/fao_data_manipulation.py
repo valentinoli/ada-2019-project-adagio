@@ -5,12 +5,12 @@ import pandas as pd
 from scripts.fao_types import TYPES
 
 
-def load_fao_type(key):
+def load_fao():
     """Load the FAO data on Swiss Crop Production"""
-    path = f"../data/fao/{key}.xlsx"
+    # path = f"../data/fao/{key}.xlsx"
     
     production = pd.read_csv(
-        path,
+        "../data/swiss_crop_production.csv",
         header=0,
         names=["subtype", "production"],
         usecols=[7, 11],
@@ -38,11 +38,11 @@ def load_fao_type(key):
     production = production[~production.subtype.isin(["gooseberries", "currants"])].sort_values("subtype")
     
     production.set_index("subtype", inplace=True)
-    production.columns.set_names("variable", inplace=True)
+    production.columns.set_names("indicator", inplace=True)
     return production
 
 
-def load_fao():
-    for key in TYPES:
-        load_fao_type(key)
+# def load_fao():
+#     for key in TYPES:
+#         load_fao_type(key)
     
