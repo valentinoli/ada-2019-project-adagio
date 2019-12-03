@@ -100,6 +100,7 @@ def load_impex_type(key, val):
             for l3 in level_3 for l4 in level_4
         ]
         df.columns = pd.MultiIndex.from_tuples(columns)
+        df.columns.set_names(["type", "subtype", "variable", "metric"], inplace=True)
     
     return res
 
