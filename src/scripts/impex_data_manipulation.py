@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Scripts for data loading and manipulation, i.e. generating schemas from raw data"""
+"""Scripts for Impex data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
 from scripts.impex_types import TYPES
@@ -120,6 +120,6 @@ def load_impex():
     # join the list of sub-frames
     impex = dfs[0].join(dfs[1:], how="outer")
     
-    impex.columns.set_names(["type", "subtype", "variable", "metric"], inplace=True)
+    impex.columns.set_names(["type", "subtype", "indicator", "metric"], inplace=True)
     return impex
 

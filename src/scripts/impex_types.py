@@ -1,4 +1,4 @@
-"""Includes dictionary of info for loading the Impex data from custom-downloaded Excel sheets"""
+"""Dictionary for loading the Impex data from custom-downloaded Excel sheets"""
 
 # if separate_files=True load each subtype from
 # separate file and sum the sheets
@@ -92,6 +92,24 @@ TYPES = {
             "cheese",
             "eggs",
             "honey",
+        ],
+    },
+    "human_cereals": {
+        "separate_files": False,
+        "subtypes": [
+            "barley",
+            "buckwheat",
+            "rye",
+            "maize",
+            "rice_paddy",
+            "sorghum",
+            "quinoa",
+            "triticale",
+            "millet",
+            "oats",
+            "cereals_nes",
+            "wheat",
+            "fonio",
         ],
     },
 }

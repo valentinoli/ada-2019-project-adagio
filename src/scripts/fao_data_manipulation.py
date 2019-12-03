@@ -1,9 +1,16 @@
-import pandas as pd
+# -*- coding: utf-8 -*-
+"""Scripts for FAO data loading and manipulation, i.e. generating schemas from raw data"""
 
-def load_fao():
+import pandas as pd
+from scripts.fao_types import TYPES
+
+
+def load_fao_type(key):
     """Load the FAO data on Swiss Crop Production"""
+    path = f"../data/fao/{key}.xlsx"
+    
     production = pd.read_csv(
-        "../data/swiss_crop_production.csv",
+        path,
         header=0,
         names=["subtype", "production"],
         usecols=[7, 11],
@@ -35,3 +42,7 @@ def load_fao():
     return production
 
 
+def load_fao():
+    for key in TYPES:
+        load_fao_type(key)
+    
