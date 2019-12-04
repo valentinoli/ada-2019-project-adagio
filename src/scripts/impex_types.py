@@ -85,7 +85,7 @@ TYPES = {
         "separate_files": False,
         "subtypes": [
             "milk_cream",
-            "yogurt",
+            "yoghurt",
             "whey",
             "butter",
             "cheese",

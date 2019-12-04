@@ -2,39 +2,20 @@
 """Scripts for FAO data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
-from scripts.fao_types import TYPES
+from scripts.impex_types import TYPES
+from scripts.fao_types import FAO_PARTS, FAO_TO_IMPEX_TYPE
 
-
-def manipulate_fruits(df):
-    """Manipulate dataframe for fruit production"""
-    # Combine gooseberries and currants to match impex dataset
-    gooseberries_currants = df[df["subtype"].isin(["gooseberries", "currants"])]
-    df = df.append(
-        {
-            "subtype": "gooseberries_and_currants",
-            "production": gooseberries_currants.sum().production,
-        },
-        ignore_index=True,
+def get_metatype(subtype):
+    """Gets the metatype of the given commodity subtype;
+    returns 'other' if not found"""
+    return next(
+        (k for k, v in TYPES.items() if subtype in v["subtypes"]),
+        "other"
     )
-    df = df[~df.subtype.isin(["gooseberries", "currants"])].sort_values("subtype")
-    
 
-def manipulate_meat(df):
-    """Manipulate dataframe for meat production"""
-    # Combine sheep and goat to match impex dataset
-    sheep_goat = df[df["subtype"].isin(["sheep", "goat"])]
-    df = df.append(
-        {
-            "subtype": "sheep_goat",
-            "production": sheep_goat.sum().production,
-        },
-        ignore_index=True,
-    )
-    df = df[~df.subtype.isin(["sheep", "goat"])].sort_values("subtype")
-    
 
-def load_fao_type(key):
-    """Load the FAO data on Swiss Crop Production"""
+def load_fao_part(key):
+    """Load part of FAO data given by key"""
     path = f"../data/fao/swiss_{key}_production.csv"
     
     production = pd.read_csv(
@@ -43,32 +24,42 @@ def load_fao_type(key):
         names=["subtype", "production"],
         usecols=[7, 11],
         converters={
-            # convert subtype name to match the impex dataset
-            7: lambda x: x.lower().replace(",", "").replace("meat ", "").replace(" ", "_"),
+            # pre-process the subtype to match impex types
+            7: lambda x: x.lower().replace(",", "").replace(" ", "_"),
         },
     )
     
-    # Replace NaN with 0 (no production)
+    # Interpret NaN as 0 production
     production.fillna(0, inplace=True)
     
     # tonnes --> kg
     production["production"] = production.production.astype(float) * 1000
     
-    if key == "fruits":
-        manipulate_fruits(production)
-        
-    elif key == "meat":
-        manipulate_meat(production)
-        
-    
-    production.set_index("subtype", inplace=True)
-    production.columns.set_names("indicator", inplace=True)
     return production
 
 
 def load_fao():
+    """Load all FAO data"""
     dfs = []
-    for key in TYPES:
-        dfs.append(load_fao_type(key))
+    for key in FAO_PARTS:
+        # For each FAO part we load the data
+        dfs.append(load_fao_part(key))
     
-    return pd.concat(dfs)
+    # Concatenate all dataframes
+    df = pd.concat(dfs)
+    
+    # Convert the subtype names to match impex types
+    df.subtype.replace(regex=FAO_TO_IMPEX_TYPE, inplace=True)
+    
+    # Get the metatype for each subtype
+    df["type"] = df.subtype.apply(get_metatype)
+    
+    # Group by type-subtype and sum values for each group
+    # (since sometimes there are two or more rows we want to aggregate)
+    df = df.groupby(["type", "subtype"]).sum()
+    
+    df.sort_values(["type", "subtype"], inplace=True)
+    df.columns.set_names("indicator", inplace=True)
+    
+    return df
+
