@@ -24,5 +24,6 @@ FAO_TO_IMPEX_TYPE = {
     r"^cheese.+$": "cheese",
     r"^eggs.+$": "eggs",
     r"^honey.+$": "honey",
+    r"^.*peppers.*$": "peppers",
 }
 

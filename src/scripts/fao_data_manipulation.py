@@ -58,6 +58,9 @@ def load_fao():
     # (since sometimes there are two or more rows we want to aggregate)
     df = df.groupby(["type", "subtype"]).sum()
     
+    # Drop "other" metatype, since we explicitly decided to eliminate these
+    df.drop("other", level=0, inplace=True)
+    
     df.sort_values(["type", "subtype"], inplace=True)
     df.columns.set_names("indicator", inplace=True)
     
