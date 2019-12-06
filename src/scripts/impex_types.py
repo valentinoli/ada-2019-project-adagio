@@ -93,7 +93,7 @@ TYPES = {
             "honey",
         ],
     },
-    "human_cereals": {
+    "cereals": {
         "separate_files": False,
         "subtypes": [
             "barley",
@@ -103,6 +103,23 @@ TYPES = {
             "rice_paddy",
             "sorghum",
             "quinoa",
+            "triticale",
+            "millet",
+            "oats",
+            "cereals_nes",
+            "wheat",
+            "fonio",
+        ],
+    },
+        "animal_cereals": {
+        "separate_files": False,
+        "subtypes": [
+            "barley",
+            "buckwheat",
+            "rye",
+            "maize",
+            "rice_paddy",
+            "sorghum",
             "triticale",
             "millet",
             "oats",
