@@ -121,5 +121,12 @@ def load_impex():
     impex = dfs[0].join(dfs[1:], how="outer")
     
     impex.columns.set_names(["type", "subtype", "indicator", "metric"], inplace=True)
+    
+    # Drop the "value" in CHF since we won't use it for this project
+    impex = impex.drop(columns="value", level="metric").droplevel("metric", axis=1)
+    
+    # Fill NaN with 0
+    impex = impex.fillna(0)
+    
     return impex
 

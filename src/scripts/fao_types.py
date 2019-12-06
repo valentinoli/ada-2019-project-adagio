@@ -14,6 +14,8 @@ FAO_TO_IMPEX_TYPE = {
     r"^meat_": "",  # remove "meat_" prefix
     "gooseberries": "currants_and_gooseberries",
     "currants": "currants_and_gooseberries",
+    "beans_green": "beans_fresh",
+    "broad_beans_horse_beans_dry": "beans_dry",
     "sheep": "sheep_goat",
     "goat": "sheep_goat",
     "horse": "equine",
