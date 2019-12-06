@@ -65,6 +65,9 @@ TYPES = {
             "yams",
             "taro_(cocoyam)",
             "yautia_(cocoyam)",
+            "soybeans",
+            "beans_dry",
+            "beans_fresh",
         ],
     },
     "meat": {
