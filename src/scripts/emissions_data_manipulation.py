@@ -4,22 +4,38 @@
 import pandas as pd
 
 
-def load_emissions():
-    # load dictionary to match categories with impex categories
+def load_dic():
+    # load dictionary to match categories impex/emissions categories
     fruit_veg = {}
     with open("../data/categories.txt") as f:
         for line in f:
             (key, val) = line.split("\t")
             fruit_veg[key] = val.strip("\n")
+    return fruit_veg
+
+
+def load_emissions():
+    # load dictionary to match categories with impex categories
+    fruit_veg = load_dic()
 
     # load global emissions data
     emissions = pd.read_excel(r"../data/food_emissions.xlsx")
 
     # add category column
-    emissions["Category"] = emissions.Name.map(fruit_veg)
-    emissions.set_index("Name", inplace=True)
+    emissions["name"] = emissions.Name.map(fruit_veg)
+    emissions.Name = emissions.Name.str.lower()
+    emissions.name.fillna(emissions.Name, inplace=True)
+    
+    # average emissions for multiple growing methods (ie field and greenhouse)
+    emissions = emissions.reset_index().groupby('name').mean().round(2).reset_index()
+    
+    # add honey + account for dried onions and beans
+    emissions = pd.concat([emissions,pd.DataFrame({"name":['honey', 'beans_dry', 'onions_dry'], "Median":[0, 0, 0]})], ignore_index=True, sort=False)
+    emissions.set_index("name", inplace=True)
+    emissions.at['beans_dry', 'Median'] = emissions.loc['beans_fresh'].Median * 2.5
+    emissions.at['onions_dry', 'Median'] = emissions.loc['onions_shallots_green'].Median * 2.5
 
-    return emissions
+    return emissions.drop("index", axis=1)
 
 
 def estimate_emissions(domestic, emissions):
