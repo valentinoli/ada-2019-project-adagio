@@ -37,21 +37,46 @@ def load_emissions():
 
     return emissions.drop("index", axis=1)
 
-
-def estimate_emissions(domestic, emissions):
-    # define function to estimate emissions for each row
-    # NOTE this depends on the index of these two dataframes being the same,
-    # which is currently not the case... Not sure how we should resolve this, my friend regex?
+def add_emissions_data(suisse, emissions):
+    # map the emissions data to each category in the Suisse dataframe
     
-    def emis(food, name):
-        return food[name] * 1000000 * emissions.loc[food["Product"], "Mean"]
+    dic = load_dic()
+    suisse.reset_index(inplace=True)
+    suisse['emissions_category'] = suisse['subtype'].map(dic)
+    suisse.emissions_category.fillna(suisse['subtype'], inplace=True)
+    suisse = pd.merge(suisse,emissions[['Median']].reset_index(), left_on='emissions_category', right_on='name').set_index(['type','subtype']).drop("name", axis=1).rename({'Median': 'median_emissions'}, axis='columns')
+    
+    return suisse
 
-    # apply this to some different columns
-    domestic["Domestic Equivalent CO2"] = domestic.apply(emis, args=["Domestic Consumption"], axis=1)
-    domestic["Imported Equivalent CO2"] = domestic.apply(emis, args=["Imported Consumption"], axis=1)
-    domestic["Total Equivalent CO2"] = domestic.apply(emis, args=["Total Consumption"], axis=1)
 
-    return domestic
+def production_emissions(suisse):
+    # multiplies production values (kg) by the average production emissions (kg CO2-eq/kg produce)
+    
+    suisse['emissions_sans_transport'] = suisse['consumption'] * suisse['median_emissions']
+    
+    return suisse
+
+
+def transport_emissions(suisse):
+    #TODO
+    
+    return suisse
+
+
+# def estimate_emissions(domestic, emissions):
+#     # define function to estimate emissions for each row
+#     # NOTE this depends on the index of these two dataframes being the same,
+#     # which is currently not the case... Not sure how we should resolve this, my friend regex?
+    
+#     def emis(food, name):
+#         return food[name] * 1000000 * emissions.loc[food["Product"], "Mean"]
+
+#     # apply this to some different columns
+#     domestic["Domestic Equivalent CO2"] = domestic.apply(emis, args=["Domestic Consumption"], axis=1)
+#     domestic["Imported Equivalent CO2"] = domestic.apply(emis, args=["Imported Consumption"], axis=1)
+#     domestic["Total Equivalent CO2"] = domestic.apply(emis, args=["Total Consumption"], axis=1)
+
+#     return domestic
 
 
 def glimpse():
