@@ -2,6 +2,7 @@
 """Scripts for Emissions data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
+import numpy as np
 
 
 def load_dic():
@@ -55,6 +56,48 @@ def production_emissions(suisse):
     suisse['emissions_sans_transport'] = suisse['consumption'] * suisse['median_emissions']
     
     return suisse
+
+
+def country_distances():
+    #distance from the centre of each country to the centre of Switzerland
+    
+    from geopy.geocoders import Nominatim
+    from geopy.distance import geodesic
+    geolocator = Nominatim(user_agent='adagio')
+    
+    countries = pd.read_excel('../data/impex/countries/impex-countries.xlsx')[['country']]
+
+    def find_coord(x):
+        location = geolocator.geocode(x, timeout=100)
+        if location != None:
+            return [location.latitude, location.longitude]
+        else:
+            return np.nan
+
+    countries['coord'] = countries.country.apply(find_coord)
+    
+    ch = geolocator.geocode("Switzerland")
+    switzerland = (ch.latitude, ch.longitude)
+
+    def find_distance(x):
+        try:
+            return geodesic(switzerland, tuple(x)).km
+        except:
+            return np.nan
+
+    countries['distance_CH'] = countries.coord.apply(find_distance).round()
+    countries.set_index('country', inplace=True)
+    
+    # fill in incompatible countries (same method used, but country names entered manually
+    countries.at['Congo, Rep. of','distance_CH'] = 5315.0
+    countries.at['Guinea, Equat.','distance_CH'] = 5011.0
+    countries.at['Dominican Rep.','distance_CH'] = 7623.0
+    countries.at['Kyrgyz, Rep.','distance_CH'] = 5191.0
+    countries.at['Serbia/Mtnegro','distance_CH'] = 1050.0
+    countries.at['Marshall Isl.','distance_CH'] = 13813.0
+    countries.at['Pitcairn Isl.','distance_CH'] = 15626.0
+    
+    return countries
 
 
 def transport_emissions(suisse):
