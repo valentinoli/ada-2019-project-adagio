@@ -209,6 +209,8 @@ def load_impex_transport():
     transport = transport.drop(columns="value", level="metric").droplevel("metric", axis=1)
     # Drop the "all_foods" level since we had all transport data within one excel file so don't need a level for it
     transport = transport.droplevel('something', axis=1)
+    # Drop the export data since it's not needed for our analysis
+    transport = transport.drop(columns="exports", level="indicator")
     
     # Fill NaN with 0
     transport = transport.fillna(0)
