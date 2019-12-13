@@ -2,10 +2,13 @@
 # Reducing the Swiss "Foodprint": How An Individual Can Adjust Their Carbon Output
 
 UPDATE 12 December: Things to eventually integrate/mention
+* FIX THE NEGATIVE WHEY CONSUMPTION
 * Mention the New Zealand article that compares 4 food items between two countries and all the factors that go into that analysis (a loooot of factors)
 * Detail all the reasons why we cannot draw definitive conclusions about our analysis (no seasonality, limited transport data e.g. only know the method of transport for how it crossed the border, data shows country of origin not production, don't have country-specific carbon values for all food items)
 * Look at other available tools online for calculating food carbon costs and criticize them for all the factors they ignore
 * Talk a lot about seasonality: what data could we have found and what is just impossible to know on this scale? 
+* Talk about source of animal feed:
+One interesting aspect of meat and non-meat animal product production, which is not relevant to the other food groups, is that animal feed may be sourced from a different location than where the meat/animal product is produced. This implicates the sourcing of animal feed as a very important factor for the carbon intensity of these foods. For example, if Switzerland produced most of its meat domestically, but it imported all of its feed, the carbon intensity of its meat would be much higher than if the feed were grown domestically. Thus, both aspects of the final food product must be examined.
 
 # Introduction
 As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes. (Center for Sustainable Systems, 2018) One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
