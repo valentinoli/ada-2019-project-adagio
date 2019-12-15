@@ -187,7 +187,6 @@ def load_impex_transport():
                 "cereals",
                 "potatoes",
                 "other_fresh_fruits_vegetables",
-                "milk",
                 "fish",
                 "meat",
                 "dairy_products"
