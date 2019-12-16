@@ -6,6 +6,7 @@ FAO_PARTS = [
     "crops",
     "livestock_primary",
     "livestock_processed",
+    "seafood"
 ]
 
 # FAO **substrings** of subtypes to explicitly

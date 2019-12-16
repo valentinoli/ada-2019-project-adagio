@@ -114,11 +114,11 @@ TYPES = {
     "seafood": {
         "separate_files": False,
         "subtypes": [
-            "Octopus/squid/cuttlefish",
-            "Prawns/shrimp",
-            "Mussels",
-            "Lobster",
-            "Fish: all species",
+            "squid_octopus_cuttlefish",
+            "shrimp_prawns",
+            "molluscs",
+            "lobster_crab",
+            "fish",
         ],
     },
 }
