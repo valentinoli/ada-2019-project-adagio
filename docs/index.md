@@ -68,3 +68,6 @@ Finally, animals are often fed with by-products of human food production. If a c
 * Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.
 * Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
 
+![total_imports_vs_exports](/img/total_imports_vs_exports.jpg){: .center-block :}
+![imports_vs_exports_animal_products](/img/imports_vs_exports_animal_products.jpg){: .center-block :}
+{% %}
