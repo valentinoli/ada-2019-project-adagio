@@ -3,6 +3,8 @@
 
 UPDATE 12 December: Things to eventually integrate/mention
 * FIX THE NEGATIVE WHEY CONSUMPTION
+* "Re-do" the analysis with the country-specific meat production carbon values from FAO and see if that changes our analysis
+* Get the real number for fish production (from Valentin's computer) and put it into the swiss_seafood_production file
 * Mention the New Zealand article that compares 4 food items between two countries and all the factors that go into that analysis (a loooot of factors)
 * Detail all the reasons why we cannot draw definitive conclusions about our analysis (no seasonality, limited transport data e.g. only know the method of transport for how it crossed the border, data shows country of origin not production, don't have country-specific carbon values for all food items)
 * Look at other available tools online for calculating food carbon costs and criticize them for all the factors they ignore
