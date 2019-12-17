@@ -2,9 +2,8 @@ Allow the user to search for a food item (e.g. banana) or pick it from a drop-do
 
 Show a distribution of carbon emissions by food type. For example, imagine you have a bell-curve (won't actually be a bell curve shape but just for conveying what I mean) for the carbon emissions of all the fruits. Points in the bell curve for each fruit, and when you hover over the point, it says which fruit it is (e.g. bananas). Then make one "bell curve" (distribution) per meta food type, and put them all on one graph with each group having a different color to distinguish them. This shows you that if you want to eat, say, a fruit, then you can go towards the lower fruits, vs. the fruits at the top of the fruit distribution that you should avoid. This will also show you how the metatypes fall relative to each other.
 
-Interactive version of our imports/exports bar plot (maybe hovering or clicking then shows a barplot of the subtypes for that metacategory? For example, click on the imports/exports bar for "animal_products" and it shows the imports/exports bar chart for cheese, milk, yogurt, etc
-
-Bipartite graph with continents on the left and food items/metatypes on the right, then weight the edges by either carbon emissions or amount of that food imported from that country
+Interactive version of our imports/exports bar plot (maybe hovering or clicking then shows a barplot of the subtypes for that metacategory? For example, click on the imports/exports bar for "animal_products" and it shows the imports/exports bar chart for cheese, milk, yogurt, etc.
+Actually, Brooke looked into this and it seems the cleanest way is either (1) just put the static plots, nothing fancy or (2) make a toggle on Jekyll which simply switches between the static images.
 
 Some links for reference about interactive plots
 https://networkx.github.io/

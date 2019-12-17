@@ -111,21 +111,14 @@ TYPES = {
             "fonio",
         ],
     },
-#     "animal_cereals": {
-#         "separate_files": False,
-#         "subtypes": [
-#             "barley",
-#             "buckwheat",
-#             "rye",
-#             "maize",
-#             "rice_paddy",
-#             "sorghum",
-#             "triticale",
-#             "millet",
-#             "oats",
-#             "cereals_nes",
-#             "wheat",
-#             "fonio",
-#         ],
-#     },
+    "seafood": {
+        "separate_files": False,
+        "subtypes": [
+            "squid_octopus_cuttlefish",
+            "shrimp_prawns",
+            "molluscs",
+            "lobster_crab",
+            "fish",
+        ],
+    },
 }
