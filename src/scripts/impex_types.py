@@ -122,3 +122,17 @@ TYPES = {
         ],
     },
 }
+
+TRANSPORT_TYPES = {
+    "transport/transport": {
+        "separate_files": False,
+        "subtypes": [
+            "cereals",
+            "potatoes",
+            "other_fresh_fruits_vegetables",
+            "fish",
+            "meat",
+            "dairy_products"
+        ],
+    },
+}
