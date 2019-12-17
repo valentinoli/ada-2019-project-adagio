@@ -4,6 +4,8 @@
 import pandas as pd
 import numpy as np
 
+from scripts.helpers import load_countries_continents
+
 
 def load_dic():
     # load dictionary to match categories impex/emissions categories
@@ -38,6 +40,7 @@ def load_emissions():
 
     return emissions.drop("index", axis=1)
 
+
 def add_emissions_data(suisse, emissions):
     # map the emissions data to each category in the Suisse dataframe
     
@@ -45,7 +48,7 @@ def add_emissions_data(suisse, emissions):
     suisse.reset_index(inplace=True)
     suisse['emissions_category'] = suisse['subtype'].map(dic)
     suisse.emissions_category.fillna(suisse['subtype'], inplace=True)
-    suisse = pd.merge(suisse,emissions[['Median']].reset_index(), left_on='emissions_category', right_on='name').set_index(['type','subtype']).drop("name", axis=1).rename({'Median': 'median_emissions'}, axis='columns')
+    suisse = pd.merge(suisse, emissions[['Median']].reset_index(), left_on='emissions_category', right_on='name').set_index(['type','subtype']).drop("name", axis=1).rename({'Median': 'median_emissions'}, axis='columns')
     
     return suisse
 
@@ -65,7 +68,7 @@ def country_distances():
     from geopy.distance import geodesic
     geolocator = Nominatim(user_agent='adagio')
     
-    countries = pd.read_excel('../data/impex/countries/impex-countries.xlsx')[['country']]
+    countries = load_countries_continents()[["country"]]
 
     def find_coord(x):
         location = geolocator.geocode(x, timeout=100)
@@ -89,13 +92,13 @@ def country_distances():
     countries.set_index('country', inplace=True)
     
     # fill in incompatible countries (same method used, but country names entered manually
-    countries.at['Congo, Rep. of','distance_CH'] = 5315.0
-    countries.at['Guinea, Equat.','distance_CH'] = 5011.0
-    countries.at['Dominican Rep.','distance_CH'] = 7623.0
-    countries.at['Kyrgyz, Rep.','distance_CH'] = 5191.0
-    countries.at['Serbia/Mtnegro','distance_CH'] = 1050.0
-    countries.at['Marshall Isl.','distance_CH'] = 13813.0
-    countries.at['Pitcairn Isl.','distance_CH'] = 15626.0
+    countries.at['Congo, Rep. of', 'distance_CH'] = 5315.0
+    countries.at['Guinea, Equat.', 'distance_CH'] = 5011.0
+    countries.at['Dominican Rep.', 'distance_CH'] = 7623.0
+    countries.at['Kyrgyz, Rep.', 'distance_CH'] = 5191.0
+    countries.at['Serbia/Mtnegro', 'distance_CH'] = 1050.0
+    countries.at['Marshall Isl.', 'distance_CH'] = 13813.0
+    countries.at['Pitcairn Isl.', 'distance_CH'] = 15626.0
     
     return countries
 
