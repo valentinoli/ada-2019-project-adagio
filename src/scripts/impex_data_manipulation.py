@@ -2,10 +2,15 @@
 """Scripts for Impex data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
-from scripts.impex_types import TYPES
+from scripts.impex_types import TYPES, TRANSPORT_TYPES
+
+COMMERCIAL_PARTNER = "commercial_partner"
+MODE_OF_TRANSPORT = "mode_of_transport"
+QUANTITY_VALUE = ["quantity", "value"]
+IMPORTS_EXPORTS = ["imports", "exports"]
 
 
-def read_excel(path, names):
+def read_excel(path, names, usecols):
     """Read Impex Excel file
     
     :param path:  filepath
@@ -17,7 +22,7 @@ def read_excel(path, names):
         path,
         sheet_name=None,  # load all sheets
         names=names,
-        usecols=[1, 2, 3, 5, 6],
+        usecols=usecols,
         skiprows=5,
         converters={
             # strip whitespace from country name
@@ -50,13 +55,8 @@ def impex_dfs_manipulate(dfs, index):
         df.fillna(0, inplace=True)
 
 
-def load_impex_type(key, val):
-    """Load imports/exports excel-file(s) from Impex"""
-    index = "commercial_partner"   # dataframe's index
-    cols = ["quantity", "value"]   # lowest column header level
-    impex = ["imports", "exports"] # second-lowest level
-    
-    colnames = [index] + cols + cols  # lowest column header on each sheet
+def load_impex_type(key, val, colnames, usecols, index):
+    """Load imports/exports excel-file(s) from Impex"""    
     separate_files = val["separate_files"]  # True/False
     subtypes = val["subtypes"]              # list of subtypes
     
@@ -67,7 +67,7 @@ def load_impex_type(key, val):
             # from the file and sum up the numbers
             # in each sheet
             path = f"../data/impex/{s}.xlsx"            
-            dfs = read_excel(path, colnames)
+            dfs = read_excel(path, colnames, usecols)
             
             dfs = dfs_dict_to_list(dfs)
             impex_dfs_manipulate(dfs, index)
@@ -81,7 +81,7 @@ def load_impex_type(key, val):
         
     else:
         path = f"../data/impex/{key}.xlsx"
-        res = read_excel(path, colnames)
+        res = read_excel(path, colnames, usecols)
         
         res = dfs_dict_to_list(res)
         impex_dfs_manipulate(res, index)
@@ -89,8 +89,8 @@ def load_impex_type(key, val):
     
     level_1 = key      # meta-type
     level_2 = subtypes # sub-type
-    level_3 = impex    # imports/exports
-    level_4 = cols     # quantity/value
+    level_3 = IMPORTS_EXPORTS
+    level_4 = QUANTITY_VALUE
 
     for i, df in enumerate(res):
         # for each dataframe, convert the header into a multi-index
@@ -105,10 +105,15 @@ def load_impex_type(key, val):
 
 
 def load_impex():
-    """Loads all the impex data and returns as a single dataframe"""
+    """Loads impex data on imports/exports
+    and returns a single Pandas dataframe"""
+    usecols = [1, 2, 3, 5, 6]
+    colnames = [COMMERCIAL_PARTNER] + (2 * QUANTITY_VALUE)
+    index = COMMERCIAL_PARTNER
+    
     dfs = []
     for k, v in TYPES.items():
-        dfs_type = load_impex_type(k, v)
+        dfs_type = load_impex_type(k, v, colnames, usecols, index)
         
         if len(dfs_type):
             # join dataframes if there are more than one
@@ -130,86 +135,38 @@ def load_impex():
     
     return impex
 
-def read_transport_data(key, val):
-    index = "commercial_partner"   # dataframe's index
-    lower_index = "mode_of_transport"
-    cols = ["quantity", "value"]   # lowest column header level
-    impex = ["imports", "exports"] # second-lowest level
-    
-    colnames = [index] + [lower_index] + cols + cols  # lowest column header on each sheet
-    subtypes = val["subtypes"]              # list of subtypes
-    
-    path = f"../data/impex/transport/transport.xlsx"
-    res = pd.read_excel(
-        path,
-        sheet_name=None,  # load all sheets
-        names=colnames,
-        usecols=[1, 2, 3, 5, 7, 9],
-        skiprows=5,
-        converters={
-            # strip whitespace from country name
-            0: lambda x: x.strip()
-        }
-    )
-        
-    res = dfs_dict_to_list(res)
-    for df in res:
-        df.set_index([index, lower_index], inplace=True)  
-        df.rename(index={"Total trade": "total"}, inplace=True)
-        
-        # drop nan-rows and impute missing values
-        df.dropna(how="all", inplace=True)
-        df.fillna(0, inplace=True)
-    
-    level_1 = key      # meta-type
-    level_2 = subtypes # sub-type
-    level_3 = impex    # imports/exports
-    level_4 = cols     # quantity/value
-
-    for i, df in enumerate(res):
-        # for each dataframe, convert the header into a multi-index
-        l2 = level_2[i]
-        columns = [
-            (level_1, l2, l3, l4)
-            for l3 in level_3 for l4 in level_4
-        ]
-        df.columns = pd.MultiIndex.from_tuples(columns)
-    
-    return res
 
 def load_impex_transport():
-    '''Loads impex data on method of transport for various food types'''
+    """Loads impex data on method of transport for various food types
+    and returns a single Pandas dataframe"""
+    usecols = [1, 2, 3, 5, 7, 9]
+    colnames = [COMMERCIAL_PARTNER] + [MODE_OF_TRANSPORT] + (2 * QUANTITY_VALUE)
+    index = [COMMERCIAL_PARTNER, MODE_OF_TRANSPORT]
+    
     dfs = []
-    sheets = {
-        "all_foods": {
-            "separate_files":False,
-            "subtypes": [
-                "cereals",
-                "potatoes",
-                "other_fresh_fruits_vegetables",
-                "fish",
-                "meat",
-                "dairy_products"
-            ],
-        },
-    }
-    for k,v in sheets.items():
-        dfs_type = read_transport_data(k, v)
+    
+    for k, v in TRANSPORT_TYPES.items():
+        dfs_type = load_impex_type(k, v, colnames, usecols, index)
+        
         if len(dfs_type):
             joined = dfs_type[0].join(dfs_type[1:], how="outer")
             dfs.append(joined)
     
+    
     # join the list of sub-frames
     transport = dfs[0].join(dfs[1:], how="outer")
     
-    transport.columns.set_names(["something", "food_type", "indicator", "metric"], inplace=True)
+    transport.columns.set_names(["top_level", "food_type", "indicator", "metric"], inplace=True)
     
     # Drop the "value" in CHF since we won't use it for this project
     transport = transport.drop(columns="value", level="metric").droplevel("metric", axis=1)
-    # Drop the "all_foods" level since we had all transport data within one excel file so don't need a level for it
-    transport = transport.droplevel('something', axis=1)
+    
+    # Drop the top level since we had all transport data
+    # within one excel file so don't need a level for it
+    transport = transport.droplevel("top_level", axis=1)
+    
     # Drop the export data since it's not needed for our analysis
-    transport = transport.drop(columns="exports", level="indicator")
+    transport = transport.drop(columns="exports", level="indicator").droplevel("indicator", axis=1)
     
     # Fill NaN with 0
     transport = transport.fillna(0)
