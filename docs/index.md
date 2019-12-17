@@ -70,3 +70,7 @@ Finally, animals are often fed with by-products of human food production. If a c
 
 ![total_imports_vs_exports](/img/total_imports_vs_exports.jpg){: .center-block :}
 ![imports_vs_exports_animal_products](/img/imports_vs_exports_animal_products.jpg){: .center-block :}
+
+<svg id="bi-graph"></svg>
+
+{% include bi-graph.html %}
