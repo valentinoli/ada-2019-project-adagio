@@ -40,6 +40,18 @@ def load_emissions():
 
     return emissions.drop("index", axis=1)
 
+def load_tomatoes(suisse, transport, transportCO2):
+    # load the different tomato emission categories for an example
+    tomatoes = pd.read_excel(r"../data/food_emissions.xlsx")
+    tomatoes = tomatoes[tomatoes.Name.str.startswith('Tomat')].set_index('Name')[['Median']]
+    
+    # processing to include shipping cost for a month's tomatoes from Spain
+    tomatoes['total_consumption'] = suisse['consumption']['vegetables','tomatoes']
+    tomatoes['produced_in_CH_month'] = (tomatoes['Median']*tomatoes['total_consumption'])/12
+    tomatoes['imported_from_ES_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Spain','Air traffic'].iat[0]*transportCO2['Air traffic'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Inland waterways'].iat[0]*transportCO2['Inland waterways'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Road traffic'].iat[0]*transportCO2['Road traffic'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Rail traffic'].iat[0]*transportCO2['Rail traffic'])))/12)
+    
+    return tomatoes.drop('total_consumption', axis=1)
+
 
 def add_emissions_data(suisse, emissions):
     # map the emissions data to each category in the Suisse dataframe
