@@ -40,10 +40,10 @@ The following list is the detailed set of assumptions made when handling the dat
 * "Game" meat was excluded; while it was not an insignificant amount of meat produced (1891 tonnes in 2017), there is no way of knowing what animals this meat came from, so it is useless for our analysis.
 * Rabbit meat was excluded because we do not have a value of carbon emissions for it or any similar animal (the same reason why it was excluded from Impex data), but it was a small amount of meat (971 tonnes in 2017) so it will not greatly skew the analysis.
 * According to the FAO metadata, `"Data relate to animals slaughtered within national boundaries, irrespective of their origin."` This means that if we chose to analyze our data with the country-specific emissions for meats, our analysis may be wildly inaccurate due to there being carbon-influencing events which are beyond the reach of our data. Luckily this does not pose an issue when using global average emissions values for meats, but it does impede any more specific analysis.
-* From the metadata, `"Fresh, chilled or frozen. May include all types of poultry meat ifnational statistics do not report separate data."`
-**Change this^ later to match with below**
-**Finish the FAO notes and assumptions**
+* From the metadata, the definition for chicken meat is `"Fresh, chilled or frozen. May include all types of poultry meat if national statistics do not report separate data."` When we downloaded the meat production data from FAO, we noticed that there was zero production of duck and goose meat. This would indicate that Switzerland combines all domestic birds under the `chicken` category. We assumed that this was the case since that seemed more likely than Switzerland not producing any poultry meat other than chicken. Due to this, we combined meat from all domestic birds (ducks, geese, turkeys, and chickens) into one category and labeled it as `chicken`.
 
+**Seafood**
+The FAO data on seafood production had to be harvested from another site than where the rest of the production data was obtained from ([FAO fishery data](http://www.fao.org/fishery/statistics/global-commodities-production/query/en)). The data indicated that Switzerland produces fish, but there was no data available for production of other seafood from Switzerland. We assumed that, since Switzerland is landlocked, the only seafood it produces are lake fish, and the other values were nonexistent because they were zero. While the data provided were separated into one amount for freshwater fish and one amount for partly-fresh/partly-saltwater fish, we combined this into a single category and considered it simply as "fish". 
 
 The following assumptions, choices, and aggregations were made when merging Impex, FAO, and carbon intensities data.
 **Animal Products**
@@ -53,11 +53,16 @@ The following assumptions, choices, and aggregations were made when merging Impe
 * Beans can be imported and exported in either their dried or fresh form. While Impex and FAO specify when beans are dried or fresh, the emissions data was only available for either an average of all beans or for individual species. As mentioned above, species of beans were not available in Impex. We thus decided to use the average for all beans, and to assume that this average was for _fresh_ beans. With that decided, we had to deal with the fact that dried beans are much lighter in weight than fresh beans. Using a conversion factor found across the internet in various cooking recipes, we multiplied the weight of the dried beans by 2.5 to approximate their weight as if they were fresh/cooked. 
 
 **Meats**
-* When we downloaded the meat production data from FAO, we noticed that there was zero production of duck and goose meat. Upon further examination of the metadata description, we saw that certain countries combine all domestic birds under the `chicken` category for both meat and live animals. We assumed that this was also the case for Switzerland since that seemed more likely than Switzerland not producing any poultry meat other than chicken. Due to this, we combined meat from all domestic birds (ducks, geese, turkeys, and chickens) into one category and labeled it as `chicken`. The emissions intensity for chicken was used for all of this data.
-**Change this^ later**
+* As stated previously, the data for meat from all domestic fowl was included under the category of `"chicken"`. The emissions intensity for chicken was used for all of this data.
+
+**Vegetables**
+* There were 3 items, all vegetables, which were in the Impex data but not in FAO: brussels sprouts, celery, and other edible roots. We decided to exclude these minor food items from the analysis since we have no way of inferring their domestic production values.
 
 **Fruits**
 * As stated earlier, the Impex data includes raspberries, blackberries, mulberries, and loganberries all under one category. FAO does not track the latter 3 berries. Thus, all of these berry types from Impex were assumed to be raspberries. Similarly, cranberries includes cranberries and bilberries.
 
 **Miscellaneous**
+* In all datasets, any data which was listed as part of a category, `"not elsewhere specified (nes)"` was not included. This is because we had no way of knowing what the carbon cost of such items would be or where they would fit in with the other food groups that were specified.
+* We decided to exclude data from all sources on oils, seeds, and nuts, since these are not a major food group and would have added unnecessary complexity to our analysis.
+* There were a few food items which were not listed in the Impex data but which had non-zero production. After excluding `"nes"` items and nuts and oils, this list included: blueberries, mixed grain, hops, lupins, green maize, and sugar beet. These items were exluded since it was safer to not include them rather than to assume they had zero imports and exports.
 
