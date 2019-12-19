@@ -70,3 +70,13 @@ Finally, animals are often fed with by-products of human food production. If a c
 
 ![total_imports_vs_exports](/img/total_imports_vs_exports.jpg){: .center-block :}
 ![imports_vs_exports_animal_products](/img/imports_vs_exports_animal_products.jpg){: .center-block :}
+
+<div id="bi-graph"></div> 
+
+{% include bi-graph.html %}
+
+## normalized carbon cost bar graph for all food groups 
+
+## comment that meat is high like expected 
+## then stacked bar plot of meat 
+## and stacked bar plot of fruit
