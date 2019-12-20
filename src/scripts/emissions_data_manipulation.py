@@ -10,9 +10,9 @@ from geopy.distance import geodesic
 
 # constants for geolocalisation and distance calculations
 geolocator = Nominatim(user_agent='adagio')
-ch = geolocator.geocode("Switzerland")
+ch = geolocator.geocode("Switzerland", timeout=100)
 switzerland = (ch.latitude, ch.longitude)
-nl = geolocator.geocode("Rotterdam, Holland")
+nl = geolocator.geocode("Rotterdam, Holland", timeout=100)
 rotterdam = (nl.latitude, nl.longitude)
 distance_rotterdam = geodesic(switzerland, rotterdam).km
 
@@ -137,6 +137,16 @@ def country_distances():
 
 
 def swiss_consumption_transport(row, transport, transportCO2, countries, colmap, NL=False):
+    '''
+    Calculate the total CO2e per food item per source country that it is imported from.
+    Input:
+    row = one food item from one country
+    transport = the dataframe which contains all methods of transport data (air, boat, rail, road) by food item by country
+    transportCO2 = a dictionary which contains the value of kg CO2e per km traveled per kg food transported for each transport method
+    countries = a list of all the countries from which goods are imported and how far they are from Switzerland and the Netherlands
+    colmap = a dictionary which matches category names used by the transport data to names used by our other dataframe
+    NL = boolean which says whether the function should calculate transport distance directly to Switzerland or through the Netherlands
+    '''
     trans_nl = 0
     
     # get the fractions for a given country and food product imported by each method of transport
