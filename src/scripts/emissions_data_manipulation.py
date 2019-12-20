@@ -4,11 +4,21 @@
 import pandas as pd
 import numpy as np
 
-from scripts.impex_countries import load_countries_continents
+from scripts.helpers import load_countries_continents
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+
+# constants for geolocalisation and distance calculations
+geolocator = Nominatim(user_agent='adagio')
+ch = geolocator.geocode("Switzerland")
+switzerland = (ch.latitude, ch.longitude)
+nl = geolocator.geocode("Rotterdam, Holland")
+rotterdam = (nl.latitude, nl.longitude)
+distance_rotterdam = geodesic(switzerland, rotterdam).km
 
 
 def load_dic():
-    # load dictionary to match categories impex/emissions categories
+    """load dictionary to match categories impex/emissions categories"""
     fruit_veg = {}
     with open("../data/categories.txt") as f:
         for line in f:
@@ -18,6 +28,7 @@ def load_dic():
 
 
 def load_emissions():
+    """load emissions tables from excel file, and match with existing food categories, account for multiple growing methods, dried foods etc."""
     # load dictionary to match categories with impex categories
     fruit_veg = load_dic()
 
@@ -40,15 +51,20 @@ def load_emissions():
 
     return emissions.drop("index", axis=1)
 
+
 def load_tomatoes(suisse, transport, transportCO2, countries):
+    """loads an example looking at different growing methods for a single product, and the effect that transport has on its carbon emissions"""
     # load the different tomato emission categories for an example
     tomatoes = pd.read_excel(r"../data/food_emissions.xlsx")
-    tomatoes = tomatoes[tomatoes.Name.str.startswith('Tomat')].set_index('Name')[['Median']]
+    tomatoes = tomatoes[tomatoes.Name.str.startswith('Tomat')]
+    tomatoes.at[119,'Name'] = 'Tomatoes: non greenhouse'
+    tomatoes = tomatoes.set_index('Name')
     
-    # processing to include shipping cost for a month's tomatoes from Spain
+    # inherent CO2e as a result of growing method, based on one month's consumption in Switzerland
     tomatoes['total_consumption'] = suisse['consumption']['vegetables','tomatoes']
     tomatoes['produced_in_CH_month'] = (tomatoes['Median']*tomatoes['total_consumption'])/12
     
+    # processing to include shipping cost for a month's tomatoes from Spain and Morocco, taking into account the various transport methods used
     tomatoes['imported_from_ES_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Spain','Air traffic'].iat[0]*transportCO2['Air traffic']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Inland waterways'].iat[0]*transportCO2['Inland waterways']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Road traffic'].iat[0]*transportCO2['Road traffic']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Rail traffic'].iat[0]*transportCO2['Rail traffic']*countries['distance_CH']['Spain'])))/12)
     
     tomatoes['imported_from_MO_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Morocco','Air traffic'].iat[0]*transportCO2['Air traffic']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Inland waterways'].iat[0]*transportCO2['Inland waterways']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Road traffic'].iat[0]*transportCO2['Road traffic']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Rail traffic'].iat[0]*transportCO2['Rail traffic']*countries['distance_CH']['Morocco'])))/12)
@@ -59,7 +75,7 @@ def load_tomatoes(suisse, transport, transportCO2, countries):
 
 
 def add_emissions_data(suisse, emissions):
-    # map the emissions data to each category in the Suisse dataframe
+    """map the emissions data to each category in the Suisse dataframe"""
     
     dic = load_dic()
     suisse.reset_index(inplace=True)
@@ -71,7 +87,7 @@ def add_emissions_data(suisse, emissions):
 
 
 def production_emissions(suisse):
-    # multiplies production values (kg) by the average production emissions (kg CO2-eq/kg produce)
+    """multiplies production values (kg) by the average production emissions (kg CO2-eq/kg produce)"""
     
     suisse['emissions_sans_transport'] = suisse['consumption'] * suisse['median_emissions']
     
@@ -79,11 +95,7 @@ def production_emissions(suisse):
 
 
 def country_distances():
-    #distance from the centre of each country to the centre of Switzerland
-    
-    from geopy.geocoders import Nominatim
-    from geopy.distance import geodesic
-    geolocator = Nominatim(user_agent='adagio')
+    "calculates distance from the centre of each country to the centre of Switzerland, or to Rotterdam (port, intermediate step on route to CH"""
     
     countries = load_countries_continents()[["country"]]
 
@@ -95,11 +107,6 @@ def country_distances():
             return np.nan
 
     countries['coord'] = countries.country.apply(find_coord)
-    
-    ch = geolocator.geocode("Switzerland")
-    switzerland = (ch.latitude, ch.longitude)
-    nl = geolocator.geocode("Rotterdam, Holland")
-    rotterdam = (ch.latitude, ch.longitude)
 
     def find_distance(x):
         try:
@@ -129,41 +136,59 @@ def country_distances():
     return countries
 
 
-def transport_emissions(suisse):
-    #TODO
+def swiss_consumption_transport(row,NL=False):
+    trans_nl = 0
     
-    return suisse
-
-
-# def estimate_emissions(domestic, emissions):
-#     # define function to estimate emissions for each row
-#     # NOTE this depends on the index of these two dataframes being the same,
-#     # which is currently not the case... Not sure how we should resolve this, my friend regex?
+    # get the fractions for a given country and food product imported by each method of transport
+    trans = transport.loc[row['country']][[colmap[row['type']]]]
     
-#     def emis(food, name):
-#         return food[name] * 1000000 * emissions.loc[food["Product"], "Mean"]
+    # multiply the fractions by the amount consumed in Switzerland from that country to get kilos imported
+    # by each method of transport
+    trans['kilos_consumed'] = trans.iloc[:,0] * row['swiss_consumption']
+    
+    # multiply the carbon cost of each method of transport by the kilos imported by that transport method
+    trans = trans.reset_index()
+    trans['carbon_cost_per_km'] = trans.iloc[:,2] * trans['mode_of_transport'].map(transportCO2)
+    
+    def transport_rotterdam(row_2):
+        # alternative route via ship to Rotterdam for countries outside of Europe
+        if row_2['mode_of_transport'] == 'Air traffic':
+             return (row_2['carbon_cost_per_km'] * countries.loc[row['country']][1])
+        else:
+            # transport to Rotterdam by Container ship
+            trans_nl = row_2['kilos_consumed'] * 0.000019
+            return ((row_2['carbon_cost_per_km'] * distance_rotterdam) + (trans_nl * countries.loc[row['country']][2]))
+    
+    if NL:
+        if row['continent'] != 'Europe':
+            trans['carbon_cost'] = trans.apply(transport_rotterdam, axis=1)
 
-#     # apply this to some different columns
-#     domestic["Domestic Equivalent CO2"] = domestic.apply(emis, args=["Domestic Consumption"], axis=1)
-#     domestic["Imported Equivalent CO2"] = domestic.apply(emis, args=["Imported Consumption"], axis=1)
-#     domestic["Total Equivalent CO2"] = domestic.apply(emis, args=["Total Consumption"], axis=1)
+        else:
 
-#     return domestic
+            # multiply the carbon cost by the km between that country and Switzerland to get total kg of CO2e produced
+            trans['carbon_cost'] = trans.iloc[:,3] * countries.loc[row['country']][1]
+            # IF YOU WANT DETAILS LATER (E.G. CARBON COST BY TRANSPORT METHOD), GRAB THE DATAFRAME HERE BEFORE THE NEXT STEP
+            # return trans
+    else:
+        trans['carbon_cost'] = trans.iloc[:,3] * countries.loc[row['country']][1]
+    
+    # sum the total carbon cost of transport for this food item coming from this country
+    return trans.iloc[:,4].sum()
 
 
-def glimpse():
-    # load data
-    imported_goods = pd.read_excel("../data/nature-of-goods-imports.xlsx", skiprows=5, sheet_name="01.1")
-    imported_goods.dropna(how="all",inplace=True)
-    imported_goods.drop(columns=["Unnamed: 5", "Unnamed: 6", "Unnamed: 7", "Unnamed: 8"], inplace=True) #empty columns
-    imported_goods.rename({"Unnamed: 0": "Year", "Unnamed: 1": "Commercial Partner"}, inplace=True, axis=1)
-    imported_goods["Commercial Partner"] = imported_goods["Commercial Partner"].str.strip() # get rid of leading whitespace
+# def glimpse():
+#     # load data
+#     imported_goods = pd.read_excel("../data/nature-of-goods-imports.xlsx", skiprows=5, sheet_name="01.1")
+#     imported_goods.dropna(how="all",inplace=True)
+#     imported_goods.drop(columns=["Unnamed: 5", "Unnamed: 6", "Unnamed: 7", "Unnamed: 8"], inplace=True) #empty columns
+#     imported_goods.rename({"Unnamed: 0": "Year", "Unnamed: 1": "Commercial Partner"}, inplace=True, axis=1)
+#     imported_goods["Commercial Partner"] = imported_goods["Commercial Partner"].str.strip() # get rid of leading whitespace
 
-    # filter for nearby countries
-    nearby_countries = ["Portugal", "Spain", "France", "Germany", "Italy", "Austria", "Belgium", "Netherlands", "Czech Republic", "Slovenia", "Croatia", "Luxembourg", "Montenegro", "Serbia", "Slovakia", "Poland", "United Kingdom"]
-    imported_goods_nearby = imported_goods[imported_goods["Commercial Partner"].isin(nearby_countries)].copy()
+#     # filter for nearby countries
+#     nearby_countries = ["Portugal", "Spain", "France", "Germany", "Italy", "Austria", "Belgium", "Netherlands", "Czech Republic", "Slovenia", "Croatia", "Luxembourg", "Montenegro", "Serbia", "Slovakia", "Poland", "United Kingdom"]
+#     imported_goods_nearby = imported_goods[imported_goods["Commercial Partner"].isin(nearby_countries)].copy()
 
-    # calculate percentage of goods imported from nearby countries
-    total_nearby_imported = imported_goods_nearby["Quantity (kg)"].sum()
-    return 100*total_nearby_imported/imported_goods.iloc[0][2]
+#     # calculate percentage of goods imported from nearby countries
+#     total_nearby_imported = imported_goods_nearby["Quantity (kg)"].sum()
+#     return 100*total_nearby_imported/imported_goods.iloc[0][2]
 
