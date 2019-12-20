@@ -2,44 +2,43 @@
 
 
 
-<!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
-    
+
       <meta charset="utf-8">
       <title>Bokeh Plot</title>
-      
-      
-        
-          
-        
-        
-          
+
+
+
+
+
+
+
         <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js"></script>
         <script type="text/javascript">
             Bokeh.set_log_level("info");
         </script>
-        
-      
-      
-    
+
+
+
+
   </head>
-  
-  
+
+
   <body>
-    
-      
-        
-          
-          
-            
+
+
+
+
+
+
               <div class="bk-root" id="619f0a60-a20c-43c1-9bb5-22892084b34c" data-root-id="1597"></div>
-            
-          
-        
-      
-      
+
+
+
+
+
         <script type="application/json" id="1805">
           {"22f25136-f6fc-4d7b-bcaa-2199a0e3b0f1":{"roots":{"references":[{"attributes":{"below":[{"id":"1608","type":"CategoricalAxis"}],"center":[{"id":"1611","type":"Grid"},{"id":"1616","type":"Grid"}],"left":[{"id":"1612","type":"LinearAxis"}],"plot_height":250,"plot_width":700,"renderers":[{"id":"1634","type":"GlyphRenderer"},{"id":"1640","type":"GlyphRenderer"}],"right":[{"id":"1642","type":"Legend"}],"title":{"id":"1598","type":"Title"},"toolbar":{"id":"1623","type":"Toolbar"},"toolbar_location":null,"x_range":{"id":"1600","type":"FactorRange"},"x_scale":{"id":"1604","type":"CategoricalScale"},"y_range":{"id":"1602","type":"Range1d"},"y_scale":{"id":"1606","type":"LinearScale"}},"id":"1597","subtype":"Figure","type":"Plot"},{"attributes":{"data_source":{"id":"1596","type":"ColumnDataSource"},"glyph":{"id":"1638","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1639","type":"VBar"},"selection_glyph":null,"view":{"id":"1641","type":"CDSView"}},"id":"1640","type":"GlyphRenderer"},{"attributes":{},"id":"1656","type":"BasicTickFormatter"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"1617","type":"PanTool"},{"id":"1618","type":"WheelZoomTool"},{"id":"1619","type":"BoxZoomTool"},{"id":"1620","type":"SaveTool"},{"id":"1621","type":"ResetTool"},{"id":"1622","type":"HelpTool"}]},"id":"1623","type":"Toolbar"},{"attributes":{"fill_color":{"value":"#b7eebc"},"line_color":{"value":"#b7eebc"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"1630","type":"Dodge"}}},"id":"1632","type":"VBar"},{"attributes":{},"id":"1618","type":"WheelZoomTool"},{"attributes":{"label":{"value":"domestic consumption"},"renderers":[{"id":"1634","type":"GlyphRenderer"}]},"id":"1643","type":"LegendItem"},{"attributes":{},"id":"1617","type":"PanTool"},{"attributes":{"callback":null,"data":{"domestic_consumption":{"__ndarray__":"0TFSDOfaRUB/9i4Nn9ZSQB1R6nHdBFNACnvUYVtTWEDvB4/qM11VQNiCIgnGyUNA","dtype":"float64","shape":[6]},"imported_consumption":{"__ndarray__":"L86t8xglTEADJkTLg6U4QI27VjiK7DdAup5wxZOUBUCGwIerYBYtQCh93fY5Nk5A","dtype":"float64","shape":[6]},"type":["fruits","vegetables","cereals","animal_products","meat","seafood"]},"selected":{"id":"1659","type":"Selection"},"selection_policy":{"id":"1660","type":"UnionRenderers"}},"id":"1596","type":"ColumnDataSource"},{"attributes":{},"id":"1660","type":"UnionRenderers"},{"attributes":{},"id":"1620","type":"SaveTool"},{"attributes":{"axis_label":"ratio (%)","formatter":{"id":"1656","type":"BasicTickFormatter"},"ticker":{"id":"1613","type":"BasicTicker"}},"id":"1612","type":"LinearAxis"},{"attributes":{},"id":"1621","type":"ResetTool"},{"attributes":{"click_policy":"mute","items":[{"id":"1643","type":"LegendItem"},{"id":"1644","type":"LegendItem"}],"location":[5,0]},"id":"1642","type":"Legend"},{"attributes":{},"id":"1606","type":"LinearScale"},{"attributes":{},"id":"1609","type":"CategoricalTicker"},{"attributes":{"source":{"id":"1596","type":"ColumnDataSource"}},"id":"1635","type":"CDSView"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"1658","type":"BoxAnnotation"},{"attributes":{"dimension":1,"ticker":{"id":"1613","type":"BasicTicker"}},"id":"1616","type":"Grid"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"1630","type":"Dodge"}}},"id":"1633","type":"VBar"},{"attributes":{"data_source":{"id":"1596","type":"ColumnDataSource"},"glyph":{"id":"1632","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1633","type":"VBar"},"selection_glyph":null,"view":{"id":"1635","type":"CDSView"}},"id":"1634","type":"GlyphRenderer"},{"attributes":{},"id":"1604","type":"CategoricalScale"},{"attributes":{"fill_color":{"value":"#ca041e"},"line_color":{"value":"#ca041e"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"1636","type":"Dodge"}}},"id":"1638","type":"VBar"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"1636","type":"Dodge"}}},"id":"1639","type":"VBar"},{"attributes":{"label":{"value":"imported consumption"},"renderers":[{"id":"1640","type":"GlyphRenderer"}]},"id":"1644","type":"LegendItem"},{"attributes":{},"id":"1654","type":"CategoricalTickFormatter"},{"attributes":{"source":{"id":"1596","type":"ColumnDataSource"}},"id":"1641","type":"CDSView"},{"attributes":{"callback":null,"factors":["fruits","vegetables","cereals","animal_products","meat","seafood"],"range_padding":0.1},"id":"1600","type":"FactorRange"},{"attributes":{"callback":null,"end":100},"id":"1602","type":"Range1d"},{"attributes":{},"id":"1622","type":"HelpTool"},{"attributes":{},"id":"1613","type":"BasicTicker"},{"attributes":{},"id":"1659","type":"Selection"},{"attributes":{"range":{"id":"1600","type":"FactorRange"},"value":0.125},"id":"1636","type":"Dodge"},{"attributes":{"range":{"id":"1600","type":"FactorRange"},"value":-0.125},"id":"1630","type":"Dodge"},{"attributes":{"overlay":{"id":"1658","type":"BoxAnnotation"}},"id":"1619","type":"BoxZoomTool"},{"attributes":{"formatter":{"id":"1654","type":"CategoricalTickFormatter"},"ticker":{"id":"1609","type":"CategoricalTicker"}},"id":"1608","type":"CategoricalAxis"},{"attributes":{"grid_line_color":null,"ticker":{"id":"1609","type":"CategoricalTicker"}},"id":"1611","type":"Grid"},{"attributes":{"text":"Swiss Domestic vs. Imported Consumption","text_color":{"value":"black"},"text_font_size":{"value":"12pt"}},"id":"1598","type":"Title"}],"root_ids":["1597"]},"title":"Bokeh Application","version":"1.4.0"}}
         </script>
@@ -49,11 +48,11 @@
               Bokeh.safely(function() {
                 (function(root) {
                   function embed_document(root) {
-                    
+
                   var docs_json = document.getElementById('1805').textContent;
                   var render_items = [{"docid":"22f25136-f6fc-4d7b-bcaa-2199a0e3b0f1","roots":{"1597":"619f0a60-a20c-43c1-9bb5-22892084b34c"}}];
                   root.Bokeh.embed.embed_items(docs_json, render_items);
-                
+
                   }
                   if (root.Bokeh !== undefined) {
                     embed_document(root);
@@ -79,7 +78,7 @@
             else document.addEventListener("DOMContentLoaded", fn);
           })();
         </script>
-    
+
   </body>
-  
+
 </html>
