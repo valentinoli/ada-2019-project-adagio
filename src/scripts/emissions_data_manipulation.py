@@ -136,7 +136,7 @@ def country_distances():
     return countries
 
 
-def swiss_consumption_transport(row,NL=False):
+def swiss_consumption_transport(row, transport, transportCO2, countries, colmap, NL=False):
     trans_nl = 0
     
     # get the fractions for a given country and food product imported by each method of transport
@@ -156,7 +156,7 @@ def swiss_consumption_transport(row,NL=False):
              return (row_2['carbon_cost_per_km'] * countries.loc[row['country']][1])
         else:
             # transport to Rotterdam by Container ship
-            trans_nl = row_2['kilos_consumed'] * 0.000019
+            trans_nl = row_2['kilos_consumed'] * transportCO2['Inland waterways']
             return ((row_2['carbon_cost_per_km'] * distance_rotterdam) + (trans_nl * countries.loc[row['country']][2]))
     
     if NL:
@@ -176,19 +176,19 @@ def swiss_consumption_transport(row,NL=False):
     return trans.iloc[:,4].sum()
 
 
-# def glimpse():
-#     # load data
-#     imported_goods = pd.read_excel("../data/nature-of-goods-imports.xlsx", skiprows=5, sheet_name="01.1")
-#     imported_goods.dropna(how="all",inplace=True)
-#     imported_goods.drop(columns=["Unnamed: 5", "Unnamed: 6", "Unnamed: 7", "Unnamed: 8"], inplace=True) #empty columns
-#     imported_goods.rename({"Unnamed: 0": "Year", "Unnamed: 1": "Commercial Partner"}, inplace=True, axis=1)
-#     imported_goods["Commercial Partner"] = imported_goods["Commercial Partner"].str.strip() # get rid of leading whitespace
+def glimpse():
+    # load data
+    imported_goods = pd.read_excel("../data/nature-of-goods-imports.xlsx", skiprows=5, sheet_name="01.1")
+    imported_goods.dropna(how="all",inplace=True)
+    imported_goods.drop(columns=["Unnamed: 5", "Unnamed: 6", "Unnamed: 7", "Unnamed: 8"], inplace=True) #empty columns
+    imported_goods.rename({"Unnamed: 0": "Year", "Unnamed: 1": "Commercial Partner"}, inplace=True, axis=1)
+    imported_goods["Commercial Partner"] = imported_goods["Commercial Partner"].str.strip() # get rid of leading whitespace
 
-#     # filter for nearby countries
-#     nearby_countries = ["Portugal", "Spain", "France", "Germany", "Italy", "Austria", "Belgium", "Netherlands", "Czech Republic", "Slovenia", "Croatia", "Luxembourg", "Montenegro", "Serbia", "Slovakia", "Poland", "United Kingdom"]
-#     imported_goods_nearby = imported_goods[imported_goods["Commercial Partner"].isin(nearby_countries)].copy()
+    # filter for nearby countries
+    nearby_countries = ["Portugal", "Spain", "France", "Germany", "Italy", "Austria", "Belgium", "Netherlands", "Czech Republic", "Slovenia", "Croatia", "Luxembourg", "Montenegro", "Serbia", "Slovakia", "Poland", "United Kingdom"]
+    imported_goods_nearby = imported_goods[imported_goods["Commercial Partner"].isin(nearby_countries)].copy()
 
-#     # calculate percentage of goods imported from nearby countries
-#     total_nearby_imported = imported_goods_nearby["Quantity (kg)"].sum()
-#     return 100*total_nearby_imported/imported_goods.iloc[0][2]
+    # calculate percentage of goods imported from nearby countries
+    total_nearby_imported = imported_goods_nearby["Quantity (kg)"].sum()
+    return 100*total_nearby_imported/imported_goods.iloc[0][2]
 
