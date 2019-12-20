@@ -207,197 +207,38 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <h2 id="introduction">Introduction</h2>
-<p>As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes. (Center for Sustainable Systems, 2018) One might think, then, that the best way to reduce one’s “carbon foodprint” (carbon footprint due to food production) is to take on a vegetarian or vegan diet.</p>
+<p>As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes (Center for Sustainable Systems, 2018). One might think, then, that the best way to reduce one’s “carbon foodprint” (carbon footprint due to food production) is to take on a vegetarian or vegan diet.</p>
 
 <p>What is intriguing is that this may not be the answer in all cases. Based on where food is sourced, what time of year it is grown, and how it is produced, the carbon emissions can change drastically. A hot house tomato grown out of season can produce less carbon than pasture-fed goat meat, for example.</p>
 
-<p>An important question that data can answer, then, is how an eco-friendly citizen can best adapt their diet, based on their specific living circumstances, to reduce their carbon foodprint. Here, we will perform an in-depth analysis on Switzerland, providing a consumer with the knowledge necessary to produce less carbon emissions due to their diet. This will include an analysis of carbon intensities by food type and the various types and sources of food that are imported into Switzerland. After all, since Switzerland has a fairly dense population for its small size, it imports a significant amount of its food:</p>
+<p>An important question that data can answer, then, is how an eco-friendly citizen can best adapt their diet, based on their specific living circumstances, to reduce their carbon foodprint. Here, we will perform an in-depth analysis on Switzerland, examining how a consumer’s dietary choices affect their individual carbon emissions. This will include an analysis of carbon intensities by food type and the various types and sources of food that are imported into Switzerland. After all, since Switzerland has a fairly dense population for its small size, it imports a significant amount of its food; as of 2015, Switzerland’s food self-sufficiency rate, <a href="http://www.fao.org/3/a-i5222e.pdf">defined by the FAO</a> as “the extent to which a country can satisfy its food needs from its own domestic production”, was <a href="https://www.swissinfo.ch/eng/fact-check_does-switzerland-produce-half-of-all-the-food-it-needs-/44380058">approximately 59%</a>. A large amount of the foods imported are plant-based.</p>
 
-<p>“According to the Federal Agriculture Office, Switzerland’s gross self-sufficiency rate in 2015 was 59%. The degree of self-sufficiency is defined as the ratio of domestic production to total domestic consumption. With imported animal feed taken into account, the net level of self-sufficiency was 51% that year. But a closer look at the data reveals major differences across products. The country has been able to produce almost 100% of its animal foodstuffs for years, yet has managed only about 40% self-sufficiency for plant-based foods, a rate that fluctuates year on year as harvests are highly weather-dependent.” (From swissinfo.ch)</p>
-
-<p>Depending on where and what types of food Switzerland is importing its non-meat food products from, this raises the possibility that a Swiss citizen might have a smaller carbon foodprint by eating more meat, contradicting the typical recommendation. Would living with a vegan diet require an excessive amount of imported foods, outweighting the carbon offset of not eating meat? Or is there a large enough amount of carbon produced by the meat industry that eating a plant-based diet is still more sustainable?</p>
+<p>Depending on what types of food Switzerland is importing and from where, this raises the possibility that a Swiss citizen might have a smaller carbon foodprint by eating more meat, contradicting the typical recommendation. Would living with a vegan diet require an excessive amount of imported foods, outweighting the carbon offset of not eating meat? Or is there a large enough amount of carbon produced by the meat industry that eating a plant-based diet is still more sustainable?</p>
 
 <p>This project will attempt to answer the following question:</p>
 
 <blockquote>
-  <h3 id="how-can-a-swiss-consumer-best-adapt-their-diet-to-reduce-their-carbon-foodprint-based-on-all-the-factors-that-go-into-the-carbon-emissions-of-food-production">How can a Swiss consumer best adapt their diet to reduce their carbon “foodprint”, based on all the factors that go into the carbon emissions of food production?</h3>
+  <h3 id="how-can-a-swiss-consumer-best-adapt-their-diet-to-reduce-their-carbon-foodprint-based-on-several-factors-that-go-into-the-carbon-emissions-of-food-production">How can a Swiss consumer best adapt their diet to reduce their carbon “foodprint”, based on several factors that go into the carbon emissions of food production?</h3>
 </blockquote>
 
 <p>Note that we are assuming this analysis will be utilized by a Swiss consumer, and not by the government or any authoritative figure. Therefore, the utility of this analysis comes while assuming that nothing about the given situation will change (for example, Switzerland will not make a policy to start domestically producing more bananas); rather, we are looking to give an individual consumer insight into their carbon levels.</p>
 
-<h2 id="sub-questions">Sub-questions</h2>
+<p>Some of the sub-questions we will attempt to answer in this analysis include:</p>
+
 <ul>
   <li>Among Swiss consumption, how much of the various food types (e.g. bananas, beef, oats) are domestically produced versus imported?</li>
   <li>How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon “cost” of transporting the food to Switzerland.)</li>
-  <li>Among the various meats and animal products, which ones are more carbon-efficient? This must include both the carbon cost of the animals themselves as well as whether feed is imported or grown domestically.</li>
-  <li>Ultimately, using data specific to Switzerland that we gather, what is the carbon foodprint of (1) A typical Swiss diet, (2) The Swiss government-recommended diet, and (3) A diet optimized for the lowest carbon foodprint possible?</li>
+  <li>Among the various meats and animal products, which ones are more carbon-efficient? How do these compare to the carbon efficiency of plant-based foods?</li>
 </ul>
 
-<h2 id="datasets">Datasets</h2>
+<p>Data for this project was sourced from the <a href="http://www.fao.org/faostat/en/#data">Food and Agriculture Organization of the United Nations (FAO)</a> and <a href="https://www.gate.ezv.admin.ch/swissimpex/index.xhtml">Swiss Impex</a>. More details on these datasets can be found in the project github README.</p>
 
-<p>There are two primary sets of data which we are using to drive our analysis.</p>
+<h2 id="imports-and-exports">Imports and Exports</h2>
 
-<p>The first is the <a href="http://www.fao.org/faostat/en/#data">FAO</a> (Food and Agriculture Organisation of the United Nations) statistics dataset, which provides us with data specific to Switzerland regarding its crop and other food production. Since the latest available year for Swiss crop production is 2017, we will use 2017 data for all of our sources.</p>
-
-<p>The second is <a href="https://www.gate.ezv.admin.ch/swissimpex/index.xhtml">Swiss Impex</a>, a site hosted by the Swiss Federal Customs Administration which gives detailed datasets of imports and exports for many food items, among other traded goods.</p>
-
-<p>Note that size is not an issue with our datasets, so we will be processing all data locally (not using Spark).</p>
-
-<p>There are certain mismatches between data available from FAO and Impex. In these cases, we performed an outer join of dataframes, such that any food type which is listed in one but not the other is kept, filling in 0 values for the part of the joined dataframe in which it was empty/no value was provided.</p>
-
-<p>We will use very small amounts of additional data, such as <a href="https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF">this federal report</a> on the recommended and current actual consumption levels by food groups in Switzerland.</p>
-
-<h2 id="assumptions">Assumptions</h2>
-<p>Several assumptions had to be made to distill this massive question into a feasible project.</p>
-
-<p>As mentioned above, this analysis is a consumer insight tool. We assume that no changes are made on the large scale of this data.</p>
-
-<p>The most notable of all assumptions is the source of carbon intensities data. Many sources explain the impossibility of estimating the carbon intensities by crop type per country, since the amount of carbon that a crop’s production causes depends on a <em>massive</em> number of factors, and these factors vary widely even within a single country, from farm to farm. Thus, there is no data available for carbon intensities of all crops by country. To circumvent this, we will use the global average carbon intensities sourced from a large number of different studies and gathered in <a href="https://www.sciencedirect.com/science/article/pii/S0959652616303584">this article</a>.</p>
-
-<p>Certain difficulties with the datasets were navigated by excluding or combining certain categories. For example, Impex provides data on imported (and exported) live animals for slaughter, but it is unknown whether these imported animals are already accounted for in the FAO’s meat production data. It is also unknown how much of the weight of a live animal equates to meat. We therefore excluded the category of live animals, along with other similar categories such as animal offal.</p>
-
-<p>Also, we have included food waste as food consumption. That is, we calculated <code class="highlighter-rouge">Swiss food consumption</code> as <code class="highlighter-rouge">domestic production</code> - <code class="highlighter-rouge">exports</code> + <code class="highlighter-rouge">imports</code>.</p>
-
-<p>We are only looking at <em>carbon dioxide</em> output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing. Where possible however, values are provided as CO2 equivalents. That is, other greenhouse gases such as methane are given as an equivalent amount of CO2 in terms of their global warming potential.</p>
-
-<p>Certain minor food groups, such as oils and sweets, were excluded from the analysis, since they are not necessarily “recommended” foods to consume.</p>
-
-<p>Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.</p>
-
-<h2 id="tasks-to-finish">Tasks to finish</h2>
-<ul>
-  <li>Finish loading in all datasets from FAO and Impex (e.g. nuts, fish, etc. which have been downloaded but were not yet incorporated into the mega dataframe)</li>
-  <li>While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products and cereals). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.</li>
-  <li>We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. Then, we need to find a way to determine what transport methods are used for each kind of produce. We already have some US data, but could we find more diverse data such as transatlantic figures. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport?</li>
-  <li>Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season, fruit such as apples can be stored refrigerated for up to 10 months of the year which greatly increases their carbon footprint over time).</li>
-  <li>Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.</li>
-  <li>Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.</li>
-</ul>
+<p>Let’s first start by digging into Swiss imports and exports. We can categorize all the foods based on 6 metacategories: fruits, vegetables, cereals, meats, seafood, and animal products.</p>
 
 <p><img src="/img/total_imports_vs_exports.jpg" alt="total_imports_vs_exports" class="center-block" />
 <img src="/img/imports_vs_exports_animal_products.jpg" alt="imports_vs_exports_animal_products" class="center-block" /></p>
-
-<div id="bi-graph"></div>
-
-<!-- <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://unpkg.com/d3-array@1"></script>
-<script src="https://unpkg.com/d3-collection@1"></script>
-<script src="https://unpkg.com/d3-path@1"></script>
-<script src="https://unpkg.com/d3-shape@1"></script>
-<script src="https://unpkg.com/d3-sankey@0"></script>
-<script>
-
-    const width = 954;
-    const height = 600;
-    const edgeColor = "input";
-    const align = "left";
-
-
-    /*
-    * nodes: Array ( Object { name: String } )
-    * */
-    let originalNodes = [
-        {name: "A"},
-        {name: "B"}
-    ];
-
-    /*
-    * links: Array ( Object { source: String, target: String, value: Float } )
-    * */
-    let originalLinks = [
-        {
-            source: "A",
-            target: "B",
-            value: 1,
-        }
-    ];
-    const data = {nodes: originalNodes, links: originalLinks};
-
-    const color = name => d3.scaleOrdinal(d3.schemeCategory10)(name.replace(/ .*/, ""));
-
-    const format = d => `${d3.format(",.0f")(d)} TWh`;
-
-    const sankeyObj = d3.sankey()
-        .nodeId(d => d.name)
-        .nodeAlign(d3[`sankey${align[0].toUpperCase()}${align.slice(1)}`])
-        .nodeWidth(15)
-        .nodePadding(10)
-        .extent([[1, 5], [width - 1, height - 5]]);
-
-    const sankey = ({nodes, links}) => sankeyObj({
-        nodes: nodes.map(d => Object.assign({}, d)),
-        links: links.map(d => Object.assign({}, d))
-    });
-
-    const svg = d3.create("svg")
-        .attr("viewBox", [0, 0, width, height]);
-
-    let {nodes, links} = sankey(data);
-
-    svg.append("g")
-        .attr("stroke", "#000")
-        .selectAll("rect")
-        .data(nodes)
-        .join("rect")
-        .attr("x", d => d.x0)
-        .attr("y", d => d.y0)
-        .attr("height", d => d.y1 - d.y0)
-        .attr("width", d => d.x1 - d.x0)
-        .attr("fill", d => color(d.name))
-        .append("title")
-        .text(d => `${d.name}\n${format(d.value)}`);
-
-    const link = svg.append("g")
-        .attr("fill", "none")
-        .attr("stroke-opacity", 0.5)
-        .selectAll("g")
-        .data(links)
-        .join("g")
-        .style("mix-blend-mode", "multiply");
-
-    if (edgeColor === "path") {
-        const gradient = link.append("linearGradient")
-            .attr("id", d => (d.uid = DOM.uid("link")).id)
-            .attr("gradientUnits", "userSpaceOnUse")
-            .attr("x1", d => d.source.x1)
-            .attr("x2", d => d.target.x0);
-
-        gradient.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", d => color(d.source.name));
-
-        gradient.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", d => color(d.target.name));
-    }
-
-    link.append("path")
-        .attr("d", d3.sankeyLinkHorizontal())
-        .attr("stroke", d => edgeColor === "none" ? "#aaa"
-            : edgeColor === "path" ? d.uid
-                : edgeColor === "input" ? color(d.source.name)
-                    : color(d.target.name))
-        .attr("stroke-width", d => Math.max(1, d.width));
-
-    link.append("title")
-        .text(d => `${d.source.name} → ${d.target.name}\n${format(d.value)}`);
-
-    svg.append("g")
-        .style("font", "10px sans-serif")
-        .selectAll("text")
-        .data(nodes)
-        .join("text")
-        .attr("x", d => d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
-        .attr("y", d => (d.y1 + d.y0) / 2)
-        .attr("dy", "0.35em")
-        .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
-        .text(d => d.name);
-
-    const chart = svg.node();
-    document.getElementById("bi-graph").append(chart);
-
-</script> -->
-
 <html>
 <head><meta charset="utf-8" /></head>
 <body>
@@ -405,15 +246,15 @@
 
                 <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-            <div id="d0abfd59-ffa6-45cc-b42e-310416392f07" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+            <div id="82b2a78d-0572-4bc7-bdec-dcfc4cb1890e" class="plotly-graph-div" style="height:100%; width:100%;"></div>
             <script type="text/javascript">
 
                     window.PLOTLYENV=window.PLOTLYENV || {};
 
-                if (document.getElementById("d0abfd59-ffa6-45cc-b42e-310416392f07")) {
+                if (document.getElementById("82b2a78d-0572-4bc7-bdec-dcfc4cb1890e")) {
                     Plotly.newPlot(
-                        'd0abfd59-ffa6-45cc-b42e-310416392f07',
-                        [{"link": {"color": ["rgba(124,181,235, 0.7)", "rgba(124,181,235, 0.7)", "rgba(124,181,235, 0.7)", "rgba(124,181,235, 0.7)", "rgba(124,181,235, 0.7)", "rgba(124,181,235, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)"], "source": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4], "target": [5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10], "value": [9.107587368557386e-08, 0.00012728764106295802, 0.5651473629858745, 0.0002553403194648749, 0.004856019863516902, 0.3104904586619615, 0.1340455619663013, 1.3755412156471003, 2.6775686819010667, 0.4257923508113254, 0.026380217888900156, 0.14215370091220794, 0.0038273725157625563, 0.40725862909840793, 0.1716233217275712, 0.005031122338264786, 0.1760655292514103, 0.1390129858385104, 2.6473828039846903, 3.8462242926415584, 5.8400232023438585, 0.9326020283121667, 0.6185496468758866, 4.350219944227613, 0.0006661471553110243, 0.0, 0.09409135943295374, 0.09633040514198936, 0.004813997455398377, 0.003918921983991295]}, "node": {"color": ["rgba(124,181,235, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(244, 214, 133, 1)", "rgba(177,208,133,0.5)", "rgba(247, 172, 192, 1)", "lightgray", "lightgray", "lightgray", "lightgray", "lightgray", "lightgray"], "label": ["Africa", "America", "Asia", "Europe", "Oceania", "animal_products", "cereals", "fruits", "meat", "seafood", "vegetables"], "line": {"color": "black", "width": 0}, "pad": 10, "thickness": 5}, "type": "sankey"}],
+                        '82b2a78d-0572-4bc7-bdec-dcfc4cb1890e',
+                        [{"link": {"color": ["rgba(124,181,235,0.5)", "rgba(124,181,235,0.5)", "rgba(124,181,235,0.5)", "rgba(124,181,235,0.5)", "rgba(124,181,235,0.5)", "rgba(124,181,235,0.5)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(247, 163, 93, 0.7)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(244, 214, 133, 1)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(177,208,133,0.5)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)", "rgba(247, 172, 192, 1)"], "source": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4], "target": [5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10, 5, 6, 7, 8, 9, 10], "value": [9.107587368557386e-08, 0.00012728764106295802, 0.5651473629858745, 0.0002553403194648749, 0.004856019863516902, 0.3104904586619615, 0.1340455619663013, 1.3755412156471003, 2.6775686819010667, 0.4257923508113254, 0.026380217888900156, 0.14215370091220794, 0.0038273725157625563, 0.40725862909840793, 0.1716233217275712, 0.005031122338264786, 0.1760655292514103, 0.1390129858385104, 2.6473828039846903, 3.8462242926415584, 5.8400232023438585, 0.9326020283121667, 0.6185496468758866, 4.350219944227613, 0.0006661471553110243, 0.0, 0.09409135943295374, 0.09633040514198936, 0.004813997455398377, 0.003918921983991295]}, "node": {"color": ["rgba(124,181,235,0.5)", "rgba(247, 163, 93, 0.7)", "rgba(244, 214, 133, 1)", "rgba(177,208,133,0.5)", "rgba(247, 172, 192, 1)", "gray", "gray", "gray", "gray", "gray", "gray"], "label": ["Africa", "America", "Asia", "Europe", "Oceania", "animal_products", "cereals", "fruits", "meat", "seafood", "vegetables"], "line": {"color": "black", "width": 0}, "pad": 10, "thickness": 5}, "type": "sankey"}],
                         {"font": {"size": 12}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "Food Type Imports by Continent"}},
                         {"responsive": true}
                     )
@@ -423,6 +264,90 @@
         </div>
 </body>
 </html>
+
+<html lang="en">
+
+  <head>
+
+      <meta charset="utf-8" />
+      <title>Bokeh Plot</title>
+
+
+
+
+
+
+
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+
+
+
+
+  </head>
+
+
+  <body>
+
+
+
+
+
+
+              <div class="bk-root" id="4163940d-7721-4348-96d7-5b2d4a06a568" data-root-id="2858"></div>
+
+
+
+
+
+        <script type="application/json" id="3090">
+          {"3a994343-f726-4816-9574-5f70025ee023":{"roots":{"references":[{"attributes":{"below":[{"id":"2869","type":"CategoricalAxis"}],"center":[{"id":"2872","type":"Grid"},{"id":"2877","type":"Grid"}],"left":[{"id":"2873","type":"LinearAxis"}],"plot_height":250,"plot_width":700,"renderers":[{"id":"2895","type":"GlyphRenderer"},{"id":"2901","type":"GlyphRenderer"}],"right":[{"id":"2903","type":"Legend"}],"title":{"id":"2859","type":"Title"},"toolbar":{"id":"2884","type":"Toolbar"},"toolbar_location":null,"x_range":{"id":"2861","type":"FactorRange"},"x_scale":{"id":"2865","type":"CategoricalScale"},"y_range":{"id":"2863","type":"Range1d"},"y_scale":{"id":"2867","type":"LinearScale"}},"id":"2858","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"2865","type":"CategoricalScale"},{"attributes":{},"id":"2879","type":"WheelZoomTool"},{"attributes":{},"id":"2969","type":"Selection"},{"attributes":{"data_source":{"id":"2857","type":"ColumnDataSource"},"glyph":{"id":"2899","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2900","type":"VBar"},"selection_glyph":null,"view":{"id":"2902","type":"CDSView"}},"id":"2901","type":"GlyphRenderer"},{"attributes":{"source":{"id":"2857","type":"ColumnDataSource"}},"id":"2896","type":"CDSView"},{"attributes":{"label":{"value":"imported consumption"},"renderers":[{"id":"2901","type":"GlyphRenderer"}]},"id":"2905","type":"LegendItem"},{"attributes":{"fill_color":{"value":"#b7eebc"},"line_color":{"value":"#b7eebc"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"2891","type":"Dodge"}}},"id":"2893","type":"VBar"},{"attributes":{},"id":"2870","type":"CategoricalTicker"},{"attributes":{"data_source":{"id":"2857","type":"ColumnDataSource"},"glyph":{"id":"2893","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"2894","type":"VBar"},"selection_glyph":null,"view":{"id":"2896","type":"CDSView"}},"id":"2895","type":"GlyphRenderer"},{"attributes":{"fill_color":{"value":"#ca041e"},"line_color":{"value":"#ca041e"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"2897","type":"Dodge"}}},"id":"2899","type":"VBar"},{"attributes":{"dimension":1,"ticker":{"id":"2874","type":"BasicTicker"}},"id":"2877","type":"Grid"},{"attributes":{"label":{"value":"domestic consumption"},"renderers":[{"id":"2895","type":"GlyphRenderer"}]},"id":"2904","type":"LegendItem"},{"attributes":{"click_policy":"mute","items":[{"id":"2904","type":"LegendItem"},{"id":"2905","type":"LegendItem"}],"location":[5,0]},"id":"2903","type":"Legend"},{"attributes":{"formatter":{"id":"2966","type":"CategoricalTickFormatter"},"major_label_orientation":0.7853981633974483,"major_label_text_font_size":{"value":"10pt"},"ticker":{"id":"2870","type":"CategoricalTicker"}},"id":"2869","type":"CategoricalAxis"},{"attributes":{"callback":null,"data":{"domestic_consumption":{"__ndarray__":"0TFSDOfaRUB/9i4Nn9ZSQB1R6nHdBFNACnvUYVtTWEDvB4/qM11VQE0iacb8iBxA","dtype":"float64","shape":[6]},"imported_consumption":{"__ndarray__":"L86t8xglTEADJkTLg6U4QI27VjiK7DdAup5wxZOUBUCGwIerYBYtQNttmTNwN1dA","dtype":"float64","shape":[6]},"type":["fruits","vegetables","cereals","animal_products","meat","seafood"]},"selected":{"id":"2969","type":"Selection"},"selection_policy":{"id":"2968","type":"UnionRenderers"}},"id":"2857","type":"ColumnDataSource"},{"attributes":{"source":{"id":"2857","type":"ColumnDataSource"}},"id":"2902","type":"CDSView"},{"attributes":{},"id":"2882","type":"ResetTool"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"2878","type":"PanTool"},{"id":"2879","type":"WheelZoomTool"},{"id":"2880","type":"BoxZoomTool"},{"id":"2881","type":"SaveTool"},{"id":"2882","type":"ResetTool"},{"id":"2883","type":"HelpTool"}]},"id":"2884","type":"Toolbar"},{"attributes":{},"id":"2883","type":"HelpTool"},{"attributes":{},"id":"2968","type":"UnionRenderers"},{"attributes":{"overlay":{"id":"2967","type":"BoxAnnotation"}},"id":"2880","type":"BoxZoomTool"},{"attributes":{},"id":"2867","type":"LinearScale"},{"attributes":{},"id":"2878","type":"PanTool"},{"attributes":{"callback":null,"end":100},"id":"2863","type":"Range1d"},{"attributes":{"callback":null,"factors":["fruits","vegetables","cereals","animal_products","meat","seafood"],"range_padding":0.1},"id":"2861","type":"FactorRange"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"2897","type":"Dodge"}}},"id":"2900","type":"VBar"},{"attributes":{"grid_line_color":null,"ticker":{"id":"2870","type":"CategoricalTicker"}},"id":"2872","type":"Grid"},{"attributes":{"axis_label":"ratio (%)","axis_label_text_font_size":{"value":"12pt"},"formatter":{"id":"2964","type":"BasicTickFormatter"},"major_label_text_font_size":{"value":"12pt"},"ticker":{"id":"2874","type":"BasicTicker"}},"id":"2873","type":"LinearAxis"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"2891","type":"Dodge"}}},"id":"2894","type":"VBar"},{"attributes":{},"id":"2966","type":"CategoricalTickFormatter"},{"attributes":{"text":"Swiss Domestic vs. Imported Consumption","text_color":{"value":"black"},"text_font_size":{"value":"15pt"}},"id":"2859","type":"Title"},{"attributes":{},"id":"2881","type":"SaveTool"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"2967","type":"BoxAnnotation"},{"attributes":{"range":{"id":"2861","type":"FactorRange"},"value":0.125},"id":"2897","type":"Dodge"},{"attributes":{},"id":"2874","type":"BasicTicker"},{"attributes":{},"id":"2964","type":"BasicTickFormatter"},{"attributes":{"range":{"id":"2861","type":"FactorRange"},"value":-0.125},"id":"2891","type":"Dodge"}],"root_ids":["2858"]},"title":"Bokeh Application","version":"1.3.4"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+
+                  var docs_json = document.getElementById('3090').textContent;
+                  var render_items = [{"docid":"3a994343-f726-4816-9574-5f70025ee023","roots":{"2858":"4163940d-7721-4348-96d7-5b2d4a06a568"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+
+  </body>
+
+</html>
+<p><img src="/img/carbon_normalized_consumption.jpg" alt="carbon_normalized_consumption" class="center-block" />
+<img src="/img/NL_CH_transport.jpg" alt="NL_CH_transport" class="center-block" />
+<img src="/img/histogram.jpg" alt="histogram" class="center-block" />
+<img src="/img/tomatoes.jpg" alt="tomatoes" class="center-block" /></p>
 
 <h2 id="normalized-carbon-cost-bar-graph-for-all-food-groups">normalized carbon cost bar graph for all food groups</h2>
 
