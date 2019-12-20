@@ -55,6 +55,7 @@ The following list is the detailed set of assumptions made when handling the dat
 
 **Seafood**
 
+
 The FAO data on seafood production had to be harvested from another site than where the rest of the production data was obtained from ([FAO fishery data](http://www.fao.org/fishery/statistics/global-commodities-production/query/en)). The data indicated that Switzerland produces fish, but there was no data available for production of other seafood from Switzerland. We assumed that, since Switzerland is landlocked, the only seafood it produces are lake fish, and the other values were nonexistent because they were zero. While the data provided were separated into one amount for freshwater fish and one amount for partly-fresh/partly-saltwater fish, we combined this into a single category and considered it simply as "fish".
 
 The following assumptions, choices, and aggregations were made when merging Impex, FAO, and carbon intensities data.
