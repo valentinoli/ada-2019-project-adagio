@@ -85,9 +85,9 @@ This begins to answer our research question of how a Swiss consumer can reduce t
 
 something
 
-![stacked_plot_meat](/img/stacked_plot_meat.jpg){: .center-block :}
+![stacked_plot_meat](/img/stacked_plot_meat.png){: .center-block :}
 
-![stacked_plot_vegetables](/img/stacked_plot_vegetables.jpg){: .center-block :}
+![stacked_plot_vegetables](/img/stacked_plot_vegetables.png){: .center-block :}
 
 ### Correcting the Transport Data
 
