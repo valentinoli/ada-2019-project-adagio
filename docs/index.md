@@ -15,7 +15,7 @@ An important question that data can answer, then, is how an eco-friendly citizen
 
 Depending on what types of food Switzerland is importing and from where, this raises the possibility that a Swiss citizen might have a smaller carbon foodprint by eating more meat, contradicting the typical recommendation. Would living with a vegan diet require an excessive amount of imported foods, outweighting the carbon offset of not eating meat? Or is there a large enough amount of carbon produced by the meat industry that eating a plant-based diet is still more sustainable?
 
-This project will attempt to answer the following question:
+We will attempt to answer the question:
 
 > ### How can a Swiss consumer best adapt their diet to reduce their carbon "foodprint", based on several factors that go into the carbon emissions of food production?
 
@@ -27,7 +27,7 @@ Some of the sub-questions we will attempt to answer in this analysis include:
 * How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon "cost" of transporting the food to Switzerland.)
 * Among the various meats and animal products, which ones are more carbon-efficient? How do these compare to the carbon efficiency of plant-based foods?
 
-Data for this project was sourced from the [Food and Agriculture Organization of the United Nations (FAO)](http://www.fao.org/faostat/en/#data) and [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml). More details on these datasets can be found in the project github README. Note that the most recent data available from FAO for food production in Switzerland was 2017, so all data is from this year.
+Data for this project was sourced from the [Food and Agriculture Organization of the United Nations (FAO)](http://www.fao.org/faostat/en/#data) and [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml). More details on these datasets can be found on the GitHub [project repository](https://github.com/valentinoli/swiss-foodprint/blob/master/README.md). Note that the most recent data available from FAO for food production in Switzerland was 2017, so all data is from this year. 
 
 ## Imports and Exports
 
@@ -83,11 +83,15 @@ This begins to answer our research question of how a Swiss consumer can reduce t
 
 ### Closer Look: Transport Carbon Costs
 
-something
+One way to demonstrate how much transport factors into the carbon cost of a food item is to directly compare the transport cost to the inherent cost of producing that item. Meats have the highest inherent cost of all food groups, so perhaps their transport cost is relatively low.
 
 ![stacked_plot_meat](/img/stacked_plot_meat.png){: .center-block :}
 
+Indeed, it appears that in comparison to the inherent cost of producing the meat, the carbon emissions from transport are extremely low across all animal types. But what about a low carbon intensity food group, such as vegetables?
+
 ![stacked_plot_vegetables](/img/stacked_plot_vegetables.png){: .center-block :}
+
+Surprisingly, for most vegetables, the inherent cost is still relatively higher than the transport. This leads us to believe that the inherent production cost is the far greater influencer on a food's overall carbon output rather than transport. There are of course a few exceptions to this rule, such as asparagus and potatoes. One can speculate as to why these vegetables have such high transport costs; that depends on which countries these foods come from and how they reach Switzerland.
 
 ### Correcting the Transport Data
 
@@ -129,5 +133,8 @@ Seasonality is one of the hardest factors to quantify, yet can have an important
 
 Another seasonality factor that needs consideration is food storage. Often, fresh fruit and vegetables are refrigerated in order to increase the time they can be stored before being sold, and effectively increase the ‘season’ local produce can be sold for in a given country. The carbon cost of such storage is very difficult to quantify, as the conditions are so diverse, but depending on the time and method of storage, they can be significant.
 
+**In-depth Analysis**
 
+These issues highlight the inherent difficulty in collating such a broad data set in an applicable way. The diverse data sources, ‘holes’ in the data and countless [assumptions]( https://valentinoli.github.io/swiss-foodprint/assumptions/) that must be made to overcome these challenges mean the conclusions that can be drawn are of limited value. Saunders et al.’s [in-depth investigation]( https://researcharchive.lincoln.ac.nz/bitstream/handle/10182/125/aeru_rr_285.pdf?sequence=1&isAllowed=y) into the “Energy/Emissions Performance of New Zealand’s Agriculture Industry,” is a clear demonstration of the myriad factors that must be taken into account to be able to make a fair judgement on the carbon emissions of the products we purchase. Their 120 page report investigates the impact of just **four products**, produced in only two different countries. However, it takes into account the emissions associated with machinery, farm buildings, fodder, animal bedding, fertilizer components, etc. in addition to accurate transport and seasonality data. The found very interesting results, for milk, sheep-meat and apples, it was more carbon efficient to buy New Zealand produced products in the UK, “even including the transport cost.” Onions can be produced in the UK in a more energy efficient way, however the storage costs in the UK outweigh the shipping costs from New Zealand during months when onions are not in season in the UK.	
 
+Based on these findings, we felt that attempting to make product-specific recommendations for Swiss consumers would be of limited utility. There is such minimal information regarding the production, emissions and transport of specific foods that the conclusions that can be drawn are of a very global nature. Current ‘carbon foodprint’ calculators such as [this one]( https://www.bbc.com/news/science-environment-46459714) advertised in the UK use global average values. While they give a useful overview, they lack key details which would be useful to a consumer wanting to minimize their carbon output on a local scale. Compared to other countries, Switzerland has incredibly detailed data available regarding imports, exports and consumption, and yet it was still not feasible to draw clear product-specific conclusions from this data. The New Zealand study emphasizes the depth of information that must be sourced to be able to make clear recommendations on food choices based on your location and the current season.
