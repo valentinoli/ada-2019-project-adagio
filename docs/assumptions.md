@@ -5,6 +5,7 @@ image: /img/flag.gif
 ---
 
 The following list is the detailed set of assumptions made when handling the data from Impex.
+
 **Cereals**
 * Cereals imported for alcohol manufacturing, a category specified by Impex, were not included in the analysis since alcohol is not a recommended food group and cannot be used for nutrition purposes.
 * While nearly all grain types in the Impex data specified when they were imported/exported for human consumption, rice was the one exception to this rule. Rice is generally consumed in large quantities and thus could not be exluded from the analysis. Thus, the rice data was assumed to be for human consumption purposes when it was listed as `"rice (excluding rice for the manufacture of brewers' malt or beer or for animal feeding)"`.
@@ -25,6 +26,9 @@ The following list is the detailed set of assumptions made when handling the dat
 
 **Vegetables**
 * A handful of vegetables which were available in Impex were not included in the analysis since they were not available in the FAO data. This was acceptable since these vegetables are not staples. They included parsley, rhubarb, and cardoons, among others. We decided that it was better to never include these vegetables in the analysis rather than assuming that their production in Switzerland is zero, because FAO does list items which have zero production. These items were not even listed, which would indicate that their production is not tracked.
+* Conversion of fresh onion emissions to dried onion emissions based on weight:
+  1 cup dried onion = 143.8g => equivalent fresh onion = 1388g => multiply fresh emission values by (9.65) 10
+* We have no information regarding the growing methods of vegetables, therefore where we have values for different methods, e.g. outside vs. in greenhouses (heated and passive), we average these values, assuming that there is a relatively even distribution of these growing methods.
 
 **Fruits**
 * Impex lumps raspberries, blackberries, mulberries, and loganberries together. These were thus all included under the category of `"raspberries"`. Similarly, the `"cranberries"` category includes both cranberries and bilberries.
@@ -42,6 +46,7 @@ The following list is the detailed set of assumptions made when handling the dat
 
 
 The following list is the detailed set of assumptions made when handling the data from FAO.
+
 **Meats**
 * "Game" meat was excluded; while it was not an insignificant amount of meat produced (1891 tonnes in 2017), there is no way of knowing what animals this meat came from, so it is useless for our analysis.
 * Rabbit meat was excluded because we do not have a value of carbon emissions for it or any similar animal (the same reason why it was excluded from Impex data), but it was a small amount of meat (971 tonnes in 2017) so it will not greatly skew the analysis.
@@ -72,3 +77,7 @@ The following assumptions, choices, and aggregations were made when merging Impe
 * We decided to exclude data from all sources on oils, seeds, and nuts, since these are not a major food group and would have added unnecessary complexity to our analysis.
 * There were a few food items which were not listed in the Impex data but which had non-zero production. After excluding `"nes"` items and nuts and oils, this list included: blueberries, mixed grain, hops, lupins, green maize, and sugar beet. These items were exluded since it was safer to not include them rather than to assume they had zero imports and exports.
 
+The following list is the detailed set of assumptions made when handling the emssions data.
+
+* The emissions categories available were less comprehensive than the FAO/Impex categories. The items lacking emissions values were estimated using the closest available emissions category. For a full list, please see the last 15 lines of the file categories.txt in the data folder.
+* Clune, Crossin and Verghese's 2017 review collates CO2 emissions data from ~1700 studies worldwide, a summary of which is available in the file food_emissions_raw.xlsx. These studies do not provide an even representation of the different food categories and thus some global emissions estimates are averages of several studies in different countries, while others are the result of a unique study. These averages can be seen in the file food_emissions.xlsx.
