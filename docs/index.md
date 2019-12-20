@@ -77,6 +77,8 @@ Finally, animals are often fed with by-products of human food production. If a c
 
 {% include sankey_diagram.html %}
 
+{% include consumption_per_type.html %}
+
 ## normalized carbon cost bar graph for all food groups
 
 ## comment that meat is high like expected

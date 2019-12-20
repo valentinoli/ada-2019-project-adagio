@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="b2385ced-af9b-4f7a-b37a-80bb1714c42e" data-root-id="11790"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="12283">
+          {"05703452-0fa5-44c3-a85b-cc7e7c2e8776":{"roots":{"references":[{"attributes":{"below":[{"id":"11801","type":"CategoricalAxis"}],"center":[{"id":"11804","type":"Grid"},{"id":"11809","type":"Grid"}],"left":[{"id":"11805","type":"LinearAxis"}],"plot_height":250,"plot_width":700,"renderers":[{"id":"11827","type":"GlyphRenderer"},{"id":"11833","type":"GlyphRenderer"}],"right":[{"id":"11835","type":"Legend"}],"title":{"id":"11791","type":"Title"},"toolbar":{"id":"11816","type":"Toolbar"},"toolbar_location":null,"x_range":{"id":"11793","type":"FactorRange"},"x_scale":{"id":"11797","type":"CategoricalScale"},"y_range":{"id":"11795","type":"Range1d"},"y_scale":{"id":"11799","type":"LinearScale"}},"id":"11790","subtype":"Figure","type":"Plot"},{"attributes":{"callback":null,"end":100},"id":"11795","type":"Range1d"},{"attributes":{"dimension":1,"ticker":{"id":"11806","type":"BasicTicker"}},"id":"11809","type":"Grid"},{"attributes":{"text":"Swiss Domestic vs. Imported Consumption"},"id":"11791","type":"Title"},{"attributes":{"data_source":{"id":"11789","type":"ColumnDataSource"},"glyph":{"id":"11831","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"11832","type":"VBar"},"selection_glyph":null,"view":{"id":"11834","type":"CDSView"}},"id":"11833","type":"GlyphRenderer"},{"attributes":{"label":{"value":"domestic consumption"},"renderers":[{"id":"11827","type":"GlyphRenderer"}]},"id":"11836","type":"LegendItem"},{"attributes":{"callback":null,"data":{"domestic_consumption":{"__ndarray__":"0TFSDOfaRUB/9i4Nn9ZSQB1R6nHdBFNACnvUYVtTWEDvB4/qM11VQNiCIgnGyUNA","dtype":"float64","shape":[6]},"imported_consumption":{"__ndarray__":"L86t8xglTEADJkTLg6U4QI27VjiK7DdAup5wxZOUBUCGwIerYBYtQCh93fY5Nk5A","dtype":"float64","shape":[6]},"type":["fruits","vegetables","cereals","animal_products","meat","seafood"]},"selected":{"id":"12137","type":"Selection"},"selection_policy":{"id":"12136","type":"UnionRenderers"}},"id":"11789","type":"ColumnDataSource"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"12138","type":"BoxAnnotation"},{"attributes":{},"id":"11802","type":"CategoricalTicker"},{"attributes":{"range":{"id":"11793","type":"FactorRange"},"value":0.125},"id":"11829","type":"Dodge"},{"attributes":{"data_source":{"id":"11789","type":"ColumnDataSource"},"glyph":{"id":"11825","type":"VBar"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"11826","type":"VBar"},"selection_glyph":null,"view":{"id":"11828","type":"CDSView"}},"id":"11827","type":"GlyphRenderer"},{"attributes":{},"id":"11815","type":"HelpTool"},{"attributes":{"source":{"id":"11789","type":"ColumnDataSource"}},"id":"11828","type":"CDSView"},{"attributes":{},"id":"12137","type":"Selection"},{"attributes":{"axis_label":"ratio (%)","formatter":{"id":"12133","type":"BasicTickFormatter"},"ticker":{"id":"11806","type":"BasicTicker"}},"id":"11805","type":"LinearAxis"},{"attributes":{"fill_color":{"value":"#b7eebc"},"line_color":{"value":"#b7eebc"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"11823","type":"Dodge"}}},"id":"11825","type":"VBar"},{"attributes":{},"id":"12135","type":"CategoricalTickFormatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"domestic_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"11823","type":"Dodge"}}},"id":"11826","type":"VBar"},{"attributes":{"label":{"value":"imported consumption"},"renderers":[{"id":"11833","type":"GlyphRenderer"}]},"id":"11837","type":"LegendItem"},{"attributes":{},"id":"12133","type":"BasicTickFormatter"},{"attributes":{},"id":"11814","type":"ResetTool"},{"attributes":{"overlay":{"id":"12138","type":"BoxAnnotation"}},"id":"11812","type":"BoxZoomTool"},{"attributes":{},"id":"11811","type":"WheelZoomTool"},{"attributes":{"fill_color":{"value":"#ca041e"},"line_color":{"value":"#ca041e"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"11829","type":"Dodge"}}},"id":"11831","type":"VBar"},{"attributes":{},"id":"11810","type":"PanTool"},{"attributes":{},"id":"12136","type":"UnionRenderers"},{"attributes":{},"id":"11799","type":"LinearScale"},{"attributes":{"click_policy":"mute","items":[{"id":"11836","type":"LegendItem"},{"id":"11837","type":"LegendItem"}],"location":[5,0]},"id":"11835","type":"Legend"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"11810","type":"PanTool"},{"id":"11811","type":"WheelZoomTool"},{"id":"11812","type":"BoxZoomTool"},{"id":"11813","type":"SaveTool"},{"id":"11814","type":"ResetTool"},{"id":"11815","type":"HelpTool"}]},"id":"11816","type":"Toolbar"},{"attributes":{},"id":"11813","type":"SaveTool"},{"attributes":{},"id":"11806","type":"BasicTicker"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"top":{"field":"imported_consumption"},"width":{"value":0.2},"x":{"field":"type","transform":{"id":"11829","type":"Dodge"}}},"id":"11832","type":"VBar"},{"attributes":{"source":{"id":"11789","type":"ColumnDataSource"}},"id":"11834","type":"CDSView"},{"attributes":{"range":{"id":"11793","type":"FactorRange"},"value":-0.125},"id":"11823","type":"Dodge"},{"attributes":{"callback":null,"factors":["fruits","vegetables","cereals","animal_products","meat","seafood"],"range_padding":0.1},"id":"11793","type":"FactorRange"},{"attributes":{},"id":"11797","type":"CategoricalScale"},{"attributes":{"grid_line_color":null,"ticker":{"id":"11802","type":"CategoricalTicker"}},"id":"11804","type":"Grid"},{"attributes":{"formatter":{"id":"12135","type":"CategoricalTickFormatter"},"ticker":{"id":"11802","type":"CategoricalTicker"}},"id":"11801","type":"CategoricalAxis"}],"root_ids":["11790"]},"title":"Bokeh Application","version":"1.4.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('12283').textContent;
+                  var render_items = [{"docid":"05703452-0fa5-44c3-a85b-cc7e7c2e8776","roots":{"11790":"b2385ced-af9b-4f7a-b37a-80bb1714c42e"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

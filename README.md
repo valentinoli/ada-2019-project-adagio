@@ -94,7 +94,7 @@ Finally, animals are often fed with by-products of human food production. If a c
 * Plotting libraries:
     * [`matplotlib`](https://matplotlib.org/)
     * [`seaborn`](https://seaborn.pydata.org/)
-    * [`plotly` and `chart_studio`](https://help.plot.ly/)
+    * [`bokeh`](https://docs.bokeh.org/en/latest/index.html)
     * [`holoviews`](http://holoviews.org/)
     * [`networkx`](https://networkx.github.io/)
 
