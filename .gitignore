@@ -1,6 +1,7 @@
 # Data folder
 data/
 visualization_ideas.txt
+*.pkl
 
 # JetBrains
 .idea/
