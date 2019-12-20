@@ -1,14 +1,20 @@
 
 # Reducing the Swiss "Foodprint": How An Individual Can Adjust Their Carbon Output
 
+TODO Structure of the README:
+Link to the datastory
+Abstract
+Research Questions
+Datasets
+Results (?)
+Contributions (what everyone did, including who will do the final presentation and poster)
+
+
 UPDATE 12 December: Things to eventually integrate/mention
-* FIX THE NEGATIVE WHEY CONSUMPTION
 * "Re-do" the analysis with the country-specific meat production carbon values from FAO and see if that changes our analysis
-* Get the real number for fish production (from Valentin's computer) and put it into the swiss_seafood_production file
 * Mention the New Zealand article that compares 4 food items between two countries and all the factors that go into that analysis (a loooot of factors)
 * Detail all the reasons why we cannot draw definitive conclusions about our analysis (no seasonality, limited transport data e.g. only know the method of transport for how it crossed the border, data shows country of origin not production, don't have country-specific carbon values for all food items)
 * Look at other available tools online for calculating food carbon costs and criticize them for all the factors they ignore
-* Talk a lot about seasonality: what data could we have found and what is just impossible to know on this scale? 
 * Talk about source of animal feed:
 One interesting aspect of meat and non-meat animal product production, which is not relevant to the other food groups, is that animal feed may be sourced from a different location than where the meat/animal product is produced. This implicates the sourcing of animal feed as a very important factor for the carbon intensity of these foods. For example, if Switzerland produced most of its meat domestically, but it imported all of its feed, the carbon intensity of its meat would be much higher than if the feed were grown domestically. Thus, both aspects of the final food product must be examined.
 
