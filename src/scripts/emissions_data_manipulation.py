@@ -202,3 +202,19 @@ def glimpse():
     total_nearby_imported = imported_goods_nearby["Quantity (kg)"].sum()
     return 100*total_nearby_imported/imported_goods.iloc[0][2]
 
+
+def find_consumption(row, suisse):
+    """finds the consumption of a given item based on the production, imports and exports"""
+    # if the exported amount of this food item is less than what is domestically produced, then
+    # all imports go towards Swiss consumption (due to earlier assumptions we made about Swiss production
+    # being the source of exports before imports being exported)
+    if suisse.xs(row['product'], level=1)['domestic_consumption'][0] > 0:
+        return row.imports
+    else:
+        # if everything which is produced in Switzerland is also exported (domestic_consumption == 0), then
+        # some of the imports may also be exported, so the amount of imports consumed in Switzerland is taken
+        # as the fraction of (the amount imported from that country) / (total imported amount from all countries)
+        denominator = suisse.xs(row['product'], level=1)['imports'][0]
+        fraction = row.imports/denominator
+        return fraction * suisse.xs(row['product'], level=1)['consumption'][0]
+
