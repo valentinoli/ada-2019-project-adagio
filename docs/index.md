@@ -70,14 +70,12 @@ Finally, animals are often fed with by-products of human food production. If a c
 
 ![total_imports_vs_exports](/img/total_imports_vs_exports.jpg){: .center-block :}
 ![imports_vs_exports_animal_products](/img/imports_vs_exports_animal_products.jpg){: .center-block :}
-
-<div id="bi-graph"></div>
-
-<!-- {% include bi-graph.html %} -->
-
 {% include sankey_diagram.html %}
-
 {% include consumption_per_type.html %}
+![carbon_normalized_consumption](/img/carbon_normalized_consumption.jpg){: .center-block :}
+![NL_CH_transport](/img/NL_CH_transport.jpg){: .center-block :}
+![histogram](/img/histogram.jpg){: .center-block :}
+![tomatoes](/img/tomatoes.jpg){: .center-block :}
 
 ## normalized carbon cost bar graph for all food groups
 
