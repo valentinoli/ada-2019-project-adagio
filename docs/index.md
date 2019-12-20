@@ -34,8 +34,27 @@ Data for this project was sourced from the [Food and Agriculture Organization of
 Let's first start by digging into Swiss imports and exports. We can categorize all the foods based on 6 metacategories: fruits, vegetables, cereals, meats, seafood, and animal products.
 
 ![total_imports_vs_exports](/img/total_imports_vs_exports.jpg){: .center-block :}
+
+As can be seen in this plot, Switzerland imports far more than it exports overall. This fits with a general knowledge of the country; Switzerland is rather small and has a relatively dense population, and thus must import significant amounts of food to sustain its citizens. Furthermore, since it has such a low food self-sufficiency, it does not have a lot of food to spare to export.
+
+The animal products category on this graph - that is, non-meat animal-derived products such as dairy products - is rather intriguing compared to the others, since the import and export quantities are about equal. Why might this be? We can take a further look into the specific subcategories of the animal products foods: 
+
 ![imports_vs_exports_animal_products](/img/imports_vs_exports_animal_products.jpg){: .center-block :}
+
+This graph brings more light to the topic. Although the animal products metacategory had roughly equal imports and exports, the subcategories reveal a different story. Switzerland is indeed importing and exporting different products, rather than simply acting as a transport hub for food items traveling through. Cheese, a category of which there are many different flavors and consumers like variety, is both heavily imported and exported, likely giving consumers access to a wider variety of cheese types.
+
+Dairy products are one of the few items of which Switzerland has enough excess production to also export some of it, most notably [whey](https://en.wikipedia.org/wiki/Whey) and cheese. Eggs, on the other hand, are nearly exclusively imported.
+
+At first glance, butter might puzzle the reader; the values of imports and exports are both low, so is it possible that the Swiss do not eat butter? Of course, this is hardly the case. Imports and exports are only part of the broader picture of what the Swiss consume, which also includes domestic production. It is likely that Swiss demand for butter is approximately equal to the amount produced within the country, and thus imports and exports are both low. We will return to the topic of how domestic consumption affects our analysis later on.
+
+### Incorporating Location
+
+We have taken a glance at the imports and exports of food by category in Switzerland. In regards to analyzing the carbon foodprint of Swiss consumers, another extremely important aspect of this trading is where all the imported food comes from. Foods that are transported from farther across the globe have a higher carbon cost associated with their transport. Thus, if certain types of food consistently come from distant countries, those foods would be better off avoided by an eco-conscious consumer. We can plot the imports by the continent it comes from and the metacategory of food, weighted by how much of that food is imported.
+
 {% include sankey_diagram.html %}
+
+It turns out that Switzerland imports a vast majority of its food from other countries within Europe. From our analysis, we calculated that 76% of all Swiss food imports come from countries within a 1000 km radius of Switzerland. America, from which Switzerland imports significantly less than from Europe, is the next biggest trading partner. 
+
 {% include consumption_per_type.html %}
 ![carbon_normalized_consumption](/img/carbon_normalized_consumption.jpg){: .center-block :}
 ![NL_CH_transport](/img/NL_CH_transport.jpg){: .center-block :}
