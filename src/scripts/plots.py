@@ -10,7 +10,7 @@ HTML_DIR = "../docs/_includes/"
 
 def plot_consumption_per_type(data):
     source = ColumnDataSource(data=data)
-    output_file(HTML_DIR + "consumption_per_type.html")
+    # output_file(HTML_DIR + "consumption_per_type.html")
 
     title = "Swiss Domestic vs. Imported Consumption"
     p = figure(x_range=data.index.tolist(), y_range=(0, 100), plot_height=250, plot_width=700,

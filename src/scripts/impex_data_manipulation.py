@@ -2,6 +2,7 @@
 """Scripts for Impex data loading and manipulation, i.e. generating schemas from raw data"""
 
 import pandas as pd
+import numpy as np
 from scripts.impex_types import TYPES, TRANSPORT_TYPES
 
 COMMERCIAL_PARTNER = "commercial_partner"
@@ -173,3 +174,19 @@ def load_impex_transport():
     
     return transport
 
+
+def calculate_percent_by_method(row, transport_total):
+    """For the given row in the transport dataframe,
+    calculate the fractions for each food group
+    transported by each method of transport"""
+    country = row.name[0]
+    total = transport_total.loc[country]
+    fractions = ([
+        row['cereals'] / total['cereals'],
+        row['potatoes'] / total['potatoes'],
+        row['other_fresh_fruits_vegetables'] / total['other_fresh_fruits_vegetables'],
+        row['fish'] / total['fish'],
+        row['meat'] / total['meat'],
+        row['dairy_products'] / total['dairy_products']
+    ])
+    return pd.Series(np.nan_to_num(fractions))
