@@ -20,7 +20,7 @@ description: Adapting your diet for carbon efficiency
 
 # List of links in the navigation bar
 navbar-links:
-  # About Me: "aboutme"
+  Assumptions: "assumptions"
   # Resources:
     # - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     # - Learn markdown: "http://www.markdowntutorial.com/"

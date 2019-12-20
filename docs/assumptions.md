@@ -1,3 +1,9 @@
+---
+layout: page
+title: Assumptions
+image: /img/flag.gif
+---
+
 The following list is the detailed set of assumptions made when handling the data from Impex.
 **Cereals**
 * Cereals imported for alcohol manufacturing, a category specified by Impex, were not included in the analysis since alcohol is not a recommended food group and cannot be used for nutrition purposes.
@@ -7,10 +13,10 @@ The following list is the detailed set of assumptions made when handling the dat
 * While Impex does have several subcategories of its data on beans, these subcategories were not based on species and thus could not be matched up to the emissions data nor to FAO data. We therefore decided to combine all beans and lentils data from Impex into one `"beans"` category to ensure compatibility across our datasets.
 
 **Meats**
-* Impex offered data for imports and exports of **live animals**. While most of these animals (all except poultry/fowl) were specified whether or not they were for slaughter, we decided to exclude these from our data. This is because according to the metadata of FAO on meat, `"Data relate to animals slaughtered within national boundaries, irrespective of their origin."` Thus, the meat produced from these animals is counted as domestically produced meat by FAO. 
+* Impex offered data for imports and exports of **live animals**. While most of these animals (all except poultry/fowl) were specified whether or not they were for slaughter, we decided to exclude these from our data. This is because according to the metadata of FAO on meat, `"Data relate to animals slaughtered within national boundaries, irrespective of their origin."` Thus, the meat produced from these animals is counted as domestically produced meat by FAO.
 * Edible **offal** (organs and other non-standard cuts of meat) was excluded from our analysis; this is because offal can in a way be considered a by-product of standard meat production. While we have carbon intensities for "bone-free meat", we have no way of quantifying the carbon cost of offal. The one exception to this rule was poultry, where offal was included since the data for offal cannot be separated from the data for cut-up poultry meat.
 * Meat from very **rare, non-standard animals** (e.g. hares, guinea fowl) were not accounted for, since there is no carbon intensity data for these animals and no comparable animal with which to infer the carbon intensity. These rare meats are also hardly consumed in Switzerland, so we assumed excluding them would not make an impact on our analysis.
-* Meat from geese and ducks were combined together, since we had the carbon emissions of duck meat but not for goose meat. These animals were assumed to be similar enough to make that combination. 
+* Meat from geese and ducks were combined together, since we had the carbon emissions of duck meat but not for goose meat. These animals were assumed to be similar enough to make that combination.
 
 **Seafood**
 * Several types of crustaceans were combined into the lobster category since there is no data on carbon emissions of these other animals. Thus, the lobster consumption data includes lobster, crab, crawfish, rock lobster, and any other crustacean that is not shrimp or prawns.
@@ -29,7 +35,7 @@ The following list is the detailed set of assumptions made when handling the dat
 
 
 **Miscellaneous**
-* We did not include data on live animals imported for breeding, nor for crops imported for sowing. These items are not _directly_ implicated in the food chain, and thus they did not fit into our analysis. They do, however, indirectly contribute to the carbon cost of food in Switzerland; the offspring of these breeding animals and imported crops will technically have a higher carbon cost than offspring from Swiss-bred animals and crops, due to the transport required to bring their parent to Switzerland. 
+* We did not include data on live animals imported for breeding, nor for crops imported for sowing. These items are not _directly_ implicated in the food chain, and thus they did not fit into our analysis. They do, however, indirectly contribute to the carbon cost of food in Switzerland; the offspring of these breeding animals and imported crops will technically have a higher carbon cost than offspring from Swiss-bred animals and crops, due to the transport required to bring their parent to Switzerland.
 * Data which contained multiple food groups and could not be broken down further, such as `"Fruit and nuts, uncooked or cooked by steaming or boiling in water, frozen"` were excluded since we did not want unintentional overlap of various food types within one food category of our data.
 * In order to avoid excessive complication and mismatching amongst the datasets, we decided to only examine fresh foods from Impex (where "fresh" includes chilled and frozen). We thus excluded anything preserved by chemical means, such as pickled or dried (other than beans for data compatibility reasons).
 
@@ -43,14 +49,14 @@ The following list is the detailed set of assumptions made when handling the dat
 * From the metadata, the definition for chicken meat is `"Fresh, chilled or frozen. May include all types of poultry meat if national statistics do not report separate data."` When we downloaded the meat production data from FAO, we noticed that there was zero production of duck and goose meat. This would indicate that Switzerland combines all domestic birds under the `chicken` category. We assumed that this was the case since that seemed more likely than Switzerland not producing any poultry meat other than chicken. Due to this, we combined meat from all domestic birds (ducks, geese, turkeys, and chickens) into one category and labeled it as `chicken`.
 
 **Seafood**
-The FAO data on seafood production had to be harvested from another site than where the rest of the production data was obtained from ([FAO fishery data](http://www.fao.org/fishery/statistics/global-commodities-production/query/en)). The data indicated that Switzerland produces fish, but there was no data available for production of other seafood from Switzerland. We assumed that, since Switzerland is landlocked, the only seafood it produces are lake fish, and the other values were nonexistent because they were zero. While the data provided were separated into one amount for freshwater fish and one amount for partly-fresh/partly-saltwater fish, we combined this into a single category and considered it simply as "fish". 
+The FAO data on seafood production had to be harvested from another site than where the rest of the production data was obtained from ([FAO fishery data](http://www.fao.org/fishery/statistics/global-commodities-production/query/en)). The data indicated that Switzerland produces fish, but there was no data available for production of other seafood from Switzerland. We assumed that, since Switzerland is landlocked, the only seafood it produces are lake fish, and the other values were nonexistent because they were zero. While the data provided were separated into one amount for freshwater fish and one amount for partly-fresh/partly-saltwater fish, we combined this into a single category and considered it simply as "fish".
 
 The following assumptions, choices, and aggregations were made when merging Impex, FAO, and carbon intensities data.
 **Animal Products**
 * In both Impex and FAO, cheese is not separated by the animal from which the milk originated. Our carbon intensities data is also not specific to the animal. While it seems likely that cheese from cow milk would have a different carbon intensity than cheese from goat or sheep milk since the animals have different carbon costs for their meat, we chose to simply lump all the cheese together and use the provided global average for all cheese.
 
 **Cereals**
-* Beans can be imported and exported in either their dried or fresh form. While Impex and FAO specify when beans are dried or fresh, the emissions data was only available for either an average of all beans or for individual species. As mentioned above, species of beans were not available in Impex. We thus decided to use the average for all beans, and to assume that this average was for _fresh_ beans. With that decided, we had to deal with the fact that dried beans are much lighter in weight than fresh beans. Using a conversion factor found across the internet in various cooking recipes, we multiplied the weight of the dried beans by 2.5 to approximate their weight as if they were fresh/cooked. 
+* Beans can be imported and exported in either their dried or fresh form. While Impex and FAO specify when beans are dried or fresh, the emissions data was only available for either an average of all beans or for individual species. As mentioned above, species of beans were not available in Impex. We thus decided to use the average for all beans, and to assume that this average was for _fresh_ beans. With that decided, we had to deal with the fact that dried beans are much lighter in weight than fresh beans. Using a conversion factor found across the internet in various cooking recipes, we multiplied the weight of the dried beans by 2.5 to approximate their weight as if they were fresh/cooked.
 
 **Meats**
 * As stated previously, the data for meat from all domestic fowl was included under the category of `"chicken"`. The emissions intensity for chicken was used for all of this data.
