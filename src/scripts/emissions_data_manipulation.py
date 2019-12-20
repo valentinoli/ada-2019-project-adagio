@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 
-from scripts.helpers import load_countries_continents
+from scripts.impex_countries import load_countries_continents
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 
