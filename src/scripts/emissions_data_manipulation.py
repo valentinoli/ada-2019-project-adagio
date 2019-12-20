@@ -58,7 +58,7 @@ def load_tomatoes(suisse, transport, transportCO2, countries):
     tomatoes = pd.read_excel(r"../data/food_emissions.xlsx")
     tomatoes = tomatoes[tomatoes.Name.str.startswith('Tomat')]
     tomatoes.at[119,'Name'] = 'Tomatoes: non greenhouse'
-    tomatoes = tomatoes.set_index('Name')
+    tomatoes = tomatoes.set_index('Name')[['Median']]
     
     # inherent CO2e as a result of growing method, based on one month's consumption in Switzerland
     tomatoes['total_consumption'] = suisse['consumption']['vegetables','tomatoes']
@@ -71,7 +71,7 @@ def load_tomatoes(suisse, transport, transportCO2, countries):
     
     tomatoes['transport_percent'] = ((tomatoes['imported_from_ES_month'] - tomatoes['produced_in_CH_month'])/tomatoes['produced_in_CH_month'])*100
     
-    return tomatoes.drop('total_consumption', axis=1)
+    return tomatoes.drop('total_consumption', axis=1).loc[['Tomatoes: non greenhouse', 'Tomatoes: passive greenhouse', 'Tomatoes: heated greenhouse']]
 
 
 def add_emissions_data(suisse, emissions):
