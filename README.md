@@ -12,7 +12,7 @@ UPDATE 12 December: Things to eventually integrate/mention
 * Talk about source of animal feed:
 One interesting aspect of meat and non-meat animal product production, which is not relevant to the other food groups, is that animal feed may be sourced from a different location than where the meat/animal product is produced. This implicates the sourcing of animal feed as a very important factor for the carbon intensity of these foods. For example, if Switzerland produced most of its meat domestically, but it imported all of its feed, the carbon intensity of its meat would be much higher than if the feed were grown domestically. Thus, both aspects of the final food product must be examined.
 
-# Introduction
+## Introduction
 As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes. (Center for Sustainable Systems, 2018) One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
 
 What is intriguing is that this may not be the answer in all cases. Based on where food is sourced, what time of year it is grown, and how it is produced, the carbon emissions can change drastically. A hot house tomato grown out of season can produce more carbon than pasture-fed goat meat, for example.
@@ -29,13 +29,13 @@ This project will attempt to answer the following question:
 
 Note that we are assuming this analysis will be utilized by a Swiss consumer, and not by the government or any authoritative figure. Therefore, the utility of this analysis comes while assuming that nothing about the given situation will change (for example, Switzerland will not make a policy to start domestically producing more bananas); rather, we are looking to give an individual consumer insight into their carbon levels.
 
-# Sub-questions
+## Sub-questions
 * Among Swiss consumption, how much of the various food types (e.g. bananas, beef, oats) are domestically produced versus imported?
 * How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon "cost" of transporting the food to Switzerland.)
 * Among the various meats and animal products, which ones are more carbon-efficient? This must include both the carbon cost of the animals themselves as well as whether feed is imported or grown domestically.
 * Ultimately, using data specific to Switzerland that we gather, what is the carbon foodprint of (1) A typical Swiss diet, (2) The Swiss government-recommended diet, and (3) A diet optimized for the lowest carbon foodprint possible?
 
-# Datasets
+## Datasets
 
 There are two primary sets of data which we are using to drive our analysis. 
 
@@ -49,7 +49,7 @@ There are certain mismatches between data available from FAO and Impex. In these
 
 We will use very small amounts of additional data, such as [this federal report](https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF) on the recommended and current actual consumption levels by food groups in Switzerland.
 
-# Assumptions
+## Assumptions
 Several assumptions had to be made to distill this massive question into a feasible project.
 
 As mentioned above, this analysis is a consumer insight tool. We assume that no changes are made on the large scale of this data.
@@ -66,7 +66,7 @@ Certain minor food groups, such as oils and sweets, were excluded from the analy
 
 Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
 
-# Tasks to finish
+## Tasks to finish
 * Finish loading in all datasets from FAO and Impex (e.g. nuts, fish, etc. which have been downloaded but were not yet incorporated into the mega dataframe)
 * While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products and cereals). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
 * We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. Then, we need to find a way to determine what transport methods are used for each kind of produce. We already have some US data, but could we find more diverse data such as transatlantic figures. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport? 
