@@ -57,6 +57,7 @@ The following list is the detailed set of assumptions made when handling the dat
 The FAO data on seafood production had to be harvested from another site than where the rest of the production data was obtained from ([FAO fishery data](http://www.fao.org/fishery/statistics/global-commodities-production/query/en)). The data indicated that Switzerland produces fish, but there was no data available for production of other seafood from Switzerland. We assumed that, since Switzerland is landlocked, the only seafood it produces are lake fish, and the other values were nonexistent because they were zero. While the data provided were separated into one amount for freshwater fish and one amount for partly-fresh/partly-saltwater fish, we combined this into a single category and considered it simply as "fish".
 
 The following assumptions, choices, and aggregations were made when merging Impex, FAO, and carbon intensities data.
+
 **Animal Products**
 * In both Impex and FAO, cheese is not separated by the animal from which the milk originated. Our carbon intensities data is also not specific to the animal. While it seems likely that cheese from cow milk would have a different carbon intensity than cheese from goat or sheep milk since the animals have different carbon costs for their meat, we chose to simply lump all the cheese together and use the provided global average for all cheese.
 
