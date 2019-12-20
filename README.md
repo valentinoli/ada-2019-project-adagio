@@ -109,11 +109,15 @@ Finally, animals are often fed with by-products of human food production. If a c
 4. Install the above-mentioned dependencies
 5. Run `project.ipynb` to reproduce the data analysis
 
-## Authors
+## Authors and Contributions
 * Brooke Zampell, [brooke.zampell@epfl.ch](mailto:brooke.zampell@epfl.ch)
+  * Project master mind, data sourcing and manipulation, visualizations and commentary
 * Emily Jamieson, [emily.jamieson@epfl.ch](mailto:emily.jamieson@epfl.ch)
+  * Emissions data loading and manipulation, and commentary
 * Ulugbek Abdullaev, [ulugbek.abdullaev@epfl.ch](mailto:ulugbek.abdullaev@epfl.ch)
+  * Data story, graph visualizations
 * Valentin Oliver Loftsson, [valentin.loftsson@epfl.ch](mailto:valentin.loftsson@epfl.ch)
+  * Data loading and manipulation (except emissions), merging FAO and Impex data sets, code reviewing, and commentary
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
