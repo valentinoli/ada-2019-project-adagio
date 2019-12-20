@@ -84,7 +84,7 @@ Finally, animals are often fed with by-products of human food production. If a c
 * [`fao_data_manipulation.py`](src/scripts/fao_data_manipulation.py) includes scripts for loading and manipulating the FAO data
 * [`emmissions_data_manipulation.py`](src/scripts/emmissions_data_manipulation.py) includes scripts for loading and manipulating the emissions data
 * [`plots.py`](scripts/plots.py) includes plotting functions
-* [`combine_impex_data.py`](src/scripts/combine_impex_data.py) and [`combine_impex_data.ipynb`](src/scripts/combine_impex_data.ipynb) were used to preprocess the data and are not required to run the project notebook.
+* [`combine_impex_data.py`](src/scripts/combine_impex_data.py) and [`combine-impex-data.ipynb`](src/scripts/combine-impex-data.ipynb) were used to preprocess the data and are not required to run the project notebook.
 
 
 ## Dependencies
