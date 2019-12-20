@@ -123,7 +123,7 @@ As public awareness of the impact of carbon emissions increases, it is key to at
 
 The Food and Agriculture Organizations of the United Nations (FAO) have comprehensive data on the CO2 emission intensities for a number of different food types. This data is country-specific, for every country worldwide, but unfortunately only covers a small subset of foods, namely meats. As Switzerland sources its foodstuffs globally, information regarding production-specific carbon emissions in these countries would have been invaluable in terms of estimating the overall effect of the products consumed in Switzerland. (The map below shows an example of the variation that can be observed in carbon emissions from country to country, in this case in the production of beef. This highlights the insight such information would offer, instead of using global average values.) As the country-specific data was only available for such a small subset of products, the global averages were used for all products in the interests of consistency.
 
-INSERT MAP
+{% include world_map.html %}
 
 **Seasonality**
 
