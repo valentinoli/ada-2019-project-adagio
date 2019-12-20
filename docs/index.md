@@ -15,7 +15,7 @@ An important question that data can answer, then, is how an eco-friendly citizen
 
 Depending on what types of food Switzerland is importing and from where, this raises the possibility that a Swiss citizen might have a smaller carbon foodprint by eating more meat, contradicting the typical recommendation. Would living with a vegan diet require an excessive amount of imported foods, outweighting the carbon offset of not eating meat? Or is there a large enough amount of carbon produced by the meat industry that eating a plant-based diet is still more sustainable?
 
-This project will attempt to answer the following question:
+We will attempt to answer the question:
 
 > ### How can a Swiss consumer best adapt their diet to reduce their carbon "foodprint", based on several factors that go into the carbon emissions of food production?
 
@@ -27,7 +27,7 @@ Some of the sub-questions we will attempt to answer in this analysis include:
 * How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon "cost" of transporting the food to Switzerland.)
 * Among the various meats and animal products, which ones are more carbon-efficient? How do these compare to the carbon efficiency of plant-based foods?
 
-Data for this project was sourced from the [Food and Agriculture Organization of the United Nations (FAO)](http://www.fao.org/faostat/en/#data) and [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml). More details on these datasets can be found in the project github README. Note that the most recent data available from FAO for food production in Switzerland was 2017, so all data is from this year.
+Data for this project was sourced from the [Food and Agriculture Organization of the United Nations (FAO)](http://www.fao.org/faostat/en/#data) and [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml). More details on these datasets can be found on the GitHub [project repository](https://github.com/valentinoli/swiss-foodprint/blob/master/README.md). Note that the most recent data available from FAO for food production in Switzerland was 2017, so all data is from this year. 
 
 ## Imports and Exports
 
@@ -83,11 +83,15 @@ This begins to answer our research question of how a Swiss consumer can reduce t
 
 ### Closer Look: Transport Carbon Costs
 
-something
+One way to demonstrate how much transport factors into the carbon cost of a food item is to directly compare the transport cost to the inherent cost of producing that item. Meats have the highest inherent cost of all food groups, so perhaps their transport cost is relatively low.
 
 ![stacked_plot_meat](/img/stacked_plot_meat.png){: .center-block :}
 
+Indeed, it appears that in comparison to the inherent cost of producing the meat, the carbon emissions from transport are extremely low across all animal types. But what about a low carbon intensity food group, such as vegetables?
+
 ![stacked_plot_vegetables](/img/stacked_plot_vegetables.png){: .center-block :}
+
+Surprisingly, for most vegetables, the inherent cost is still relatively higher than the transport. This leads us to believe that the inherent production cost is the far greater influencer on a food's overall carbon output rather than transport. There are of course a few exceptions to this rule, such as asparagus and potatoes. One can speculate as to why these vegetables have such high transport costs; that depends on which countries these foods come from and how they reach Switzerland.
 
 ### Correcting the Transport Data
 
