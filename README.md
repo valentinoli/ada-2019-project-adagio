@@ -4,7 +4,7 @@
 Please refer to [our datastory](https://valentinoli.github.io/swiss-foodprint/) for a visual walk-through of our project and its results.
 
 ## Abstract
-As the global discussion on human carbon emissions continues, more individuals are looking for ways to reduce their carbon footprint. One major contributor to carbon emissions is the food we eat. Some foods, such as meats and animal products, are known to be far more carbon intensive per kg of food produced than plant-based food products. This would lead the carbon-conscious consumer to think that a vegetarian or vegan diet is the best path for an eco-friendly diet.
+As the global discussion on human carbon emissions continues, more individuals are looking for ways to reduce their carbon footprint. One major contributor to carbon emissions is the food we eat. Some foods, such as meats and animal products, are known to be far more carbon-intensive per kg of food produced than plant-based food products. This would lead the carbon-conscious consumer to think that a vegetarian or vegan diet is the best path for an eco-friendly diet.
 
 But what if this were not the case? In Switzerland, much of the meat is produced domestically due to the favorable climate for animals, while fruits do not grow well and are often imported from countries with warmer climates. So while carbon intensities for meats may be inherently higher, the carbon cost of transport increases the carbon intensities of imported foods. Is it possible that in Switzerland, it would be more environmentally friendly to eat the opposite of general recommendations?
 
@@ -25,7 +25,7 @@ Note that we are assuming this analysis will be utilized by a Swiss consumer, an
 
 ## Datasets
 
-There are two primary sets of data which we used to drive our analysis. 
+There are two primary sets of data that we used to drive our analysis. 
 
 The first is the [FAO](http://www.fao.org/faostat/en/#data) (Food and Agriculture Organisation of the United Nations) statistics dataset, which provides us with data specific to Switzerland regarding its crop and other food production. Since the latest available year for Swiss crop production is 2017, we will use 2017 data for all of our sources.
 
@@ -46,16 +46,16 @@ Certain difficulties with the datasets were navigated by excluding or combining 
 
 We have included food waste as food consumption. That is, we calculated `Swiss food consumption` as `domestic production` - `exports` + `imports`.
 
-We are only looking at _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing. Where possible however, values are provided as CO2 equivalents. That is, other greenhouse gases such as methane are given as an equivalent amount of CO2 in terms of their global warming potential.
+We are only looking at the _carbon dioxide_ output. CO2 is only one of many greenhouse gases. So while this gives an informative picture, it is not all-encompassing. Where possible, however, values are provided as CO2 equivalents. That is, other greenhouse gases such as methane are given as an equivalent amount of CO2 in terms of their global warming potential.
 
-Certain minor food groups, such as oils and sweets, were excluded from the analysis, since they are not necessarily "recommended" foods to consume.
+Certain minor food groups, such as oils and sweets, were excluded from the analysis since they are not necessarily "recommended" foods to consume.
 
 Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
 
 ## Results
 Some of our findings matched expectations: accounting for transport carbon costs, meats are still by far the highest carbon intensity food group. Other findings were more surprising, such as the observation that transport is often not a significant contributor to the carbon cost of food. 
 
-The most important finding of our research, however, was that this question is not so easily addressed as we had hoped in the beginning. There are an _incredible_ number of factors which go into the carbon intensity of a food item, and so many of them are impossible to account for on such a large scale. In the end, while we can rather confidently say that a plant-based diet is indeed better for the planet for Swiss consumers, it is difficult to quantify how much a given individual's diet contributes to carbon emissions.
+The most important finding of our research, however, was that this question is not so easily addressed as we had hoped in the beginning. There are an _incredible_ number of factors that go into the carbon intensity of a food item, and so many of them are impossible to account for on such a large scale. In the end, while we can rather confidently say that a plant-based diet is indeed better for the planet for Swiss consumers, it is difficult to quantify how much a given individual's diet contributes to carbon emissions.
 
 For a more detailed analysis of our results, please see our datastory.
 
@@ -82,6 +82,8 @@ For a more detailed analysis of our results, please see our datastory.
     * [`bokeh`](https://docs.bokeh.org/en/latest/index.html)
     * [`holoviews`](http://holoviews.org/)
     * [`networkx`](https://networkx.github.io/)
+* Misc. libraries:
+    * [`geopy`](https://geopy.readthedocs.io/en/stable/)
 
 ## Data
 [Download data](https://drive.google.com/drive/folders/1PafXlTB3gdwMsT65d55lvI0iEHwQNTG_?usp=sharing) (< 5MB)
@@ -91,17 +93,17 @@ For a more detailed analysis of our results, please see our datastory.
 2. Download the data and add the `data/` folder to the root of the project
 3. Install [Jupyter Notebook](https://jupyter.readthedocs.io/en/latest/install.html)
 4. Install the above-mentioned dependencies
-5. Run `project.ipynb` to reproduce the data analysis
+5. Run [`project.ipynb`](src/project.ipynb) to reproduce the data analysis
 
 ## Authors and Contributions
 * Brooke Zampell, [brooke.zampell@epfl.ch](mailto:brooke.zampell@epfl.ch)
-  * Project master mind, data sourcing and manipulation, visualizations and commentary
+  * Project mastermind, data sourcing and manipulation, visualizations, commentary, data story
 * Emily Jamieson, [emily.jamieson@epfl.ch](mailto:emily.jamieson@epfl.ch)
-  * Emissions data loading and manipulation, and commentary
+  * Emissions data loading and manipulation, visualizations, commentary, data story
 * Ulugbek Abdullaev, [ulugbek.abdullaev@epfl.ch](mailto:ulugbek.abdullaev@epfl.ch)
   * Data story, graph visualizations
 * Valentin Oliver Loftsson, [valentin.loftsson@epfl.ch](mailto:valentin.loftsson@epfl.ch)
-  * Data loading and manipulation (except emissions), merging FAO and Impex data sets, code reviewing, and commentary
+  * Data loading and manipulation (except emissions), multi-indexing, merging FAO and Impex data sets, code reviewing, visualizations, commentary
 
 We will all work together on designing our team poster. It has not yet been decided who will present the poster in our short pitch.
 
