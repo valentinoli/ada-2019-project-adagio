@@ -12,7 +12,7 @@ UPDATE 12 December: Things to eventually integrate/mention
 * Talk about source of animal feed:
 One interesting aspect of meat and non-meat animal product production, which is not relevant to the other food groups, is that animal feed may be sourced from a different location than where the meat/animal product is produced. This implicates the sourcing of animal feed as a very important factor for the carbon intensity of these foods. For example, if Switzerland produced most of its meat domestically, but it imported all of its feed, the carbon intensity of its meat would be much higher than if the feed were grown domestically. Thus, both aspects of the final food product must be examined.
 
-# Introduction
+## Introduction
 As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes. (Center for Sustainable Systems, 2018) One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
 
 What is intriguing is that this may not be the answer in all cases. Based on where food is sourced, what time of year it is grown, and how it is produced, the carbon emissions can change drastically. A hot house tomato grown out of season can produce more carbon than pasture-fed goat meat, for example.
@@ -29,13 +29,13 @@ This project will attempt to answer the following question:
 
 Note that we are assuming this analysis will be utilized by a Swiss consumer, and not by the government or any authoritative figure. Therefore, the utility of this analysis comes while assuming that nothing about the given situation will change (for example, Switzerland will not make a policy to start domestically producing more bananas); rather, we are looking to give an individual consumer insight into their carbon levels.
 
-# Sub-questions
+## Sub-questions
 * Among Swiss consumption, how much of the various food types (e.g. bananas, beef, oats) are domestically produced versus imported?
 * How far away do these imports come from? (The farther food is imported from, generally the higher the associated carbon "cost" of transporting the food to Switzerland.)
 * Among the various meats and animal products, which ones are more carbon-efficient? This must include both the carbon cost of the animals themselves as well as whether feed is imported or grown domestically.
 * Ultimately, using data specific to Switzerland that we gather, what is the carbon foodprint of (1) A typical Swiss diet, (2) The Swiss government-recommended diet, and (3) A diet optimized for the lowest carbon foodprint possible?
 
-# Datasets
+## Datasets
 
 There are two primary sets of data which we are using to drive our analysis. 
 
@@ -49,7 +49,7 @@ There are certain mismatches between data available from FAO and Impex. In these
 
 We will use very small amounts of additional data, such as [this federal report](https://www.blv.admin.ch/dam/blv/en/dokumente/lebensmittel-und-ernaehrung/ernaehrung/schweizer-ernaehrungsstrategie-2017-2024.PDF.download.PDF/Ernaehrungsstrategie_Brosch_EN.PDF) on the recommended and current actual consumption levels by food groups in Switzerland.
 
-# Assumptions
+## Assumptions
 Several assumptions had to be made to distill this massive question into a feasible project.
 
 As mentioned above, this analysis is a consumer insight tool. We assume that no changes are made on the large scale of this data.
@@ -66,11 +66,60 @@ Certain minor food groups, such as oils and sweets, were excluded from the analy
 
 Finally, animals are often fed with by-products of human food production. If a consumer were to eat fewer meat/animal products, there would potentially be additional food waste to dispose of. The impact of this waste is not incorporated in this analysis.
 
-# Tasks to finish
+## Tasks to finish
 * Finish loading in all datasets from FAO and Impex (e.g. nuts, fish, etc. which have been downloaded but were not yet incorporated into the mega dataframe)
 * While there are no by-country datasets for carbon intensities of all foods, FAO does offer a dataset of intensities by country for a select number of animal products (meats and non-meat animal products and cereals). We will replace the global averages currently used with the data available from FAO, and leave the global averages for anything not provided by the FAO.
 * We need to select (among those we have found) a dataset which details the carbon cost of each type of transport for imported foods. Then, we need to find a way to determine what transport methods are used for each kind of produce. We already have some US data, but could we find more diverse data such as transatlantic figures. For example, what percentage of apples are imported by plane versus by train, and what is the carbon output per kilometer for both methods of transport? 
 * Continue to explore whether there is a way to incorporate seasonality data (crops grown out of season are much more carbon-intensive than in season, fruit such as apples can be stored refrigerated for up to 10 months of the year which greatly increases their carbon footprint over time).
 * Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.
 * Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
+
+## Code Architecture
+* [`src/`](src) directory contains the project notebook and required [`scripts/`](src/scripts)
+* [`project.ipynb`](src/project.ipynb) is the project Jupyter notebook file
+* [`impex_types.py`](src/scripts/impex_types.py) includes a dictionary for loading the Swiss-Impex data
+* [`impex_data_manipulation.py`](src/scripts/impex_data_manipulation.py) includes scripts for loading and manipulating the Impex data
+* [`impex_countries.py`](src/scripts/impex_countries.py) includes a function to load countries and continents
+* [`fao_types.py`](src/scripts/fao_types.py) includes objects for facilitating the loading of FAO data and merging with the Impex data types
+* [`fao_data_manipulation.py`](src/scripts/fao_data_manipulation.py) includes scripts for loading and manipulating the FAO data
+* [`emmissions_data_manipulation.py`](src/scripts/emmissions_data_manipulation.py) includes scripts for loading and manipulating the emissions data
+* [`plots.py`](scripts/plots.py) includes plotting functions
+* [`combine_impex_data.py`](src/scripts/combine_impex_data.py) and [`combine-impex-data.ipynb`](src/scripts/combine-impex-data.ipynb) were used to preprocess the data and are not required to run the project notebook.
+
+
+## Dependencies
+* Data handling libraries:
+    * [`pandas`](https://pandas.pydata.org/)
+    * [`numpy`](https://numpy.org/)
+* Plotting libraries:
+    * [`matplotlib`](https://matplotlib.org/)
+    * [`seaborn`](https://seaborn.pydata.org/)
+    * [`plotly` and `chart_studio`](https://help.plot.ly/)
+    * [`holoviews`](http://holoviews.org/)
+    * [`networkx`](https://networkx.github.io/)
+
+
+## Data
+[Download data](https://drive.google.com/drive/folders/1PafXlTB3gdwMsT65d55lvI0iEHwQNTG_?usp=sharing) (< 5MB)
+
+## Reproduction
+1. Clone or fork the repository
+2. Download the data and add the `data/` folder to the root of the project
+3. Install [Jupyter Notebook](https://jupyter.readthedocs.io/en/latest/install.html)
+4. Install the above-mentioned dependencies
+5. Run `project.ipynb` to reproduce the data analysis
+
+## Authors and Contributions
+* Brooke Zampell, [brooke.zampell@epfl.ch](mailto:brooke.zampell@epfl.ch)
+  * Project master mind, data sourcing and manipulation, visualizations and commentary
+* Emily Jamieson, [emily.jamieson@epfl.ch](mailto:emily.jamieson@epfl.ch)
+  * Emissions data loading and manipulation, and commentary
+* Ulugbek Abdullaev, [ulugbek.abdullaev@epfl.ch](mailto:ulugbek.abdullaev@epfl.ch)
+  * Data story, graph visualizations
+* Valentin Oliver Loftsson, [valentin.loftsson@epfl.ch](mailto:valentin.loftsson@epfl.ch)
+  * Data loading and manipulation (except emissions), merging FAO and Impex data sets, code reviewing, and commentary
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
