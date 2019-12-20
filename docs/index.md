@@ -113,6 +113,19 @@ As would match intuition and previous reports on this topic, all of the plant-ba
 
 ## Reflection: Is This Analysis Realistic?
 
-Emily's discussion here
+As public awareness of the impact of carbon emissions increases, it is key to attempt to understand related causes and implications. This is particularly true in terms of diet, as it is something that we, as individuals, can easily have an effect on. There is a vast amount of publicly available information regarding carbon emissions and food production and transport and sorting through this to determine what concrete steps one can take to reduce their ‘carbon foodprint’. Initially, our goal was to try to reconcile some of the myriad data sources available to present data relevant to Swiss consumers. A number of issues were encountered in this process, particularly in terms of obtaining country-specific emissions data, transport data (as discussed above) and information about seasonality, which are key aspects in determining the carbon emissions of the food products sitting on our supermarket shelves.
+
+**Production Emissions**
+The Food and Agriculture Organizations of the United Nations (FAO) have comprehensive data on the CO2 emission intensities for a number of different food types. This data is country-specific, for every country worldwide, but unfortunately only covers a small subset of foods, namely meats. As Switzerland sources its foodstuffs globally, information regarding production-specific carbon emissions in these countries would have been invaluable in terms of estimating the overall effect of the products consumed in Switzerland. (The map below shows an example of the variation that can be observed in carbon emissions from country to country, in this case in the production of beef. This highlights the insight such information would offer, instead of using global average values.) As the country-specific data was only available for such a small subset of products, the global averages were used for all products in the interests of consistency.
+
+INSERT MAP
+
+**Seasonality**
+Seasonality is one of the hardest factors to quantify, yet can have an important effect on carbon emissions for seasonal produce. Just to take an example, let's compare tomatoes grown by different methods. For example, tomatoes grown outside of a greenhouse have a lower carbon impact than tomatoes grown in greenhouses. But how does the carbon cost of transport compare to the carbon cost of these higher intensity methods? We can quantify the comparison by looking at the carbon costs of the amount of tomatoes consumed in Switzerland if they were grown in Switzerland or abroad, then transported. For each country, we will compare three growing methods. The countries included in this analysis are the warmer neighboring countries of Spain and Morocco, the biggest tomato trading partners of Switzerland within and outside of Europe, respectively. We can see that the difference between tomatoes grown in the exterior, or in a non-heated greenhouse in Switzerland is minimal. However, in months where it is too cold to grow tomatoes in Switzerland without additional heating, would it be more efficient to transport tomatoes from abroad? The inherent carbon cost of tomatoes produced in heated greenhouses is so high that, even when transport costs are taken into account, it would be advantageous to import naturally/passive greenhouse grown tomatoes from Spain or Morocco, where the growing season is much longer.
 
 ![tomatoes](/img/tomatoes.jpg){: .center-block :}
+
+Another seasonality factor that needs consideration is food storage. Often, fresh fruit and vegetables are refrigerated in order to increase the time they can be stored before being sold, and effectively increase the ‘season’ local produce can be sold for in a given country. The carbon cost of such storage is very difficult to quantify, as the conditions are so diverse, but depending on the time and method of storage, they can be significant.
+
+
+
