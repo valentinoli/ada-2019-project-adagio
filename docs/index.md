@@ -7,7 +7,7 @@ bigimg: /img/path.jpg
 ---
 
 ## Introduction
-As is slowly becoming a widely-known fact, the meat and animal product industry is significantly more carbon-intensive than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat/animal product is much higher than the amount of CO2 for the same mass/energy equivalent of plants, e.g., fruits, vegetables, legumes (Center for Sustainable Systems, 2018). One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
+As is slowly becoming a widely-known fact, the meat and animal product industry is [significantly more carbon-intensive](http://css.umich.edu/factsheets/carbon-footprint-factsheet) than plant-based foods. The amount of CO2 produced per kg (or even kcal) of meat or animal product is much higher than the amount of CO2 for the equivalent mass of plants, e.g., fruits, vegetables, legumes. One might think, then, that the best way to reduce one's "carbon foodprint" (carbon footprint due to food production) is to take on a vegetarian or vegan diet.
 
 What is intriguing is that this may not be the answer in all cases. Based on where food is sourced, what time of year it is grown, and how it is produced, the carbon emissions can change drastically. A hot house tomato grown out of season can produce less carbon than pasture-fed goat meat, for example.
 
@@ -71,9 +71,11 @@ Note that in our analysis, we assumed that exports were first sourced from the S
 
 ## Carbon Emissions
 
+'Food miles', or the distance that food must travel to arrive on a consumer's plate, clearly have an impact on the carbon emissions of the products consumed. The farther a country is, the more carbon emissions it would cost to import food from that country. The method of transport, whether by plane, boat, train, or truck, is also key, given that [air transport emits approximately 40 times more carbon](http://shrinkthatfootprint.com/food-miles) than the equivalent distance by container ship. 
+
 Now that we have gathered the information about where the food eaten in Switzerland is sourced from, we can begin to consider the carbon impact of these foods. Emissions of a food product can be expressed as CO2e ([carbon dioxide equivalent](https://www.theguardian.com/environment/2011/apr/27/co2e-global-warming-potential)), condensing the impact of all greenhouse gases into a single number. For the remainder of this analysis, we will refer to the emissions of food items as carbon-related, though all numbers are CO2 equivalents.
 
-The CO2e of a food item comes from both its inherent carbon cost of production as well as the carbon cost of transporting that item from its country of origin to where it is consumed. The method by which a food item is transported greatly influences the carbon cost of importing; planes, boats, trains, and trucks [each have different emissions](http://shrinkthatfootprint.com/food-miles) in terms of amount of CO2 produced per distance traveled and amount of food transported. Luckily, [data is available](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml) on how various foods enter and exit Switzerland, opening up the possibility of calculating the carbon cost of each type of food based on what countries it comes from and by which transport method. Aggregating the results into the metacategories of food, we can see the following trend of total CO2e normalized by how much of that food item is consumed in Switzerland:
+The CO2e of a food item comes from both its inherent carbon cost of production as well as the carbon cost of transporting that item from its country of origin to where it is consumed. Luckily, [data is available](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml) on how various foods enter and exit Switzerland, opening up the possibility of calculating the carbon cost of each type of food based on what countries it comes from and by which transport method. Aggregating the results into the metacategories of food, we can see the following trend of total CO2e normalized by how much of that food item is consumed in Switzerland:
 
 ![carbon_normalized_consumption](/img/carbon_normalized_consumption.jpg){: .center-block :}
 
@@ -83,21 +85,34 @@ This begins to answer our research question of how a Swiss consumer can reduce t
 
 something
 
-# Put here: stacked bar plot of meat
+![stacked_plot_meat](/img/stacked_plot_meat.jpg){: .center-block :}
 
-# Put here: stacked bar plot of vegetables
+![stacked_plot_vegetables](/img/stacked_plot_vegetables.jpg){: .center-block :}
 
 ### Correcting the Transport Data
 
-Although Switzerland has an impressive amount of data available on its imports, exports, and production of food, there is one major flaw with the data. The data that [Swiss Impex](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml) provides on the transport methods only details the method by which the food items _crossed the Swiss border_. Hence, if a food item was brought by boat from its country of origin to [Rotterdam, the largest European shipping port](https://en.wikipedia.org/wiki/Port_of_Rotterdam) and then by train from Rotterdam to Switzerland, the Swiss transport data lists the item as coming from its country of origin by train.
+Information regarding the transport methods of different food items is notoriously difficult to obtain. While the [Swiss Federal Customs Administration's Impex data](https://www.gate.ezv.admin.ch/swissimpex/index.xhtml) contains extremely detailed information on import and export statistics, the data available for transport methods is very sparse. Transport data was only available in six categories: potatoes, fresh fruit and vegetables, dairy products, meat, cereals, and fish. Given the fact that all fresh fruit and vegetables are clearly not transported in the same manner, such a broad generalization makes it very difficult to see the difference between the produce. For example, raspberries have a shelf-life of 1-3 days and would often be transported by plane, whereas onions have a very long shelf-life and it would not make sense to fly them to their destination. As a result, this method will not highlight produce that should potentially be avoided due to their high transport costs, such as perishable exotic fruits which travel by plane.
 
-For our original analysis, we took the data at face value; that is, if apples were listed as coming to Switzerland by train from New Zealand, we calculated the carbon cost of transport assuming that the apples traveled by train the distance between Switzerland and New Zealand. In an attempt to correct for this strange assumption, we implemented a change to our analysis: for all items coming from outside Europe to Switzerland by rail or road, we first calculate the carbon cost of sending these items by boat to Rotterdam, then traveling the rest of the way from Rotterdam to Switzerland by the original transport method provided. We can compare how this change affects the carbon costs of various foods. Let's take a look at vegetables:
+Furthermore, the data provided by Impex only states the method by which the imports _crossed the Swiss border_. Hence, if a food item was brought by boat from its country of origin to [Rotterdam, the largest European shipping port](https://en.wikipedia.org/wiki/Port_of_Rotterdam) and then by train from Rotterdam to Switzerland, the Swiss transport data lists the item as coming from its country of origin by train. Being a landlocked country, only very few shipments arrive by inland waterways. The majority of items coming from overseas would likely arrive by ship, before continuing to Switzerland by the transport method which is actually recorded. This clearly biases the transport emissions for such shipments.
+
+For our original analysis, we took the data at face value; that is, if apples were listed as coming to Switzerland by train from New Zealand, we calculated the carbon cost of transport assuming that the apples traveled by train the distance between Switzerland and New Zealand. In an attempt to correct for this strange assumption, we implemented a change to our analysis: for all items coming from outside Europe to Switzerland by rail or road, we first calculate the carbon cost of sending these items by boat to Rotterdam, then traveling the rest of the way from Rotterdam to Switzerland by the original transport method provided. This gives a more accurate estimation in some cases, such as imports from America/Oceania, but in other cases its utility is debatable. This is particularly true in the case of Northern African countries, where it is impossible to know how much of the journey would have been undertaken by ship. Routing the products from Northern Africa through Rotterdam essentially prolongs their journey, and could result in unrealistically high carbon estimates.
+
+We can compare how this change affects the carbon costs of various foods. Let's take a look at vegetables using both analysis methods (face value and with Rotterdam implemented):
 
 ![NL_CH_transport](/img/NL_CH_transport.jpg){: .center-block :}
 
-As we had seen earlier, the inherent production cost of vegetables is far more influential on the total carbon emissions than the carbon contribution from transport. What comes to light from this graph, however, is that it hardly makes a difference that the original data is inaccurate. Considering that vegetables come through Rotterdam makes such a small impact on the analysis because transport has so little to do with the carbon cost, even for low-carbon food items like vegetables.
+As we had seen earlier, the inherent production cost of vegetables is far more influential on the total carbon emissions than the carbon contribution from transport. What comes to light from this graph, however, is that it hardly makes a difference that the original data is inaccurate. Considering that vegetables come through Rotterdam makes such a small impact on the analysis because transport has so little to do with the carbon cost, even for low-carbon food items like vegetables. The effect of incorporating the Rotterdam assumption is minimal in most cases, being more marked when the majority of the produce originates a long way from Switzerland, e.g. asparagus. Neither of these approximations are optimal, as they blanket all fruit and vegetables under the same transport conditions, which is far from the truth. Given the lack of detailed information, the numerical figures regarding transport emissions are of limited value in terms of product specific estimates and recommendations and can only really be used on a very broad scale.
 
 ## Conclusion
 
+Regardless of all the special considerations which come into play regarding Switzerland - the fact that it is landlocked, its climate is far from ideal for fruit production, and its self-sufficiency is fairly low - it seems that meats have once again emerged as the culprit of the individual's carbon foodprint. A summary of our findings can be visualized in a comparison between the carbon emissions per amount of food for three groups: meats and seafood, non-meat animal products, and plant-based foods.
+
 ![histogram](/img/histogram.jpg){: .center-block :}
+
+As would match intuition and previous reports on this topic, all of the plant-based foods fall low on the carbon spectrum. Meats and animal products, on the other hand, span a wider range, with meats reaching by far the highest carbon intensities. Even accounting for transport from the specific countries that these products come from, there is no possible conclusion in which meats are exonerated. The recommendation for those living in Switzerland wishing to reduce their carbon foodprint remains the same as all recommendations found in the literature: a vegan diet is truly the healthiest for the planet.
+
+## Reflection: Is This Analysis Realistic?
+
+Emily's discussion here
+
 ![tomatoes](/img/tomatoes.jpg){: .center-block :}
