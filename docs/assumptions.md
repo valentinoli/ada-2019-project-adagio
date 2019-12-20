@@ -58,6 +58,7 @@ The FAO data on seafood production had to be harvested from another site than wh
 
 The following assumptions, choices, and aggregations were made when merging Impex, FAO, and carbon intensities data.
 
+
 **Animal Products**
 * In both Impex and FAO, cheese is not separated by the animal from which the milk originated. Our carbon intensities data is also not specific to the animal. While it seems likely that cheese from cow milk would have a different carbon intensity than cheese from goat or sheep milk since the animals have different carbon costs for their meat, we chose to simply lump all the cheese together and use the provided global average for all cheese.
 
@@ -81,4 +82,4 @@ The following assumptions, choices, and aggregations were made when merging Impe
 The following list is the detailed set of assumptions made when handling the emssions data.
 
 * The emissions categories available were less comprehensive than the FAO/Impex categories. The items lacking emissions values were estimated using the closest available emissions category. For a full list, please see the last 15 lines of the file categories.txt in the data folder.
-* Clune, Crossin and Verghese's 2017 review collates CO2 emissions data from ~1700 studies worldwide, a summary of which is available in the file food_emissions_raw.xlsx. These studies do not provide an even representation of the different food categories and thus some global emissions estimates are averages of several studies in different countries, while others are the result of a unique study. These averages can be seen in the file food_emissions.xlsx.
+* Clune, Crossin and Verghese's 2017 [review] (https://www.sciencedirect.com/science/article/pii/S0959652616303584) collates carbon emissions data from ~1700 studies worldwide, a summary of which is available in the file food_emissions_raw.xlsx. These studies do not provide an even representation of the different food categories and thus some global emissions estimates are averages of several studies in different countries, while others are the result of a unique study. These averages can be seen in the file food_emissions.xlsx.
