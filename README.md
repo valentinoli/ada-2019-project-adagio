@@ -74,3 +74,49 @@ Finally, animals are often fed with by-products of human food production. If a c
 * Some animals are fed with a different mixture of feed than others; for example, most of cattle feed is grown domestically, but the majority of chicken feed is imported. Try to find a way to distinguish between these categories, more accurately representing the carbon cost of each meat type.
 * Is there a way to optimize a diet for carbon output while still having a varied, delicious diet? Explore more methods of data processing and perhaps machine learning for this task.
 
+## Code Architecture
+* [`src/`](src) directory contains the project notebook and required [`scripts/`](src/scripts)
+* [`project.ipynb`](src/project.ipynb) is the project Jupyter notebook file
+* [`helpers.py`](src/scripts/helpers.py) includes various helper functions
+* [`impex_types.py`](src/scripts/impex_types.py) includes a dictionary for loading the Swiss-Impex data
+* [`impex_data_manipulation.py`](src/scripts/impex_data_manipulation.py) includes scripts for loading and manipulating the Impex data
+* [`impex_countries.py`](src/scripts/impex_countries.py) includes a function to load countries and continents
+* [`fao_types.py`](src/scripts/fao_types.py) includes objects for facilitating the loading of FAO data and merging with the Impex data types
+* [`fao_data_manipulation.py`](src/scripts/fao_data_manipulation.py) includes scripts for loading and manipulating the FAO data
+* [`emmissions_data_manipulation.py`](src/scripts/emmissions_data_manipulation.py) includes scripts for loading and manipulating the emissions data
+* [`plots.py`](scripts/plots.py) includes plotting functions
+* [`combine_impex_data.py`] and [`combine_impex_data.ipynb`] were used to preprocess the data and are not required to run the project notebook.
+
+
+## Dependencies
+* Data handling libraries:
+    * [`pandas`](https://pandas.pydata.org/)
+    * [`numpy`](https://numpy.org/)
+* Plotting libraries:
+    * [`matplotlib`](https://matplotlib.org/)
+    * [`seaborn`](https://seaborn.pydata.org/)
+    * [`plotly` and `chart_studio`](https://help.plot.ly/)
+    * [`holoviews`](http://holoviews.org/)
+    * [`networkx`](https://networkx.github.io/)
+
+
+## Data
+[Download data](https://drive.google.com/drive/folders/1PafXlTB3gdwMsT65d55lvI0iEHwQNTG_?usp=sharing) (< 5MB)
+
+## Reproduction
+1. Clone or fork the repository
+2. Download the data and add the `data/` folder to the root of the project
+3. Install [Jupyter Notebook](https://jupyter.readthedocs.io/en/latest/install.html)
+4. Install the above-mentioned dependencies
+5. Run `project.ipynb` to reproduce the data analysis
+
+## Authors
+* Brooke Zampell, [brooke.zampell@epfl.ch](mailto:brooke.zampell@epfl.ch)
+* Emily Jamieson, [emily.jamieson@epfl.ch](mailto:emily.jamieson@epfl.ch)
+* Ulugbek Abdullaev, [ulugbek.abdullaev@epfl.ch](mailto:ulugbek.abdullaev@epfl.ch)
+* Valentin Oliver Loftsson, [valentin.loftsson@epfl.ch](mailto:valentin.loftsson@epfl.ch)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
