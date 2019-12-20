@@ -40,7 +40,7 @@ def load_emissions():
 
     return emissions.drop("index", axis=1)
 
-def load_tomatoes(suisse, transport, transportCO2):
+def load_tomatoes(suisse, transport, transportCO2, countries):
     # load the different tomato emission categories for an example
     tomatoes = pd.read_excel(r"../data/food_emissions.xlsx")
     tomatoes = tomatoes[tomatoes.Name.str.startswith('Tomat')].set_index('Name')[['Median']]
@@ -48,7 +48,12 @@ def load_tomatoes(suisse, transport, transportCO2):
     # processing to include shipping cost for a month's tomatoes from Spain
     tomatoes['total_consumption'] = suisse['consumption']['vegetables','tomatoes']
     tomatoes['produced_in_CH_month'] = (tomatoes['Median']*tomatoes['total_consumption'])/12
-    tomatoes['imported_from_ES_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Spain','Air traffic'].iat[0]*transportCO2['Air traffic'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Inland waterways'].iat[0]*transportCO2['Inland waterways'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Road traffic'].iat[0]*transportCO2['Road traffic'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Rail traffic'].iat[0]*transportCO2['Rail traffic'])))/12)
+    
+    tomatoes['imported_from_ES_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Spain','Air traffic'].iat[0]*transportCO2['Air traffic']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Inland waterways'].iat[0]*transportCO2['Inland waterways']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Road traffic'].iat[0]*transportCO2['Road traffic']*countries['distance_CH']['Spain'])+(transport[['other_fresh_fruits_vegetables']].loc['Spain','Rail traffic'].iat[0]*transportCO2['Rail traffic']*countries['distance_CH']['Spain'])))/12)
+    
+    tomatoes['imported_from_MO_month'] = tomatoes['produced_in_CH_month']+((tomatoes.total_consumption*((transport[['other_fresh_fruits_vegetables']].loc['Morocco','Air traffic'].iat[0]*transportCO2['Air traffic']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Inland waterways'].iat[0]*transportCO2['Inland waterways']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Road traffic'].iat[0]*transportCO2['Road traffic']*countries['distance_CH']['Morocco'])+(transport[['other_fresh_fruits_vegetables']].loc['Morocco','Rail traffic'].iat[0]*transportCO2['Rail traffic']*countries['distance_CH']['Morocco'])))/12)
+    
+    tomatoes['transport_percent'] = ((tomatoes['imported_from_ES_month'] - tomatoes['produced_in_CH_month'])/tomatoes['produced_in_CH_month'])*100
     
     return tomatoes.drop('total_consumption', axis=1)
 
@@ -93,14 +98,23 @@ def country_distances():
     
     ch = geolocator.geocode("Switzerland")
     switzerland = (ch.latitude, ch.longitude)
+    nl = geolocator.geocode("Rotterdam, Holland")
+    rotterdam = (ch.latitude, ch.longitude)
 
     def find_distance(x):
         try:
             return geodesic(switzerland, tuple(x)).km
         except:
             return np.nan
+        
+    def find_distance_NL(x):
+        try:
+            return geodesic(rotterdam, tuple(x)).km
+        except:
+            return np.nan
 
     countries['distance_CH'] = countries.coord.apply(find_distance).round()
+    countries['distance_NL'] = countries.coord.apply(find_distance_NL).round()
     countries.set_index('country', inplace=True)
     
     # fill in incompatible countries (same method used, but country names entered manually
