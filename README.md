@@ -3,6 +3,8 @@
 
 Please refer to [our datastory](https://valentinoli.github.io/swiss-foodprint/) for a visual walk-through of our project and its results.
 
+![Presentation Poster](poster.jpg)
+
 ## Abstract
 As the global discussion on human carbon emissions continues, more individuals are looking for ways to reduce their carbon footprint. One major contributor to carbon emissions is the food we eat. Some foods, such as meats and animal products, are known to be far more carbon-intensive per kg of food produced than plant-based food products. This would lead the carbon-conscious consumer to think that a vegetarian or vegan diet is the best path for an eco-friendly diet.
 
@@ -104,8 +106,6 @@ For a more detailed analysis of our results, please see our datastory.
   * Data story, graph visualizations
 * Valentin Oliver Loftsson, [valentin.loftsson@epfl.ch](mailto:valentin.loftsson@epfl.ch)
   * Data loading and manipulation (except emissions), multi-indexing, merging FAO and Impex data sets, code reviewing, visualizations, commentary
-
-We will all work together on designing our team poster. It has not yet been decided who will present the poster in our short pitch.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
